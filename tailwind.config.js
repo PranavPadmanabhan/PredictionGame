@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       fontFamily: {
         primary: ['Inter', ...fontFamily.sans],
+        poppins: ['Poppins', 'sans-serif'],
       },
       colors: {
         primary: {
@@ -24,7 +25,13 @@ module.exports = {
           900: 'rgb(var(--tw-color-primary-900) / <alpha-value>)',
         },
         dark: '#222222',
+        backgroundColor: '#1C1B37',
+        sideBarTextColor: 'rgba(255, 255, 255, 0.5)',
+        activeSideBarTextColor: '#02FFF0',
+        pageBg: '#252347',
+        button: '#6865B5',
       },
+      boxShadow: {},
       keyframes: {
         flicker: {
           '0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100%': {
