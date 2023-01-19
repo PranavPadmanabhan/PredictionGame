@@ -80,12 +80,22 @@ module.exports = {
           800: 'rgb(var(--tw-color-primary-800) / <alpha-value>)',
           900: 'rgb(var(--tw-color-primary-900) / <alpha-value>)',
         },
+
+        /*----background colors---*/
+
         dark: '#222222',
         backgroundColor: '#1C1B37',
+        bgPredictions: '#1C1B37',
+        pageBg: '#252347',
+
+        /**---- text colors --- */
         sideBarTextColor: 'rgba(255, 255, 255, 0.5)',
         activeSideBarTextColor: '#02FFF0',
-        pageBg: '#252347',
+
+        /**--- buttons ---- */
         button: '#6865B5',
+
+        /**--- gradient colors ---- */
         cardGradient1: '#131328',
         cardGradient2: 'rgba(59, 57, 107, 0)',
         cardTitleBox1: '#4A4882',
@@ -96,6 +106,7 @@ module.exports = {
       boxShadow: {
         card: 'inset 6px 6px 6px rgba(255, 255, 255, 0.09), inset -6px -6px 14px rgba(0, 0, 0, 0.45)',
         cardtTitleBox: '0px 0px 26px rgba(0, 0, 0, 0.58)',
+        predictions: '0px 4px 20px rgba(132, 132, 132, 0.3)',
       },
       dropShadow: {
         card: '0px 0px 20px rgba(6, 1, 1, 0.5)',
