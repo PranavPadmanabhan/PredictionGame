@@ -90,6 +90,8 @@ module.exports = {
         cardGradient2: 'rgba(59, 57, 107, 0)',
         cardTitleBox1: '#4A4882',
         cardTitleBox2: '#28274E',
+        sliderColor1: '#02FFF0',
+        sliderColor2: '#001AFF',
       },
       boxShadow: {
         card: 'inset 6px 6px 6px rgba(255, 255, 255, 0.09), inset -6px -6px 14px rgba(0, 0, 0, 0.45)',
