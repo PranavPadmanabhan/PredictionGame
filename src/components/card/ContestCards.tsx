@@ -11,7 +11,7 @@ const ContestCards = ({ completed }: cards) => {
     <div
       className={`flex h-full ${
         completed
-          ? 'max-h-[345px] min-h-[200px] w-[50%] min-w-[190px] max-w-[320px] lg1300:min-h-[250px] lg1300:w-[100%] lg1300:max-w-[230px] xl1400:min-h-[230px] xl1400:w-[100%] xl1400:max-w-[230px] xl1500:min-h-[270px] xl1500:w-[100%] xl1500:max-w-[270px]'
+          ? 'max-h-[345px] min-h-[200px] w-[50%] min-w-[190px] max-w-[320px] lg1300:min-h-[230px] lg1300:w-[100%] lg1300:max-w-[210px] xl1400:min-h-[230px] xl1400:w-[100%] xl1400:max-w-[230px] xl1500:min-h-[270px] xl1500:w-[100%] xl1500:max-w-[270px]'
           : 'max-h-[345px] min-h-[220px] w-[50%] min-w-[210px] max-w-[320px] lg1300:min-h-[250px] lg1300:w-[100%] lg1300:max-w-[230px] xl1400:min-h-[300px] xl1400:w-[100%] xl1400:max-w-[260px] xl1500:min-h-[310px] xl1500:w-[100%] xl1500:max-w-[280px]'
       }  flex-col items-center justify-between rounded-[30px] bg-gradient-to-br from-cardGradient1 to-cardGradient2 p-2 py-4 shadow-card drop-shadow-card  lg1300:rounded-[40px]  xl1400:rounded-[40px]  xl1500:rounded-[40px]`}
     >
