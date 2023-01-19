@@ -99,6 +99,7 @@ module.exports = {
       },
       dropShadow: {
         card: '0px 0px 20px rgba(6, 1, 1, 0.5)',
+        text: '5px 5px 0px rgba(45, 42, 106, 0.85)',
       },
       keyframes: {
         flicker: {

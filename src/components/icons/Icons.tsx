@@ -30,7 +30,7 @@ export const ContestIcon = ({
       onClick={onClick}
       onMouseOver={() => sethover(true)}
       onMouseOut={() => sethover(false)}
-      className={`${className} my-2 flex h-[50px] w-full cursor-pointer items-center justify-start gap-x-4`}
+      className={`${className} my-2 flex h-[50px] w-auto cursor-pointer items-center justify-start gap-x-4`}
     >
       <svg
         width='40'
@@ -109,13 +109,13 @@ export const PredictionsIcon = ({
       onClick={onClick}
       onMouseOver={() => sethover(true)}
       onMouseOut={() => sethover(false)}
-      className={`${className} my-2 flex h-[50px] w-full cursor-pointer items-center justify-start gap-x-7 pl-1`}
+      className={`${className} my-2 flex h-[50px] w-auto cursor-pointer items-center justify-start gap-x-7 pl-1`}
     >
       {' '}
       <svg
         width={Width}
         height={Height}
-        className='scale-150'
+        className='scale-125'
         viewBox={`0 0 ${Width} ${Height}`}
         fill='none'
         xmlns='http://www.w3.org/2000/svg'
@@ -163,7 +163,7 @@ export const WalletIcon = ({
       onClick={onClick}
       onMouseOver={() => sethover(true)}
       onMouseOut={() => sethover(false)}
-      className={`${className} my-2 flex h-[50px] w-full cursor-pointer items-center justify-start gap-x-6`}
+      className={`${className} my-2 flex h-[50px] w-auto cursor-pointer items-center justify-start gap-x-6`}
     >
       <svg
         width={Width}
@@ -215,7 +215,7 @@ export const FAQIcon = ({
       onClick={onClick}
       onMouseOver={() => sethover(true)}
       onMouseOut={() => sethover(false)}
-      className={`${className} my-2 flex h-[50px] w-full cursor-pointer items-center justify-start gap-x-6`}
+      className={`${className} my-2 flex h-[50px] w-auto cursor-pointer items-center justify-start gap-x-6`}
     >
       <svg
         width={Width}
