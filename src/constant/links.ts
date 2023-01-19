@@ -1,8 +1,14 @@
+import {
+  ContestIcon,
+  FAQIcon,
+  PredictionsIcon,
+  WalletIcon,
+} from '@/components/icons/Icons';
+
 type link = {
   id: number;
   label: string;
-  active: string;
-  icon: string;
+  icon: any;
   url: string;
 };
 
@@ -10,29 +16,25 @@ export const sideBarLinks: link[] = [
   {
     id: 1,
     label: 'Contests',
-    active: '/svg/Activecontests.svg',
-    icon: '/svg/contests.svg',
+    icon: ContestIcon,
     url: '/contests',
   },
   {
     id: 2,
     label: 'Your Predictions',
-    active: '/svg/ActiveyourPredictions.svg',
-    icon: '/svg/yourPredictions.svg',
+    icon: PredictionsIcon,
     url: '/predictions',
   },
   {
     id: 3,
     label: 'Wallet',
-    active: '/svg/Activewallet.svg',
-    icon: '/svg/wallet.svg',
+    icon: WalletIcon,
     url: '/wallet',
   },
   {
     id: 4,
     label: 'FAQ',
-    active: '/svg/Activefaq.svg',
-    icon: '/svg/faq.svg',
+    icon: FAQIcon,
     url: '/faq',
   },
 ];

@@ -8,9 +8,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className='flex h-[100vh] w-[100vw] items-center justify-start bg-backgroundColor '>
       <SideBar />
-      <div className='relative flex h-full w-full flex-col items-center justify-center bg-transparent pt-[10vh]'>
+      <div className='relative flex h-full w-full flex-col items-center justify-center bg-transparent pt-[8vh]'>
         <Header />
-        <div className='flex h-[90%] w-[90%] flex-col items-center justify-center rounded-[50px] bg-pageBg '>
+        <div className='flex h-[92%] w-[90%] flex-col items-center justify-center overflow-hidden rounded-[50px] bg-pageBg'>
           {children}
         </div>
       </div>
