@@ -4,7 +4,7 @@ import styles from './Card.module.css';
 
 const ContestCards = () => {
   return (
-    <div className='flex h-full max-h-[345px] min-h-[220px] w-[50%]  min-w-[210px] max-w-[320px] flex-col items-center justify-start rounded-[30px] bg-gradient-to-br from-cardGradient1 to-cardGradient2 p-2 pt-4 shadow-card drop-shadow-card lg1300:min-h-[280px] lg1300:w-[100%] lg1300:max-w-[240px] lg1300:rounded-[40px] xl1400:min-h-[300px] xl1400:w-[100%] xl1400:max-w-[260px] xl1400:rounded-[40px] xl1500:min-h-[310px] xl1500:w-[100%] xl1500:max-w-[280px] xl1500:rounded-[40px]'>
+    <div className='flex h-full max-h-[345px] min-h-[220px] w-[50%]  min-w-[210px] max-w-[320px] flex-col items-center justify-start rounded-[30px] bg-gradient-to-br from-cardGradient1 to-cardGradient2 p-2 pt-4 shadow-card drop-shadow-card lg1300:min-h-[250px] lg1300:w-[100%] lg1300:max-w-[230px] lg1300:rounded-[40px] xl1400:min-h-[300px] xl1400:w-[100%] xl1400:max-w-[260px] xl1400:rounded-[40px] xl1500:min-h-[310px] xl1500:w-[100%] xl1500:max-w-[280px] xl1500:rounded-[40px]'>
       <div className='flex h-[20%] max-h-[80px] min-h-[50px] w-[93%] items-center justify-between overflow-hidden rounded-[50px] bg-cardTitleBox1 lg1300:h-[23%] xl1400:h-[25%] xl1500:h-[30%]'>
         <div
           className={`${styles.cardBox} box-border flex h-full w-[52%] items-center  justify-start bg-cardTitleBox2 pl-[7px] xl1500:pl-[12px]`}
