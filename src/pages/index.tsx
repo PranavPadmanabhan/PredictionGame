@@ -25,7 +25,7 @@ export default function HomePage() {
         </h1>
         <p className='my-5 ml-1 font-poppins text-[1.2rem] font-[400] leading-7 tracking-tight text-white xl1400:my-8 xl1400:text-[1.5rem] xl1400:leading-8 xxl3100:my-[100px] xxl3100:text-[3rem] xxl3100:leading-[70px]'>
           users can predict the exchange rate of
-          <br /> ETH/USD at a specific time and gives them tokens
+          <br /> various crypto currencies at a specific time and win prizes
           <br /> based on closeness to the actual prize
         </p>
         <button
