@@ -112,16 +112,23 @@ module.exports = {
         cardTitleBox2: '#28274E',
         sliderColor1: '#02FFF0',
         sliderColor2: '#001AFF',
+
+        /**--- line  ---- */
+
+        line: 'rgba(255, 255, 255, 0.32)',
       },
       boxShadow: {
         card: 'inset 6px 6px 6px rgba(255, 255, 255, 0.09), inset -6px -6px 14px rgba(0, 0, 0, 0.45)',
         cardtTitleBox: '0px 0px 26px rgba(0, 0, 0, 0.58)',
         predictions: '0px 4px 20px rgba(132, 132, 132, 0.3)',
+        predictionBox:
+          'inset 6px 6px 6px rgba(255, 255, 255, 0.09), inset -6px -6px 14px rgba(0, 0, 0, 0.45)',
       },
       dropShadow: {
         card: '0px 0px 20px rgba(6, 1, 1, 0.5)',
         text: '5px 5px 0px rgba(45, 42, 106, 0.85)',
         textlg: '15px 15px 0px rgba(45, 42, 106, 0.85)',
+        predictionBox: '0px 0px 20px rgba(6, 1, 1, 0.5)',
       },
       keyframes: {
         flicker: {
