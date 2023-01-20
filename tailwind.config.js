@@ -61,6 +61,16 @@ module.exports = {
         xl2950: '2950px',
         xl3000: '3000px',
         xl3050: '3050px',
+        xxl3100: '3100px',
+        xxl3200: '3200px',
+        xxl3300: '3300px',
+        xxl3400: '3400px',
+        xxl3500: '3500px',
+        xxl3600: '3600px',
+        xxl3700: '3700px',
+        xxl3800: '3800px',
+        xxl3900: '3900px',
+        xxl4000: '4000px',
       },
       fontFamily: {
         primary: ['Inter', ...fontFamily.sans],
@@ -111,6 +121,7 @@ module.exports = {
       dropShadow: {
         card: '0px 0px 20px rgba(6, 1, 1, 0.5)',
         text: '5px 5px 0px rgba(45, 42, 106, 0.85)',
+        textlg: '15px 15px 0px rgba(45, 42, 106, 0.85)',
       },
       keyframes: {
         flicker: {

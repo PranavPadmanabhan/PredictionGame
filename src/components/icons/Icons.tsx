@@ -30,13 +30,14 @@ export const ContestIcon = ({
       onClick={onClick}
       onMouseOver={() => sethover(true)}
       onMouseOut={() => sethover(false)}
-      className={`${className} my-2 flex h-[50px] w-auto cursor-pointer items-center justify-start gap-x-4`}
+      className={`${className} my-2 flex h-[5%] min-h-[50px] w-auto cursor-pointer items-center justify-start gap-x-4 xxl3800:min-h-[140px]`}
     >
       <svg
         width='40'
         height='40'
         viewBox={`0 0 ${Width} ${Height}`}
         fill='none'
+        className='scale-95 xxl3800:mr-[50px] xxl3800:scale-[2]'
         xmlns='http://www.w3.org/2000/svg'
       >
         <path
@@ -73,13 +74,13 @@ export const ContestIcon = ({
         />
       </svg>
       <h1
-        className={`font-poppins text-[1.25rem]  font-[700]  ${
+        className={`font-poppins text-[1.25rem] font-[700]  xxl3800:text-[3rem]  ${
           active
             ? 'text-activeSideBarTextColor'
             : hover
             ? 'text-white'
             : 'text-sideBarTextColor'
-        } `}
+        } lg1200:ml-3`}
       >
         {title}
       </h1>
@@ -109,13 +110,13 @@ export const PredictionsIcon = ({
       onClick={onClick}
       onMouseOver={() => sethover(true)}
       onMouseOut={() => sethover(false)}
-      className={`${className} my-2 flex h-[50px] w-auto cursor-pointer items-center justify-start gap-x-7 pl-1`}
+      className={`${className} my-2 flex h-[5%] min-h-[50px] w-auto cursor-pointer items-center justify-start gap-x-7 pl-1 xxl3800:min-h-[140px] `}
     >
       {' '}
       <svg
         width={Width}
         height={Height}
-        className='scale-125'
+        className='scale-125 xxl3800:mr-[50px] xxl3800:scale-[2.5] '
         viewBox={`0 0 ${Width} ${Height}`}
         fill='none'
         xmlns='http://www.w3.org/2000/svg'
@@ -126,13 +127,13 @@ export const PredictionsIcon = ({
         />
       </svg>
       <h1
-        className={`whitespace-nowrap font-poppins  text-[1.25rem] font-[700] ${
+        className={`whitespace-nowrap font-poppins  text-[1.25rem] font-[700] xxl3800:text-[3rem] ${
           active
             ? 'text-activeSideBarTextColor'
             : hover
             ? 'text-white'
             : 'text-sideBarTextColor'
-        } `}
+        } lg1200:ml-3`}
       >
         {title}
       </h1>
@@ -163,13 +164,14 @@ export const WalletIcon = ({
       onClick={onClick}
       onMouseOver={() => sethover(true)}
       onMouseOut={() => sethover(false)}
-      className={`${className} my-2 flex h-[50px] w-auto cursor-pointer items-center justify-start gap-x-6`}
+      className={`${className} my-2 flex h-[5%] min-h-[50px] w-auto cursor-pointer items-center justify-start gap-x-6 xxl3800:min-h-[140px]`}
     >
       <svg
         width={Width}
         height={Height}
         viewBox={`0 0 ${Width} ${Height}`}
         fill='none'
+        className='xxl3800:mr-[50px] xxl3800:scale-[2]'
         xmlns='http://www.w3.org/2000/svg'
       >
         <path
@@ -178,13 +180,13 @@ export const WalletIcon = ({
         />
       </svg>
       <h1
-        className={`font-poppins text-[1.25rem]  font-[700]  ${
+        className={`font-poppins text-[1.25rem] font-[700]  xxl3800:text-[3rem]  ${
           active
             ? 'text-activeSideBarTextColor'
             : hover
             ? 'text-white'
             : 'text-sideBarTextColor'
-        } `}
+        } lg1200:ml-3`}
       >
         {title}
       </h1>
@@ -215,13 +217,14 @@ export const FAQIcon = ({
       onClick={onClick}
       onMouseOver={() => sethover(true)}
       onMouseOut={() => sethover(false)}
-      className={`${className} my-2 flex h-[50px] w-auto cursor-pointer items-center justify-start gap-x-6`}
+      className={`${className} my-2 flex h-[5%] min-h-[50px] w-auto cursor-pointer items-center justify-start gap-x-6 xxl3800:min-h-[140px]`}
     >
       <svg
         width={Width}
         height={Height}
         viewBox={`0 0 ${Width} ${Height}`}
         fill='none'
+        className='xxl3800:mr-[50px] xxl3800:scale-[2]'
         xmlns='http://www.w3.org/2000/svg'
       >
         <path
@@ -231,13 +234,13 @@ export const FAQIcon = ({
         />
       </svg>
       <h1
-        className={`font-poppins text-[1.25rem]  font-[700]  ${
+        className={`font-poppins text-[1.25rem] font-[700]  xxl3800:text-[3rem]  ${
           active
             ? 'text-activeSideBarTextColor'
             : hover
             ? 'text-white'
             : 'text-sideBarTextColor'
-        } `}
+        } lg1200:ml-3`}
       >
         {title}
       </h1>
