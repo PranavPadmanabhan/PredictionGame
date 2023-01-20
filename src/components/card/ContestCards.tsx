@@ -11,7 +11,7 @@ const ContestCards = ({ completed }: cards) => {
     <div
       className={`flex h-full ${
         completed
-          ? 'max-h-[345px] min-h-[200px] w-[50%] min-w-[190px] max-w-[320px] lg1300:min-h-[230px] lg1300:w-[100%] lg1300:max-w-[210px] xl1400:min-h-[230px] xl1400:w-[100%] xl1400:max-w-[230px] xl1500:min-h-[270px] xl1500:w-[100%] xl1500:max-w-[270px]'
+          ? 'max-h-[345px] min-h-[200px] w-[50%] min-w-[190px] max-w-[320px] lg1300:min-h-[230px] lg1300:w-[100%] lg1300:max-w-[210px] xl1400:min-h-[230px] xl1400:w-[100%] xl1400:max-w-[230px] xl1500:min-h-[270px] xl1500:w-[100%] xl1500:max-w-[270px] xxl3800:min-h-[600px] xxl3800:w-[100%] xxl3800:max-w-[550px] xxl3800:rounded-[100px]'
           : 'max-h-[345px] min-h-[220px] w-[50%] min-w-[210px] max-w-[320px] lg1300:min-h-[250px] lg1300:w-[100%] lg1300:max-w-[230px] xl1400:min-h-[300px] xl1400:w-[100%] xl1400:max-w-[260px] xl1500:min-h-[310px] xl1500:w-[100%] xl1500:max-w-[280px] xxl3800:min-h-[700px] xxl3800:w-[100%] xxl3800:max-w-[600px] xxl3800:rounded-[100px]'
       }  flex-col items-center justify-between rounded-[30px] bg-gradient-to-br from-cardGradient1 to-cardGradient2 p-2 py-4 shadow-card drop-shadow-card  lg1300:rounded-[40px]  xl1400:rounded-[40px]  xl1500:rounded-[40px] xxl3800:py-[50px]`}
     >
@@ -22,14 +22,14 @@ const ContestCards = ({ completed }: cards) => {
           <div
             className={`mr-1 ${
               completed
-                ? 'h-[35px] w-[35px] xl1400:h-[45px] xl1400:w-[45px] xl1500:h-[55px] xl1500:w-[55px]'
+                ? 'h-[35px] w-[35px] xl1400:h-[45px] xl1400:w-[45px] xl1500:h-[55px] xl1500:w-[55px] xxl3800:h-[100px] xxl3800:w-[100px]'
                 : 'h-[35px] w-[35px] xl1400:h-[55px] xl1400:w-[55px] xl1500:h-[55px] xl1500:w-[55px] xxl3800:h-[100px] xxl3800:w-[100px]'
             } flex  items-center justify-center rounded-full bg-cardTitleBox1 xl1400:mr-2 xl1500:mr-2 xxl3800:mr-4 `}
           ></div>
           <h1
             className={`font-poppins ${
               completed
-                ? 'text-[0.9rem] xl1500:text-[1.1rem]'
+                ? 'text-[0.9rem] xl1500:text-[1.1rem] xxl3800:text-[2.2rem]'
                 : 'text-[1rem] xl1500:text-[1.3rem] xxl3800:text-[2.7rem]'
             } font-[700] text-white `}
           >
@@ -40,7 +40,7 @@ const ContestCards = ({ completed }: cards) => {
           <h1
             className={`font-poppins ${
               completed
-                ? 'text-[0.9rem] xl1500:text-[1.1rem]'
+                ? 'text-[0.9rem] xl1500:text-[1.1rem] xxl3800:text-[2.2rem]'
                 : 'text-[1rem] xl1500:text-[1.3rem] xxl3800:text-[2.7rem]'
             } font-[700] text-white `}
           >
@@ -49,7 +49,7 @@ const ContestCards = ({ completed }: cards) => {
           <div
             className={`ml-1 ${
               completed
-                ? 'h-[35px] w-[35px] xl1400:h-[45px] xl1400:w-[45px] xl1500:h-[55px] xl1500:w-[55px]'
+                ? 'h-[35px] w-[35px] xl1400:h-[45px] xl1400:w-[45px] xl1500:h-[55px] xl1500:w-[55px] xxl3800:h-[100px] xxl3800:w-[100px]'
                 : 'h-[35px] w-[35px] xl1400:h-[55px] xl1400:w-[55px] xl1500:h-[55px] xl1500:w-[55px] xxl3800:h-[100px] xxl3800:w-[100px]'
             }  flex items-center  justify-center rounded-full bg-cardTitleBox2  xl1500:ml-2 xxl3800:ml-4`}
           ></div>
@@ -58,14 +58,18 @@ const ContestCards = ({ completed }: cards) => {
       <div className='mt-3 flex h-[30%] w-full flex-col items-start justify-center pl-4 xxl3800:pl-10'>
         <span
           className={`${
-            completed ? 'text-[0.8rem]' : 'text-[0.85rem] xxl3800:text-[2.4rem]'
+            completed
+              ? 'text-[0.8rem] xxl3800:text-[2.4rem]'
+              : 'text-[0.85rem] xxl3800:text-[2.4rem]'
           } font-poppins  font-[500] text-white xxl3800:mt-10`}
         >
           Prediction Fee : 0.02 ETH
         </span>
         <span
           className={`mt-0 font-poppins ${
-            completed ? 'text-[0.8rem]' : 'text-[0.85rem] xxl3800:text-[2.4rem]'
+            completed
+              ? 'text-[0.8rem] xxl3800:text-[2.4rem]'
+              : 'text-[0.85rem] xxl3800:text-[2.4rem]'
           } font-[500] text-white xl1400:mt-2 xxl3800:mt-10`}
         >
           6 Hours left
