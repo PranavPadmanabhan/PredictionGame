@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
 type icons = {
@@ -9,6 +10,8 @@ type icons = {
   onClick?: () => void;
 };
 
+const activeColor = '#02FFF0';
+
 export const ContestIcon = ({
   height,
   width,
@@ -17,27 +20,29 @@ export const ContestIcon = ({
   active,
   onClick,
 }: icons) => {
+  const router = useRouter();
   const Height = height ? height : '40';
   const Width = width ? width : '45';
   const [hover, sethover] = useState<boolean>(false);
-  const Color = active
-    ? '#02FFF0'
+  const isActive = active || router.pathname.includes('/contests/');
+  const Color = isActive
+    ? activeColor
     : hover
     ? 'white'
     : 'rgba(255, 255, 255, 0.5)';
   return (
     <div
       onClick={onClick}
-      onMouseOver={() => sethover(true)}
-      onMouseOut={() => sethover(false)}
-      className={`${className} my-2 flex h-[5%] min-h-[50px] w-auto cursor-pointer items-center justify-start gap-x-4 xxl3800:min-h-[140px]`}
+      className={`${className} my-2 flex h-[5%] min-h-[50px] w-auto cursor-pointer items-center justify-start gap-x-4 xl1700:min-h-[65px] xl2100:min-h-[75px] xxl3100:min-h-[140px]`}
     >
       <svg
         width='40'
         height='40'
         viewBox={`0 0 ${Width} ${Height}`}
         fill='none'
-        className='scale-95 xxl3800:mr-[50px] xxl3800:scale-[2]'
+        onMouseOver={() => sethover(true)}
+        onMouseOut={() => sethover(false)}
+        className='scale-95  xl1700:mr-[10px] xl1700:scale-[1.2] xl1900:mr-[15px] xl1900:scale-[1.25] xl2100:mr-[20px] xl2100:scale-[1.4] xxl3100:mr-[50px] xxl3100:scale-[2]'
         xmlns='http://www.w3.org/2000/svg'
       >
         <path
@@ -74,8 +79,10 @@ export const ContestIcon = ({
         />
       </svg>
       <h1
-        className={`font-poppins text-[1.25rem] font-[700]  xxl3800:text-[3rem]  ${
-          active
+        onMouseOver={() => sethover(true)}
+        onMouseOut={() => sethover(false)}
+        className={`font-poppins text-[1.25rem] font-[700]  xl1700:text-[1.5rem] xl1900:text-[1.7rem] xl2100:text-[2rem] xxl3100:text-[3rem]  ${
+          isActive
             ? 'text-activeSideBarTextColor'
             : hover
             ? 'text-white'
@@ -96,11 +103,13 @@ export const PredictionsIcon = ({
   active,
   onClick,
 }: icons) => {
+  const router = useRouter();
   const Height = height ? height : '31';
   const Width = width ? width : '25';
   const [hover, sethover] = useState<boolean>(false);
-  const Color = active
-    ? '#02FFF0'
+  const isActive = active || router.pathname.includes('/predictions/');
+  const Color = isActive
+    ? activeColor
     : hover
     ? 'white'
     : 'rgba(255, 255, 255, 0.5)';
@@ -108,15 +117,15 @@ export const PredictionsIcon = ({
   return (
     <div
       onClick={onClick}
-      onMouseOver={() => sethover(true)}
-      onMouseOut={() => sethover(false)}
-      className={`${className} my-2 flex h-[5%] min-h-[50px] w-auto cursor-pointer items-center justify-start gap-x-7 pl-1 xxl3800:min-h-[140px] `}
+      className={`${className} my-2 flex h-[5%] min-h-[50px] w-auto cursor-pointer items-center justify-start gap-x-7 pl-1 xl1700:min-h-[65px] xl2100:min-h-[75px] xxl3100:min-h-[140px] `}
     >
       {' '}
       <svg
         width={Width}
         height={Height}
-        className='scale-125 xxl3800:mr-[50px] xxl3800:scale-[2.5] '
+        onMouseOver={() => sethover(true)}
+        onMouseOut={() => sethover(false)}
+        className='scale-125 xl1700:mr-[10px] xl1700:scale-[1.4] xl1900:mr-[15px] xl1900:scale-[1.45] xl2100:mr-[20px] xl2100:scale-[1.7] xxl3100:mr-[50px] xxl3100:scale-[2.5]  '
         viewBox={`0 0 ${Width} ${Height}`}
         fill='none'
         xmlns='http://www.w3.org/2000/svg'
@@ -127,8 +136,10 @@ export const PredictionsIcon = ({
         />
       </svg>
       <h1
-        className={`whitespace-nowrap font-poppins  text-[1.25rem] font-[700] xxl3800:text-[3rem] ${
-          active
+        onMouseOver={() => sethover(true)}
+        onMouseOut={() => sethover(false)}
+        className={`whitespace-nowrap font-poppins  text-[1.25rem] font-[700] xl1700:text-[1.5rem] xl1900:text-[1.7rem] xl2100:text-[2rem] xxl3100:text-[3rem] ${
+          isActive
             ? 'text-activeSideBarTextColor'
             : hover
             ? 'text-white'
@@ -154,7 +165,7 @@ export const WalletIcon = ({
   const [hover, sethover] = useState<boolean>(false);
 
   const Color = active
-    ? '#02FFF0'
+    ? activeColor
     : hover
     ? 'white'
     : 'rgba(255, 255, 255, 0.5)';
@@ -162,16 +173,16 @@ export const WalletIcon = ({
   return (
     <div
       onClick={onClick}
-      onMouseOver={() => sethover(true)}
-      onMouseOut={() => sethover(false)}
-      className={`${className} my-2 flex h-[5%] min-h-[50px] w-auto cursor-pointer items-center justify-start gap-x-6 xxl3800:min-h-[140px]`}
+      className={`${className} my-2 flex h-[5%] min-h-[50px] w-auto cursor-pointer items-center justify-start gap-x-6 xl1700:min-h-[65px] xl2100:min-h-[75px] xxl3100:min-h-[140px]`}
     >
       <svg
         width={Width}
         height={Height}
         viewBox={`0 0 ${Width} ${Height}`}
         fill='none'
-        className='xxl3800:mr-[50px] xxl3800:scale-[2]'
+        onMouseOver={() => sethover(true)}
+        onMouseOut={() => sethover(false)}
+        className='xl1700:mr-[10px] xl1700:scale-[1.2] xl1900:mr-[15px] xl1900:scale-[1.3] xl2100:mr-[20px] xl2100:scale-[1.5] xxl3100:mr-[50px] xxl3100:scale-[2]'
         xmlns='http://www.w3.org/2000/svg'
       >
         <path
@@ -180,7 +191,9 @@ export const WalletIcon = ({
         />
       </svg>
       <h1
-        className={`font-poppins text-[1.25rem] font-[700]  xxl3800:text-[3rem]  ${
+        onMouseOver={() => sethover(true)}
+        onMouseOut={() => sethover(false)}
+        className={`font-poppins text-[1.25rem] font-[700]  xl1700:text-[1.5rem] xl1900:text-[1.7rem] xl2100:text-[2rem] xxl3100:text-[3rem]  ${
           active
             ? 'text-activeSideBarTextColor'
             : hover
@@ -207,7 +220,7 @@ export const FAQIcon = ({
   const [hover, sethover] = useState<boolean>(false);
 
   const Color = active
-    ? '#02FFF0'
+    ? activeColor
     : hover
     ? 'white'
     : 'rgba(255, 255, 255, 0.5)';
@@ -215,16 +228,16 @@ export const FAQIcon = ({
   return (
     <div
       onClick={onClick}
-      onMouseOver={() => sethover(true)}
-      onMouseOut={() => sethover(false)}
-      className={`${className} my-2 flex h-[5%] min-h-[50px] w-auto cursor-pointer items-center justify-start gap-x-6 xxl3800:min-h-[140px]`}
+      className={`${className} my-2 flex h-[5%] min-h-[50px] w-auto cursor-pointer items-center justify-start gap-x-6 xl1700:min-h-[65px] xl2100:min-h-[75px] xxl3100:min-h-[140px]`}
     >
       <svg
         width={Width}
         height={Height}
         viewBox={`0 0 ${Width} ${Height}`}
         fill='none'
-        className='xxl3800:mr-[50px] xxl3800:scale-[2]'
+        onMouseOver={() => sethover(true)}
+        onMouseOut={() => sethover(false)}
+        className='xl1700:mr-[10px] xl1700:scale-[1.2] xl1900:mr-[15px] xl1900:scale-[1.3] xl2100:mr-[20px] xl2100:scale-[1.5] xxl3100:mr-[50px] xxl3100:scale-[2]'
         xmlns='http://www.w3.org/2000/svg'
       >
         <path
@@ -234,7 +247,9 @@ export const FAQIcon = ({
         />
       </svg>
       <h1
-        className={`font-poppins text-[1.25rem] font-[700]  xxl3800:text-[3rem]  ${
+        onMouseOver={() => sethover(true)}
+        onMouseOut={() => sethover(false)}
+        className={`font-poppins text-[1.25rem] font-[700]  xl1700:text-[1.5rem] xl1900:text-[1.7rem] xl2100:text-[2rem] xxl3100:text-[3rem]  ${
           active
             ? 'text-activeSideBarTextColor'
             : hover
@@ -245,5 +260,384 @@ export const FAQIcon = ({
         {title}
       </h1>
     </div>
+  );
+};
+
+export const BalanceContainer = ({ className }: { className?: string }) => {
+  return (
+    <svg
+      width='408'
+      height='339'
+      viewBox='0 0 408 339'
+      fill='none'
+      className={className}
+      xmlns='http://www.w3.org/2000/svg'
+    >
+      <g opacity='0.5' filter='url(#filter0_d_434_2)'>
+        <ellipse
+          cx='277.406'
+          cy='220.319'
+          rx='83.1967'
+          ry='86.6547'
+          transform='rotate(22.8141 277.406 220.319)'
+          fill='#33FFFF'
+        />
+        <ellipse
+          cx='210.077'
+          cy='165.812'
+          rx='100.41'
+          ry='102.086'
+          transform='rotate(22.8141 210.077 165.812)'
+          fill='#FD70DE'
+        />
+        <ellipse
+          cx='111.082'
+          cy='76.5214'
+          rx='53.4324'
+          ry='60.5396'
+          transform='rotate(22.8141 111.082 76.5214)'
+          fill='#FFF84F'
+        />
+        <g filter='url(#filter1_b_434_2)'>
+          <rect
+            x='85.3037'
+            width='350'
+            height='220'
+            rx='50'
+            transform='rotate(22.8141 85.3037 0)'
+            fill='#E9E9E9'
+            fill-opacity='0.33'
+          />
+        </g>
+      </g>
+      <g opacity='0.8' filter='url(#filter2_d_434_2)'>
+        <ellipse
+          cx='286.045'
+          cy='204.808'
+          rx='83.1967'
+          ry='86.6547'
+          transform='rotate(11.4237 286.045 204.808)'
+          fill='#33FFFF'
+        />
+        <ellipse
+          cx='209.277'
+          cy='164.672'
+          rx='100.41'
+          ry='102.086'
+          transform='rotate(11.4237 209.277 164.672)'
+          fill='#FD70DE'
+        />
+        <ellipse
+          cx='94.5981'
+          cy='96.6909'
+          rx='53.4324'
+          ry='60.5396'
+          transform='rotate(11.4237 94.5981 96.6909)'
+          fill='#FFF84F'
+        />
+        <g filter='url(#filter3_b_434_2)'>
+          <rect
+            x='54.2148'
+            y='26.7677'
+            width='350'
+            height='220'
+            rx='50'
+            transform='rotate(11.4237 54.2148 26.7677)'
+            fill='#E9E9E9'
+            fill-opacity='0.33'
+          />
+        </g>
+      </g>
+      <g filter='url(#filter4_dii_434_2)'>
+        <ellipse
+          cx='298.493'
+          cy='187.846'
+          rx='89.6148'
+          ry='86.6547'
+          fill='#33FFFF'
+        />
+        <ellipse
+          cx='208.879'
+          cy='163.71'
+          rx='108.156'
+          ry='102.086'
+          fill='#FD70DE'
+        />
+        <ellipse
+          cx='73.2965'
+          cy='119.789'
+          rx='57.5543'
+          ry='60.5396'
+          fill='#FFF84F'
+        />
+        <g filter='url(#filter5_b_434_2)'>
+          <rect
+            x='15.7422'
+            y='59.2494'
+            width='377'
+            height='220'
+            rx='50'
+            fill='#E9E9E9'
+            fill-opacity='0.33'
+          />
+        </g>
+      </g>
+      <defs>
+        <filter
+          id='filter0_d_434_2'
+          x='1.46289'
+          y='1.46252'
+          width='404.997'
+          height='335.574'
+          filterUnits='userSpaceOnUse'
+          color-interpolation-filters='sRGB'
+        >
+          <feFlood flood-opacity='0' result='BackgroundImageFix' />
+          <feColorMatrix
+            in='SourceAlpha'
+            type='matrix'
+            values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
+            result='hardAlpha'
+          />
+          <feOffset />
+          <feGaussianBlur stdDeviation='7' />
+          <feComposite in2='hardAlpha' operator='out' />
+          <feColorMatrix
+            type='matrix'
+            values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0'
+          />
+          <feBlend
+            mode='normal'
+            in2='BackgroundImageFix'
+            result='effect1_dropShadow_434_2'
+          />
+          <feBlend
+            mode='normal'
+            in='SourceGraphic'
+            in2='effect1_dropShadow_434_2'
+            result='shape'
+          />
+        </filter>
+        <filter
+          id='filter1_b_434_2'
+          x='-84.5371'
+          y='-84.5375'
+          width='576.997'
+          height='507.574'
+          filterUnits='userSpaceOnUse'
+          color-interpolation-filters='sRGB'
+        >
+          <feFlood flood-opacity='0' result='BackgroundImageFix' />
+          <feGaussianBlur in='BackgroundImageFix' stdDeviation='50' />
+          <feComposite
+            in2='SourceAlpha'
+            operator='in'
+            result='effect1_backgroundBlur_434_2'
+          />
+          <feBlend
+            mode='normal'
+            in='SourceGraphic'
+            in2='effect1_backgroundBlur_434_2'
+            result='shape'
+          />
+        </filter>
+        <filter
+          id='filter2_d_434_2'
+          x='5.54395'
+          y='21.6705'
+          width='396.834'
+          height='295.158'
+          filterUnits='userSpaceOnUse'
+          color-interpolation-filters='sRGB'
+        >
+          <feFlood flood-opacity='0' result='BackgroundImageFix' />
+          <feColorMatrix
+            in='SourceAlpha'
+            type='matrix'
+            values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
+            result='hardAlpha'
+          />
+          <feOffset />
+          <feGaussianBlur stdDeviation='7' />
+          <feComposite in2='hardAlpha' operator='out' />
+          <feColorMatrix
+            type='matrix'
+            values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.75 0'
+          />
+          <feBlend
+            mode='normal'
+            in2='BackgroundImageFix'
+            result='effect1_dropShadow_434_2'
+          />
+          <feBlend
+            mode='normal'
+            in='SourceGraphic'
+            in2='effect1_dropShadow_434_2'
+            result='shape'
+          />
+        </filter>
+        <filter
+          id='filter3_b_434_2'
+          x='-80.4561'
+          y='-64.3295'
+          width='568.834'
+          height='467.158'
+          filterUnits='userSpaceOnUse'
+          color-interpolation-filters='sRGB'
+        >
+          <feFlood flood-opacity='0' result='BackgroundImageFix' />
+          <feGaussianBlur in='BackgroundImageFix' stdDeviation='50' />
+          <feComposite
+            in2='SourceAlpha'
+            operator='in'
+            result='effect1_backgroundBlur_434_2'
+          />
+          <feBlend
+            mode='normal'
+            in='SourceGraphic'
+            in2='effect1_backgroundBlur_434_2'
+            result='shape'
+          />
+        </filter>
+        <filter
+          id='filter4_dii_434_2'
+          x='1.74219'
+          y='45.2494'
+          width='405'
+          height='248'
+          filterUnits='userSpaceOnUse'
+          color-interpolation-filters='sRGB'
+        >
+          <feFlood flood-opacity='0' result='BackgroundImageFix' />
+          <feColorMatrix
+            in='SourceAlpha'
+            type='matrix'
+            values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
+            result='hardAlpha'
+          />
+          <feOffset />
+          <feGaussianBlur stdDeviation='7' />
+          <feComposite in2='hardAlpha' operator='out' />
+          <feColorMatrix
+            type='matrix'
+            values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.75 0'
+          />
+          <feBlend
+            mode='normal'
+            in2='BackgroundImageFix'
+            result='effect1_dropShadow_434_2'
+          />
+          <feBlend
+            mode='normal'
+            in='SourceGraphic'
+            in2='effect1_dropShadow_434_2'
+            result='shape'
+          />
+          <feColorMatrix
+            in='SourceAlpha'
+            type='matrix'
+            values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
+            result='hardAlpha'
+          />
+          <feOffset dx='-7' dy='-5' />
+          <feGaussianBlur stdDeviation='2' />
+          <feComposite in2='hardAlpha' operator='arithmetic' k2='-1' k3='1' />
+          <feColorMatrix
+            type='matrix'
+            values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.25 0'
+          />
+          <feBlend
+            mode='normal'
+            in2='shape'
+            result='effect2_innerShadow_434_2'
+          />
+          <feColorMatrix
+            in='SourceAlpha'
+            type='matrix'
+            values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
+            result='hardAlpha'
+          />
+          <feOffset dx='5' />
+          <feGaussianBlur stdDeviation='4.5' />
+          <feComposite in2='hardAlpha' operator='arithmetic' k2='-1' k3='1' />
+          <feColorMatrix
+            type='matrix'
+            values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.37 0'
+          />
+          <feBlend
+            mode='normal'
+            in2='effect2_innerShadow_434_2'
+            result='effect3_innerShadow_434_2'
+          />
+        </filter>
+        <filter
+          id='filter5_b_434_2'
+          x='-84.2578'
+          y='-40.7506'
+          width='577'
+          height='420'
+          filterUnits='userSpaceOnUse'
+          color-interpolation-filters='sRGB'
+        >
+          <feFlood flood-opacity='0' result='BackgroundImageFix' />
+          <feGaussianBlur in='BackgroundImageFix' stdDeviation='50' />
+          <feComposite
+            in2='SourceAlpha'
+            operator='in'
+            result='effect1_backgroundBlur_434_2'
+          />
+          <feBlend
+            mode='normal'
+            in='SourceGraphic'
+            in2='effect1_backgroundBlur_434_2'
+            result='shape'
+          />
+        </filter>
+      </defs>
+    </svg>
+  );
+};
+
+export const ArrowDown = ({ className }: { className?: string }) => {
+  return (
+    <svg
+      className={className}
+      width='33'
+      height='38'
+      viewBox='0 0 33 38'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+    >
+      <path
+        d='M30.8325 23.4046L16.4163 35.2917L2 23.4046M16.4163 2V34.9588'
+        stroke='white'
+        stroke-width='3.5'
+        stroke-miterlimit='10'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+      />
+    </svg>
+  );
+};
+
+export const ArrowUp = ({ className }: { className?: string }) => {
+  return (
+    <svg
+      className={className}
+      width='33'
+      height='38'
+      viewBox='0 0 33 38'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+    >
+      <path
+        d='M30.8325 13.8871L16.4163 2L2 13.8871M16.4163 35.2917V2.33292'
+        stroke='white'
+        stroke-width='3.5'
+        stroke-miterlimit='10'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+      />
+    </svg>
   );
 };
