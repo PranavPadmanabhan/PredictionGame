@@ -104,6 +104,7 @@ const Contest = () => {
               {predictions.map((item, i) => (
                 <PredictedValue
                   key={i}
+                  needSeparator
                   index={i + 1}
                   value={item.value.toString()}
                   time={item.time.toString()}
@@ -113,7 +114,7 @@ const Contest = () => {
           </section>
           <section className='mt-0 flex h-full w-full snap-center flex-col items-center justify-between bg-transparent p-5 lg:-mt-10 lg:flex-row'>
             <div
-              className={` ${styles.predictionBox} flex h-1/2 w-full flex-col items-center justify-start overflow-y-scroll rounded-[30px] p-3 shadow-predictionBox drop-shadow-predictionBox  scrollbar-hide lg:h-full lg:w-[50%]`}
+              className={` ${styles.predictionBox} flex h-1/2 w-full flex-col items-center justify-start overflow-y-scroll rounded-[30px] p-3 shadow-predictionBox drop-shadow-predictionBox  scrollbar-hide lg:h-full lg:w-[60%]`}
             >
               <h1 className='sticky top-0 h-auto w-full text-center font-poppins text-[1.4rem] font-[900] text-white'>
                 Last Winners
@@ -129,13 +130,28 @@ const Contest = () => {
               {predictions.map((item, i) => (
                 <PredictedValue
                   key={i}
+                  needSeparator
                   index={i + 1}
                   value={item.value.toString()}
                   time={item.time.toString()}
                 />
               ))}
             </div>
-            <div className='h--1/2 w-full bg-transparent lg:h-full lg:w-[50%]'></div>
+            <div
+              className={` ${styles.predictionBox} flex h-1/2 w-full flex-col items-center justify-start overflow-y-scroll rounded-[30px] p-3 shadow-predictionBox drop-shadow-predictionBox  scrollbar-hide lg:h-full lg:w-[38%]`}
+            >
+              <h1 className='sticky top-0 h-auto w-full text-center font-poppins text-[1.4rem] font-[900] text-white'>
+                Prizes
+              </h1>
+              {predictions.map((item, i) => (
+                <PredictedValue
+                  key={i}
+                  index={i + 1}
+                  value={item.value.toString()}
+                  time={item.time.toString()}
+                />
+              ))}
+            </div>
           </section>
         </div>
       </div>
