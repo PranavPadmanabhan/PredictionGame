@@ -80,7 +80,7 @@ const Contest = () => {
                   Prediction Fee : 0.02 ETH
                 </span>
                 <div className='my-2 flex min-h-[20px] w-[75%] items-center justify-start self-center rounded-[30px] bg-white p-[1px] lg:max-h-[18px] lg:min-h-[12px] lg:p-[2px] xxl3100:max-h-[50px] xxl3100:min-h-[30px] xxl3100:p-[5px] '>
-                  <div className='h-[20px] w-[40%] rounded-[28px]  bg-gradient-to-r from-sliderColor1 to-sliderColor2  lg:h-[15px] lg:max-h-[18px] xxl3100:max-h-[50px] xxl3100:min-h-[30px]'></div>
+                  <div className='h-full w-[40%] rounded-[28px]  bg-gradient-to-r from-sliderColor1 to-sliderColor2  lg:h-[15px] lg:max-h-[18px] xxl3100:max-h-[50px] xxl3100:min-h-[30px]'></div>
                 </div>
               </div>
               <button className='mt-4 h-[10%] max-h-[50px] min-h-[35px] w-[50%] min-w-[70px] max-w-[150px] rounded-[15px] bg-cardTitleBox1 font-poppins text-[1rem] font-[500] text-white shadow-card xxl3100:mt-7 xxl3100:min-h-[80px] xxl3100:min-w-[100px] xxl3100:max-w-[400px] xxl3100:rounded-[30px] xxl3100:text-[2.2rem] '>
@@ -88,7 +88,7 @@ const Contest = () => {
               </button>
             </div>
             <div
-              className={` ${styles.predictionBox} flex h-1/2 w-full flex-col items-center justify-start overflow-y-scroll rounded-[30px] p-3 shadow-predictionBox  drop-shadow-predictionBox scrollbar-hide lg:h-full lg:w-[50%]`}
+              className={` ${styles.predictionBox} mt-5 flex h-1/2 w-full flex-col items-center justify-start overflow-y-scroll rounded-[30px] p-3  shadow-predictionBox drop-shadow-predictionBox scrollbar-hide lg:mt-0 lg:h-full lg:w-[50%]`}
             >
               <h1 className='sticky top-0 h-auto w-full text-center font-poppins text-[1.4rem] font-[900] text-white'>
                 Last Predictions
@@ -138,7 +138,7 @@ const Contest = () => {
               ))}
             </div>
             <div
-              className={` ${styles.predictionBox} flex h-1/2 w-full flex-col items-center justify-start overflow-y-scroll rounded-[30px] p-3 shadow-predictionBox drop-shadow-predictionBox  scrollbar-hide lg:h-full lg:w-[38%]`}
+              className={` ${styles.predictionBox} mt-5 flex h-1/2 w-full flex-col items-center justify-start overflow-y-scroll rounded-[30px] p-3 shadow-predictionBox  drop-shadow-predictionBox scrollbar-hide lg:mt-0 lg:h-full lg:w-[38%]`}
             >
               <h1 className='sticky top-0 h-auto w-full text-center font-poppins text-[1.4rem] font-[900] text-white'>
                 Prizes
