@@ -41,7 +41,7 @@ const Contest = () => {
                 >
                   <div
                     className={`mr-2
-                 flex h-[35px] w-[35px] items-center justify-center rounded-full bg-cardTitleBox1 xl1400:mr-2 xl1400:h-[55px]  xl1400:w-[55px] xl1500:mr-2 xl1500:h-[55px] xl1500:w-[55px] xxl3100:mr-4 xxl3100:h-[100px] xxl3100:w-[100px] `}
+                 flex h-[35px] w-[35px] items-center justify-center rounded-full bg-cardTitleBox1 lg:h-[45px] lg:w-[45px] xl1400:mr-2 xl1400:h-[55px]  xl1400:w-[55px] xl1500:mr-2 xl1500:h-[55px] xl1500:w-[55px] xxl3100:mr-4 xxl3100:h-[100px] xxl3100:w-[100px] `}
                   ></div>
                   <h1
                     className={`font-poppins
@@ -57,7 +57,7 @@ const Contest = () => {
                   >
                     USD
                   </h1>
-                  <div className='ml-2 flex h-[35px] w-[35px] items-center justify-center rounded-full bg-cardTitleBox2  xl1400:h-[55px] xl1400:w-[55px] xl1500:ml-2  xl1500:h-[55px] xl1500:w-[55px] xxl3100:ml-4  xxl3100:h-[100px] xxl3100:w-[100px]'></div>
+                  <div className='ml-2 flex h-[35px] w-[35px] items-center justify-center rounded-full bg-cardTitleBox2 lg:h-[45px] lg:w-[45px]  xl1400:h-[55px] xl1400:w-[55px] xl1500:ml-2  xl1500:h-[55px] xl1500:w-[55px] xxl3100:ml-4  xxl3100:h-[100px] xxl3100:w-[100px]'></div>
                 </div>
               </div>
               <input
