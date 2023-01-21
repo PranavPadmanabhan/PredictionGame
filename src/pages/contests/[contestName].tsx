@@ -33,7 +33,7 @@ const Contest = () => {
     <Layout>
       <div className='flex h-full w-full items-center justify-between p-3 lg:p-10 xl1400:p-14 xxl3100:p-[130px] '>
         <div className='h-full w-full snap-y snap-mandatory overflow-hidden overflow-y-scroll rounded-[18px] bg-bgPredictions shadow-predictions scrollbar-hide lg:rounded-[40px]'>
-          <section className='box-border flex min-h-full w-full snap-center flex-col items-center justify-between rounded-[40px] bg-transparent p-5  lg:flex-row xxl3100:rounded-[70px]'>
+          <section className='box-border flex h-full w-full snap-center flex-col items-center justify-between rounded-[40px] bg-transparent p-5  lg:flex-row xxl3100:rounded-[70px]'>
             <div className='flex h-1/2 w-full flex-col items-center justify-center lg:h-full lg:w-[40%] '>
               <div className='mb-4 flex h-[20%] max-h-[60px] min-h-[45px] w-[80%] items-center justify-between overflow-hidden rounded-[50px] bg-cardTitleBox1 lg1300:h-[25%] xl1400:h-[25%] xl1500:h-[30%] xxl3100:max-h-[150px] xxl3100:w-[90%] xxl3100:rounded-[60px]'>
                 <div
@@ -88,7 +88,7 @@ const Contest = () => {
               </button>
             </div>
             <div
-              className={` ${styles.predictionBox} flex h-1/2 w-full flex-col items-center justify-start overflow-y-scroll rounded-[30px] p-3 shadow-predictionBox drop-shadow-predictionBox  scrollbar-hide lg:h-full lg:w-[50%]`}
+              className={` ${styles.predictionBox} flex h-1/2 w-full flex-col items-center justify-start overflow-y-scroll rounded-[30px] p-3 shadow-predictionBox  drop-shadow-predictionBox scrollbar-hide lg:h-full lg:w-[50%]`}
             >
               <h1 className='sticky top-0 h-auto w-full text-center font-poppins text-[1.4rem] font-[900] text-white'>
                 Last Predictions
