@@ -112,9 +112,9 @@ const Contest = () => {
               ))}
             </div>
           </section>
-          <section className='mt-0 flex h-full w-full snap-center flex-col items-center justify-between bg-transparent p-5 lg:-mt-10 lg:flex-row'>
+          <section className='mt-0 flex h-full w-full snap-center flex-col items-center justify-between bg-transparent p-5  lg:flex-row'>
             <div
-              className={` ${styles.predictionBox} flex h-1/2 w-full flex-col items-center justify-start overflow-y-scroll rounded-[18px] p-3 shadow-predictionBox drop-shadow-predictionBox scrollbar-hide  lg:h-full lg:w-[60%] lg:rounded-[30px]`}
+              className={` ${styles.predictionBox} mt-0 flex h-1/2 w-full flex-col items-center justify-start overflow-y-scroll rounded-[18px] p-3 shadow-predictionBox drop-shadow-predictionBox scrollbar-hide lg:mt-0  lg:h-full lg:w-[50%] lg:rounded-[30px]`}
             >
               <h1 className='sticky top-0 h-auto w-full text-center font-poppins text-[1.4rem] font-[900] text-white'>
                 Last Winners
@@ -138,7 +138,7 @@ const Contest = () => {
               ))}
             </div>
             <div
-              className={` ${styles.predictionBox} mt-5 flex h-1/2 w-full flex-col items-center justify-start overflow-y-scroll rounded-[18px] p-3 shadow-predictionBox drop-shadow-predictionBox  scrollbar-hide lg:mt-0 lg:h-full lg:w-[38%] lg:rounded-[30px]`}
+              className={` ${styles.predictionBox} mt-5 flex h-1/2 w-full flex-col items-center justify-start overflow-y-scroll rounded-[18px] p-3 shadow-predictionBox drop-shadow-predictionBox  scrollbar-hide lg:mt-0 lg:h-full lg:w-[45%] lg:rounded-[30px]`}
             >
               <h1 className='sticky top-0 h-auto w-full text-center font-poppins text-[1.4rem] font-[900] text-white'>
                 Prizes
