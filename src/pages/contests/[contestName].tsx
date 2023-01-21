@@ -73,7 +73,7 @@ const Contest = () => {
                   </span>{' '}
                   USD
                 </span>
-                <span className='font-poppins text-[1.1rem] font-[500] text-white '>
+                <span className='font-poppins text-[1.1rem] font-[500] text-white lg:mt-3'>
                   6 Hours Left
                 </span>
                 <span className='font-poppins text-[0.9rem] font-[300] text-white '>

@@ -97,6 +97,7 @@ module.exports = {
         backgroundColor: '#1C1B37',
         bgPredictions: '#1C1B37',
         pageBg: '#252347',
+        bgModal: 'rgba(37, 35, 71, 0.5)',
 
         /**---- text colors --- */
         sideBarTextColor: 'rgba(255, 255, 255, 0.5)',
@@ -116,6 +117,9 @@ module.exports = {
         /**--- line  ---- */
 
         line: 'rgba(255, 255, 255, 0.32)',
+      },
+      backgroundImage: {
+        wallet: 'url(/images/wallet.png)',
       },
       boxShadow: {
         card: 'inset 6px 6px 6px rgba(255, 255, 255, 0.09), inset -6px -6px 14px rgba(0, 0, 0, 0.45)',

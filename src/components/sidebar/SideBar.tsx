@@ -2,11 +2,16 @@ import { useRouter } from 'next/router';
 import React from 'react';
 
 import { sideBarLinks } from '@/constant/links';
+import { useAppContext } from '@/contexts/AppContext';
 
 const SideBar = () => {
   const router = useRouter();
+  const { isTxModalOpen } = useAppContext();
   return (
-    <div className='box-border hidden h-full w-[20%] min-w-[250px] max-w-[450px] flex-col items-start justify-between bg-transparent pt-6 pl-4 lg:flex xl1700:min-w-[320px] xl1700:max-w-[400px] xl1700:pl-[30px] xl2100:min-w-[330px] xl2100:max-w-[450px] xl2100:pl-[30px] xxl3100:min-w-[350px] xxl3100:max-w-[800px] xxl3100:pl-[50px]'>
+    <div className='relative box-border hidden h-full w-[20%] min-w-[250px] max-w-[450px] flex-col items-start justify-between bg-transparent pt-6 pl-4 lg:flex xl1700:min-w-[320px] xl1700:max-w-[400px] xl1700:pl-[30px] xl2100:min-w-[330px] xl2100:max-w-[450px] xl2100:pl-[30px] xxl3100:min-w-[350px] xxl3100:max-w-[800px] xxl3100:pl-[50px]'>
+      {isTxModalOpen && (
+        <div className='absolute top-0 left-0 h-full w-full bg-transparent'></div>
+      )}
       <div className='flex h-[15%] w-full items-center justify-center '>
         <h1 className='self-center bg-gradient-to-r from-purple-800 to-blue-600 bg-clip-text pt-0 text-3xl font-extrabold text-transparent xxl3100:h-full xxl3100:w-full xxl3100:pt-[30%] xxl3100:text-[7rem]'>
           Prediction
