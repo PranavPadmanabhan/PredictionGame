@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import BottomTabs from '@/components/bottomtabs/BottomTabs';
 import Header from '@/components/Header';
 import SideBar from '@/components/sidebar/SideBar';
 
@@ -8,12 +9,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className='flex h-[100vh] w-[100vw] items-center justify-start bg-backgroundColor '>
       <SideBar />
-      <div className='relative flex h-full w-full flex-col items-center justify-center bg-transparent pt-[8vh]'>
+      <div className='relative flex h-full w-full flex-col items-center justify-center bg-transparent pt-[8vh] pb-[50px] lg:pb-0'>
         <Header />
-        <div className='flex h-[92%] w-[90%] flex-col items-center justify-center overflow-hidden rounded-[50px] bg-pageBg xxl3800:rounded-[100px]'>
+        <div className='flex h-[92%] w-[90%] flex-col items-center justify-center overflow-hidden rounded-[20px] bg-pageBg lg:rounded-[50px] xxl3800:rounded-[100px]'>
           {children}
         </div>
       </div>
+      <BottomTabs />
     </div>
   );
 }

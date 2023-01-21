@@ -30,6 +30,9 @@
 
 @layer base {
   /* inter var - latin */
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
   @font-face {
     font-family: 'Inter';
     font-style: normal;
