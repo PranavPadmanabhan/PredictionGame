@@ -80,7 +80,7 @@ const Contest = () => {
                   Prediction Fee : 0.02 ETH
                 </span>
                 <div className='my-2 flex min-h-[20px] w-[75%] items-center justify-start self-center rounded-[30px] bg-white p-[1px] lg:max-h-[18px] lg:min-h-[12px] lg:p-[2px] xxl3100:max-h-[50px] xxl3100:min-h-[30px] xxl3100:p-[5px] '>
-                  <div className='h-full w-[40%] rounded-[28px]  bg-gradient-to-r from-sliderColor1 to-sliderColor2 lg:w-[70%]'></div>
+                  <div className='h-[20px] w-[40%] rounded-[28px]  bg-gradient-to-r from-sliderColor1 to-sliderColor2 lg:max-h-[18px] lg:min-h-[12px] lg:w-[70%] xxl3100:max-h-[50px] xxl3100:min-h-[30px]'></div>
                 </div>
               </div>
               <button className='mt-4 h-[10%] max-h-[50px] min-h-[35px] w-[50%] min-w-[70px] max-w-[150px] rounded-[15px] bg-cardTitleBox1 font-poppins text-[1rem] font-[500] text-white shadow-card xxl3100:mt-7 xxl3100:min-h-[80px] xxl3100:min-w-[100px] xxl3100:max-w-[400px] xxl3100:rounded-[30px] xxl3100:text-[2.2rem] '>
