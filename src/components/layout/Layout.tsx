@@ -17,7 +17,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <Header />
         <div className='relative flex h-[92%] w-[90%] flex-col items-center justify-center overflow-hidden rounded-[20px] bg-pageBg lg:rounded-[50px] xxl3800:rounded-[100px]'>
           {children}
-          {isTxModalOpen && <Modal status='Success' />}
+          {isTxModalOpen && <Modal status='Processing' />}
         </div>
       </div>
       <BottomTabs />
