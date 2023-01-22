@@ -684,3 +684,34 @@ export const EtherIcon = ({ className }: { className?: string }) => {
     </svg>
   );
 };
+
+export const Light = ({ className }: { className?: string }) => {
+  return (
+    <svg
+      className={className}
+      width='313'
+      height='89'
+      viewBox='0 0 313 89'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+    >
+      <path
+        d='M312.596 50.2384L0.544265 88.3314L2.26581 0.013537L312.596 50.2384Z'
+        fill='url(#paint0_linear_469_176)'
+      />
+      <defs>
+        <linearGradient
+          id='paint0_linear_469_176'
+          x1='312.596'
+          y1='50.2384'
+          x2='11.9209'
+          y2='44.3774'
+          gradientUnits='userSpaceOnUse'
+        >
+          <stop stop-color='#FEB700' />
+          <stop offset='1' stop-color='#FEB700' stop-opacity='0' />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+};

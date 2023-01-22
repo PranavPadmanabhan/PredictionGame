@@ -4,6 +4,8 @@ import React, { useContext, useEffect, useState } from 'react';
 type Context = {
   isTxModalOpen: boolean;
   setIsTxModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  rank: number;
+  setRank: React.Dispatch<React.SetStateAction<number>>;
 };
 
 type ContextProvider = {
@@ -14,7 +16,8 @@ const AppContext = React.createContext<Context>({} as Context);
 
 const AppContextProvider = ({ children }: ContextProvider) => {
   const [isTxModalOpen, setIsTxModalOpen] = useState<boolean>(false);
-  const value = { isTxModalOpen, setIsTxModalOpen };
+  const [rank, setRank] = useState<number>(0);
+  const value = { isTxModalOpen, setIsTxModalOpen, rank, setRank };
   const router = useRouter();
 
   useEffect(() => {
