@@ -33,7 +33,7 @@ export default function HomePage() {
         </p>
         <button
           onClick={() => router.push('/contests')}
-          className='h-[35px] w-[60%] max-w-[200px] rounded-[50px] bg-button font-poppins text-[0.9rem] text-white lg:h-[40px] lg:w-[30%] lg:max-w-[150px] lg:text-[1rem] xl1400:h-[50px] xl1400:max-w-[180px] xl1400:text-[1.1rem] xxl3100:h-[100px] xxl3100:max-w-[400px] xxl3100:text-[2.5rem]'
+          className='h-[41px] w-[60%] max-w-[200px] rounded-[50px] bg-button font-poppins text-[0.9rem] text-white lg:h-[40px] lg:w-[30%] lg:max-w-[150px] lg:text-[1rem] xl1400:h-[50px] xl1400:max-w-[180px] xl1400:text-[1.1rem] xxl3100:h-[100px] xxl3100:max-w-[400px] xxl3100:text-[2.5rem]'
         >
           Start predicting
         </button>
