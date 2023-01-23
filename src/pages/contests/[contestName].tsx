@@ -143,7 +143,7 @@ const Contest = () => {
                   time
                 </span>
               </div>
-              <div className='flex  max-h-[50vh] w-full flex-col items-center justify-start overflow-y-scroll scrollbar-hide '>
+              <div className='flex  max-h-full w-full flex-col items-center justify-start overflow-y-scroll scrollbar-hide '>
                 {predictions.map((item, i) => (
                   <PredictedValue
                     key={i}
@@ -171,7 +171,7 @@ const Contest = () => {
                   prize
                 </span>
               </div>
-              <div className='flex  max-h-[50vh] w-full flex-col items-center justify-start overflow-y-scroll scrollbar-hide '>
+              <div className='flex  max-h-full w-full flex-col items-center justify-start overflow-y-scroll scrollbar-hide '>
                 {predictions.map((item, i) => (
                   <PredictedValue
                     key={i}
@@ -189,7 +189,7 @@ const Contest = () => {
               <h1 className=' h-auto w-full text-center font-poppins text-[1.4rem] font-[900] text-white'>
                 Prizes
               </h1>
-              <div className='flex  max-h-[50vh] w-full flex-col items-center justify-start overflow-y-scroll scrollbar-hide '>
+              <div className='flex  max-h-full w-full flex-col items-center justify-start overflow-y-scroll scrollbar-hide '>
                 {predictions.map((item, i) => (
                   <PredictedValue
                     key={i}
