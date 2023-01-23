@@ -1018,6 +1018,25 @@
   "resolved" "https://registry.npmjs.org/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz"
   "version" "0.2.3"
 
+"@carbon/icon-helpers@^10.38.0":
+  "integrity" "sha512-m3v05nKXQvxDZLFEZPYDHt94WiBwOraIHk3dHmdoTpQbYPVd2zTggpJiUOYbm+4vot7nLcsUkClQfna85BlWKA=="
+  "resolved" "https://registry.npmjs.org/@carbon/icon-helpers/-/icon-helpers-10.38.0.tgz"
+  "version" "10.38.0"
+
+"@carbon/icons-react@^11.15.0":
+  "integrity" "sha512-2X1VKIKvVw/+9jG6j8MwIXNWm1683UdejdLv3hI/WZRtzoe8ljvmAPSZZKbBwXRcKIZ6vFlvwBeI3o6aE6ulLg=="
+  "resolved" "https://registry.npmjs.org/@carbon/icons-react/-/icons-react-11.15.0.tgz"
+  "version" "11.15.0"
+  dependencies:
+    "@carbon/icon-helpers" "^10.38.0"
+    "@carbon/telemetry" "0.1.0"
+    "prop-types" "^15.7.2"
+
+"@carbon/telemetry@0.1.0":
+  "integrity" "sha512-kNWt0bkgPwGW0i5h7HFuljbKRXPvIhsKbB+1tEURAYLXoJg9iJLF1eGvWN5iVoFCS2zje4GR3OGOsvvKVe7Hlg=="
+  "resolved" "https://registry.npmjs.org/@carbon/telemetry/-/telemetry-0.1.0.tgz"
+  "version" "0.1.0"
+
 "@commitlint/cli@^16.3.0":
   "integrity" "sha512-P+kvONlfsuTMnxSwWE1H+ZcPMY3STFaHb2kAacsqoIkNx66O0T7sTpBxpxkMrFPyhkJiLJnJWMhk4bbvYD3BMA=="
   "resolved" "https://registry.npmjs.org/@commitlint/cli/-/cli-16.3.0.tgz"
@@ -1220,6 +1239,18 @@
   "integrity" "sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA=="
   "resolved" "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
   "version" "1.2.1"
+
+"@iconify/icons-material-symbols@^1.2.25":
+  "integrity" "sha512-Sbr0058ROI94VmF8pi73x8DYABi5s3ttq9ugl4yP041X2oxr9H79VrqbT0rpN04ssYNAUQO7gw5VdCit4C71Jw=="
+  "resolved" "https://registry.npmjs.org/@iconify/icons-material-symbols/-/icons-material-symbols-1.2.25.tgz"
+  "version" "1.2.25"
+  dependencies:
+    "@iconify/types" "*"
+
+"@iconify/types@*":
+  "integrity" "sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg=="
+  "resolved" "https://registry.npmjs.org/@iconify/types/-/types-2.0.0.tgz"
+  "version" "2.0.0"
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   "integrity" "sha512-VjeHSlIzpv/NyD3N0YuHfXOPDIixcA1q2ZV98wsMqcYlPmv2n3Yb2lYP9XMElnaFVXg5A7YLTeLu6V84uQDjmQ=="
@@ -1506,6 +1537,11 @@
   "resolved" "https://registry.npmjs.org/@rushstack/eslint-patch/-/eslint-patch-1.1.3.tgz"
   "version" "1.1.3"
 
+"@senojs/rollup-plugin-style-inject@^0.2.0":
+  "integrity" "sha512-3/spt7JG2iHMW1YdtFbDafWa4IYNkJ99tibY7oDe5LXVTq2JxBpOsdRmJyCCqI5I4kBoUUYWS2yEG/FKwrLy/A=="
+  "resolved" "https://registry.npmjs.org/@senojs/rollup-plugin-style-inject/-/rollup-plugin-style-inject-0.2.3.tgz"
+  "version" "0.2.3"
+
 "@sinonjs/commons@^1.7.0":
   "integrity" "sha512-xkNcLAn/wZaX14RPlwizcKicDk9G3F8m2nU3L7Ukm5zBgTwiT0wsoFAHx9Jq56fJA1z/7uKGtCRu16sOUCLIHQ=="
   "resolved" "https://registry.npmjs.org/@sinonjs/commons/-/commons-1.8.3.tgz"
@@ -1745,6 +1781,11 @@
   "version" "7.14.2"
   dependencies:
     "@babel/types" "^7.3.0"
+
+"@types/carbon__icons-react@^11.15.0":
+  "integrity" "sha512-uloptmjZg1J2Yd6AA4UGvfeuhZmr5jvM0P/2vdPrs6TJOHxqVvhFCJFDKo7IoM+Zbj5jCyeCZX0R0eON+AvWeA=="
+  "resolved" "https://registry.npmjs.org/@types/carbon__icons-react/-/carbon__icons-react-11.15.0.tgz"
+  "version" "11.15.0"
 
 "@types/graceful-fs@^4.1.2":
   "integrity" "sha512-anKkLmZZ+xm4p8JWBf4hElkM4XR+EZeA2M9BAkkTldmcyDY4mbdIJnRghDJH3Ov5ooY7/UAoENtmdMSkaAd7Cw=="
@@ -3687,6 +3728,13 @@
   "resolved" "https://registry.npmjs.org/husky/-/husky-7.0.4.tgz"
   "version" "7.0.4"
 
+"iconsax-react@^0.0.8":
+  "integrity" "sha512-l3dVk4zGtkkJHgvNYqAf0wDKqnKxXykee5/DoESGo2JvSYwaxajJUHSX2YrPRXSov8Hd8ClGFwJxCEaEjrFD1Q=="
+  "resolved" "https://registry.npmjs.org/iconsax-react/-/iconsax-react-0.0.8.tgz"
+  "version" "0.0.8"
+  dependencies:
+    "prop-types" "^15.7.2"
+
 "iconv-lite@0.4.24":
   "integrity" "sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA=="
   "resolved" "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.4.24.tgz"
@@ -5260,7 +5308,7 @@
     "kleur" "^3.0.3"
     "sisteransi" "^1.0.5"
 
-"prop-types@^15.8.1":
+"prop-types@^15.7.2", "prop-types@^15.8.1":
   "integrity" "sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg=="
   "resolved" "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   "version" "15.8.1"
@@ -5322,7 +5370,16 @@
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-17.0.2.tgz"
   "version" "17.0.2"
 
-"react@*", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^18.0.0", "react@^18.2.0", "react@>= 16.8.0 || 17.x.x || ^18.0.0-0", "react@>=17.0.0":
+"react-material-symbols@^2.0.2":
+  "integrity" "sha512-cLWlRBkc0ctG87ERvUNaKGgQ/wYUU1HnLrtvZsa0sNV3w0OZF0EyskmIDlnX+QXnXmhVrGOZGUCHzU3pUaKnIg=="
+  "resolved" "https://registry.npmjs.org/react-material-symbols/-/react-material-symbols-2.0.2.tgz"
+  "version" "2.0.2"
+  dependencies:
+    "@senojs/rollup-plugin-style-inject" "^0.2.0"
+    "react" "^18.2.0"
+    "react-dom" "^18.2.0"
+
+"react@*", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^18.0.0", "react@^18.2.0", "react@>= 16.8.0 || 17.x.x || ^18.0.0-0", "react@>=16", "react@>=17.0.0":
   "integrity" "sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ=="
   "resolved" "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   "version" "18.2.0"

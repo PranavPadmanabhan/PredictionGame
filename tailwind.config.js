@@ -118,6 +118,7 @@ module.exports = {
         /**--- line  ---- */
 
         line: 'rgba(255, 255, 255, 0.32)',
+        tabBorder: 'rgba(255, 255, 255, 0.25)',
       },
       backgroundImage: {
         wallet: 'url(/images/wallet.png)',
@@ -127,6 +128,7 @@ module.exports = {
         card: 'inset 6px 6px 6px rgba(255, 255, 255, 0.09), inset -6px -6px 14px rgba(0, 0, 0, 0.45)',
         cardtTitleBox: '0px 0px 26px rgba(0, 0, 0, 0.58)',
         predictions: '0px 4px 20px rgba(132, 132, 132, 0.3)',
+        predictButton: '0px 0px 26px rgba(0, 0, 0, 0.58)',
         predictionBox:
           'inset 6px 6px 6px rgba(255, 255, 255, 0.09), inset -6px -6px 14px rgba(0, 0, 0, 0.45)',
       },

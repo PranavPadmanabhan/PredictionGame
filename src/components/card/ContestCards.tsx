@@ -14,19 +14,19 @@ const ContestCards = ({ completed, onClick, predicted }: cards) => {
     <div
       className={`flex h-full cursor-pointer ${
         predicted
-          ? 'max-h-[345px] min-h-[200px] w-[50%] min-w-[190px] max-w-[320px] lg1300:min-h-[230px] lg1300:w-[100%] lg1300:max-w-[210px] xl1400:min-h-[230px] xl1400:w-[100%] xl1400:max-w-[230px] xl1500:min-h-[270px] xl1500:w-[100%] xl1500:max-w-[270px] xxl3100:min-h-[600px] xxl3100:w-[100%] xxl3100:max-w-[550px] xxl3100:rounded-[100px]'
-          : 'max-h-[345px] min-h-[220px] w-[50%] min-w-[210px] max-w-[320px] lg1300:min-h-[250px] lg1300:w-[100%] lg1300:max-w-[230px] xl1400:min-h-[300px] xl1400:w-[100%] xl1400:max-w-[260px] xl1500:min-h-[310px] xl1500:w-[100%] xl1500:max-w-[280px] xxl3100:min-h-[700px] xxl3100:w-[100%] xxl3100:max-w-[600px] xxl3100:rounded-[100px] '
+          ? 'max-h-[345px] min-h-[230px] w-[50%] min-w-[230px] max-w-[320px] lg1300:min-h-[230px] lg1300:w-[100%] lg1300:max-w-[210px] xl1400:min-h-[230px] xl1400:w-[100%] xl1400:max-w-[230px] xl1500:min-h-[270px] xl1500:w-[100%] xl1500:max-w-[270px] xxl3100:min-h-[600px] xxl3100:w-[100%] xxl3100:max-w-[550px] xxl3100:rounded-[100px]'
+          : 'max-h-[345px] min-h-[250px] w-[50%] min-w-[240px] max-w-[320px] lg1300:min-h-[250px] lg1300:w-[100%] lg1300:max-w-[230px] xl1400:min-h-[300px] xl1400:w-[100%] xl1400:max-w-[260px] xl1500:min-h-[310px] xl1500:w-[100%] xl1500:max-w-[280px] xxl3100:min-h-[700px] xxl3100:w-[100%] xxl3100:max-w-[600px] xxl3100:rounded-[100px] '
       }  flex-col items-center justify-between rounded-[30px] bg-gradient-to-br from-cardGradient1 to-cardGradient2 p-2 py-4 shadow-card drop-shadow-card  lg1300:rounded-[40px]  xl1400:rounded-[40px]  xl1500:rounded-[40px] xxl3100:py-[50px]`}
     >
-      <div className='flex h-[20%] max-h-[80px] min-h-[55px] w-[93%] items-center justify-between overflow-hidden rounded-[50px] bg-cardTitleBox1 lg1300:h-[25%] xl1400:h-[25%] xl1500:h-[30%] xxl3100:max-h-[150px] xxl3100:w-[90%] xxl3100:rounded-[60px] '>
+      <div className='flex h-[20%] max-h-[80px] min-h-[60px] w-[93%] items-center justify-between overflow-hidden rounded-[50px] bg-cardTitleBox1 lg1300:h-[25%] xl1400:h-[25%] xl1500:h-[30%] xxl3100:max-h-[150px] xxl3100:w-[90%] xxl3100:rounded-[60px] '>
         <div
           className={`${styles.cardBox} -ml-[1px] box-border flex h-[101%] w-[52%] items-center  justify-start overflow-hidden bg-cardTitleBox2 pl-[7px] xl1500:pl-[12px] xxl3100:pl-[25px]`}
         >
           <div
             className={`mr-1 ${
               predicted
-                ? 'h-[35px] w-[35px] xl1400:h-[45px] xl1400:w-[45px] xl1500:h-[55px] xl1500:w-[55px] xxl3100:h-[100px] xxl3100:w-[100px]'
-                : 'h-[35px] w-[35px] xl1400:h-[55px] xl1400:w-[55px] xl1500:h-[55px] xl1500:w-[55px] xxl3100:h-[100px] xxl3100:w-[100px]'
+                ? 'h-[40px] w-[40px] xl1400:h-[45px] xl1400:w-[45px] xl1500:h-[55px] xl1500:w-[55px] xxl3100:h-[100px] xxl3100:w-[100px]'
+                : 'h-[40px] w-[40px] xl1400:h-[55px] xl1400:w-[55px] xl1500:h-[55px] xl1500:w-[55px] xxl3100:h-[100px] xxl3100:w-[100px]'
             } flex  items-center justify-center rounded-full bg-cardTitleBox1 xl1400:mr-2 xl1500:mr-2 xxl3100:mr-4 `}
           ></div>
           <h1
@@ -52,8 +52,8 @@ const ContestCards = ({ completed, onClick, predicted }: cards) => {
           <div
             className={`ml-1 ${
               predicted
-                ? 'h-[35px] w-[35px] xl1400:h-[45px] xl1400:w-[45px] xl1500:h-[55px] xl1500:w-[55px] xxl3100:h-[100px] xxl3100:w-[100px]'
-                : 'h-[35px] w-[35px] xl1400:h-[55px] xl1400:w-[55px] xl1500:h-[55px] xl1500:w-[55px] xxl3100:h-[100px] xxl3100:w-[100px]'
+                ? 'h-[40px] w-[40px] xl1400:h-[45px] xl1400:w-[45px] xl1500:h-[55px] xl1500:w-[55px] xxl3100:h-[100px] xxl3100:w-[100px]'
+                : 'h-[40px] w-[40px] xl1400:h-[55px] xl1400:w-[55px] xl1500:h-[55px] xl1500:w-[55px] xxl3100:h-[100px] xxl3100:w-[100px]'
             }  flex items-center  justify-center rounded-full bg-cardTitleBox2  xl1500:ml-2 xxl3100:ml-4`}
           ></div>
         </div>
@@ -85,7 +85,7 @@ const ContestCards = ({ completed, onClick, predicted }: cards) => {
         {!predicted && (
           <button
             onClick={onClick}
-            className='h-[10%] min-h-[35px] w-[50%] min-w-[70px] max-w-[150px] rounded-[15px] bg-cardTitleBox1 font-poppins text-[0.85rem] font-[500] text-white xxl3100:mt-7 xxl3100:min-h-[80px] xxl3100:min-w-[100px] xxl3100:max-w-[400px] xxl3100:rounded-[30px] xxl3100:text-[2.2rem] '
+            className='h-[10%] min-h-[40px] w-[50%] min-w-[70px] max-w-[150px] rounded-[15px] bg-cardTitleBox1 font-poppins text-[0.85rem] font-[500] text-white shadow-predictButton xxl3100:mt-7 xxl3100:min-h-[80px] xxl3100:min-w-[100px] xxl3100:max-w-[400px] xxl3100:rounded-[30px] xxl3100:text-[2.2rem] '
           >
             Predict
           </button>

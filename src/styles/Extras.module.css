@@ -2,7 +2,6 @@
   background: linear-gradient(91.22deg, #bebebe 5.8%, #acacac 98.83%);
   box-shadow: 0px 0px 37px #000000, inset 6px 6px 7px rgba(255, 255, 255, 0.74),
     inset -6px -6px 7px rgba(0, 0, 0, 0.39);
-  border-radius: 20px;
   border: none;
   -moz-appearance: textfield;
 }
@@ -46,3 +45,60 @@
     rgba(59, 57, 107, 0) 100.22%
   );
 }
+
+.scroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+.scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    137.77deg,
+    rgba(38, 35, 116, 0.5) 14.68%,
+    rgba(49, 47, 97, 0.973) 86.56%
+  );
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.38),
+    inset -6px -7px 10px rgba(0, 0, 0, 0.56),
+    inset 4px 5px 8px rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.scroll::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.scroll::-webkit-scrollbar-track-piece {
+  background-color: #555;
+  border-radius: 30px;
+  margin-block: 1rem;
+}
+/* 
+.scroll_predictions::-webkit-scrollbar {
+  width: 10px;
+}
+
+.scroll_predictions::-webkit-scrollbar-track {
+  background: #1c1b37;
+}
+
+.scroll_predictions::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    137.77deg,
+    rgba(38, 35, 116, 0.5) 14.68%,
+    rgba(49, 47, 97, 0.973) 86.56%
+  );
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.38),
+    inset -6px -7px 10px rgba(0, 0, 0, 0.56),
+    inset 4px 5px 8px rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+}
+
+.scroll_predictions::-webkit-scrollbar-thumb:hover {
+  background: #555;
+} */

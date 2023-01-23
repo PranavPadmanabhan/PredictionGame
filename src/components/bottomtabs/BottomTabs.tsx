@@ -1,19 +1,26 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 
-import { sideBarLinks } from '@/constant/links';
+import { bottomNavLinks } from '@/constant/links';
 import { useAppContext } from '@/contexts/AppContext';
 
 const BottomTabs = () => {
   const router = useRouter();
   const { isTxModalOpen } = useAppContext();
   return (
-    <div className='fixed bottom-0 box-border flex h-[70px] w-full items-center justify-between overflow-hidden rounded-t-[30px] bg-cardGradient1 px-5 pl-8 shadow-card drop-shadow-card lg:hidden'>
-      {sideBarLinks.map(({ icon: Icon, id, url }) => (
+    <div className='fixed bottom-0 box-border flex h-[65px] w-full items-center justify-between overflow-hidden border-t-[1px] border-t-tabBorder  bg-backgroundColor px-5 pl-8  lg:hidden'>
+      {bottomNavLinks.map(({ icon: Icon, label, id, url }) => (
         <Icon
           key={id}
           onClick={() => router.push(`${url}`)}
-          active={router.pathname === url}
+          color={
+            router.pathname.includes(url)
+              ? '#02FFF0'
+              : 'rgba(255, 255, 255, 0.5)'
+          }
+          className='scale-90'
+          size={label === 'Your Predictions' ? 42 : 38}
+          variant='Bold'
         />
       ))}
       {isTxModalOpen && (
