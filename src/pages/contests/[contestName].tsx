@@ -77,13 +77,13 @@ const Contest = () => {
         >
           <section className='box-border flex h-full w-full snap-none flex-col items-center justify-between rounded-[40px] bg-transparent p-5 lg:snap-center  lg:flex-row xxl3100:rounded-[70px]'>
             <div className='flex h-[60%] w-full flex-col items-center justify-center lg:h-full lg:w-[40%] '>
-              <div className='mb-4 flex h-[20%] max-h-[80px] min-h-[60px] w-[85%] items-center justify-between overflow-hidden rounded-[50px] bg-cardTitleBox1 lg1300:h-[25%] xl1400:h-[25%] xl1500:h-[30%] xxl3100:max-h-[150px] xxl3100:w-[90%] xxl3100:rounded-[60px]'>
+              <div className='mb-4 flex h-[20%] max-h-[80px] min-h-[60px] w-[85%] items-center justify-between overflow-hidden rounded-[50px] bg-cardTitleBox1 lg:max-h-[70px] lg:min-h-[65px] lg1300:h-[25%] xl1400:h-[25%] xl1500:h-[30%] xxl3100:max-h-[150px] xxl3100:w-[90%] xxl3100:rounded-[60px]'>
                 <div
                   className={`${styles.cardBox} -ml-[1px] box-border flex h-[45px] w-[52%] items-center  justify-start overflow-hidden bg-cardTitleBox2 pl-[7px] xl1500:pl-[12px] xxl3100:pl-[25px]`}
                 >
                   <div
                     className={`mr-2
-                 flex h-[40px] w-[40px] items-center justify-center rounded-full bg-cardTitleBox1 lg:h-[45px] lg:w-[45px] xl1400:mr-2 xl1400:h-[55px]  xl1400:w-[55px] xl1500:mr-2 xl1500:h-[55px] xl1500:w-[55px] xxl3100:mr-4 xxl3100:h-[100px] xxl3100:w-[100px] `}
+                 flex h-[40px] w-[40px] items-center justify-center rounded-full bg-cardTitleBox1 lg:h-[50px] lg:w-[50px] xl1400:mr-2 xl1400:h-[55px]  xl1400:w-[55px] xl1500:mr-2 xl1500:h-[55px] xl1500:w-[55px] xxl3100:mr-4 xxl3100:h-[100px] xxl3100:w-[100px] `}
                   ></div>
                   <h1
                     className={`font-poppins
@@ -99,7 +99,7 @@ const Contest = () => {
                   >
                     USD
                   </h1>
-                  <div className='ml-2 flex h-[40px] w-[40px] items-center justify-center rounded-full bg-cardTitleBox2 lg:h-[45px] lg:w-[45px]  xl1400:h-[55px] xl1400:w-[55px] xl1500:ml-2  xl1500:h-[55px] xl1500:w-[55px] xxl3100:ml-4  xxl3100:h-[100px] xxl3100:w-[100px]'></div>
+                  <div className='ml-2 flex h-[40px] w-[40px] items-center justify-center rounded-full bg-cardTitleBox2 lg:h-[50px] lg:w-[50px]  xl1400:h-[55px] xl1400:w-[55px] xl1500:ml-2  xl1500:h-[55px] xl1500:w-[55px] xxl3100:ml-4  xxl3100:h-[100px] xxl3100:w-[100px]'></div>
                 </div>
               </div>
               <input
