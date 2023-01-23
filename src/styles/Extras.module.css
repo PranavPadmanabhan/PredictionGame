@@ -102,3 +102,11 @@
 .scroll_predictions::-webkit-scrollbar-thumb:hover {
   background: #555;
 } */
+
+@media (max-width: 1000px) {
+  @media (min-height: 1500px) {
+    .text1 {
+      font-size: 6rem;
+    }
+  }
+}

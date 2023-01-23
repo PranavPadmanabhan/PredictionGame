@@ -2,6 +2,8 @@ import Lottie from 'lottie-react';
 import { useRouter } from 'next/router';
 import * as React from 'react';
 
+import styles from '@/styles/Extras.module.css';
+
 import Header from '@/components/Header';
 import Seo from '@/components/Seo';
 
@@ -20,7 +22,9 @@ export default function HomePage() {
         loop={true}
       />
       <div className='z-[100] flex h-[40%] w-full flex-col items-center justify-center px-10 lg:h-[50%] lg:items-start xxl3100:px-[200px]'>
-        <h1 className='flex text-center font-poppins text-[3rem] font-extrabold leading-[45px] text-button drop-shadow-text lg:text-[3.5rem] lg1300:text-[4.2rem] xl1400:text-[4.5rem] xl1500:text-[6rem] xl1900:text-[7rem] xxl3100:text-[12rem] xxl3100:drop-shadow-textlg'>
+        <h1
+          className={`${styles.text1} flex text-center font-poppins text-[3rem] font-extrabold leading-[45px] text-button drop-shadow-text lg:text-[3.5rem] lg1300:text-[4.2rem] xl1400:text-[4.5rem] xl1500:text-[6rem] xl1900:text-[7rem] xxl3100:text-[12rem] xxl3100:drop-shadow-textlg`}
+        >
           Predict&nbsp; <span className='hidden lg:block'>and</span>
           <span className='block lg:hidden'>&</span> &nbsp;Win
         </h1>
@@ -41,3 +45,7 @@ export default function HomePage() {
     </div>
   );
 }
+
+// 980 - 1500 -portrait
+
+//  500 - 980
