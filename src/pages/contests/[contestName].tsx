@@ -71,9 +71,9 @@ const Contest = () => {
 
   return (
     <Layout>
-      <div className='flex h-full w-full items-center justify-between p-3 lg:p-10 xl1400:p-14 xxl3100:p-[130px] '>
+      <div className='flex h-full w-full items-center justify-between p-0 lg:p-10 xl1400:p-14 xxl3100:p-[130px] '>
         <div
-          className={`${styles.scroll} h-full w-full snap-y snap-mandatory overflow-hidden overflow-y-scroll rounded-[18px] bg-bgPredictions shadow-predictions lg:rounded-[40px]`}
+          className={`${styles.scroll} h-full w-full snap-y snap-mandatory overflow-hidden overflow-y-scroll rounded-[18px] bg-pageBg shadow-predictions lg:rounded-[40px] lg:bg-bgPredictions`}
         >
           <section className='box-border flex h-full w-full snap-none flex-col items-center justify-between rounded-[40px] bg-transparent p-5 lg:snap-center  lg:flex-row xxl3100:rounded-[70px]'>
             <div className='flex h-[60%] w-full flex-col items-center justify-center lg:h-full lg:w-[40%] '>
