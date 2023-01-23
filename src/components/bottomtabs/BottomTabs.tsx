@@ -19,7 +19,7 @@ const BottomTabs = () => {
               : 'rgba(255, 255, 255, 0.5)'
           }
           className='scale-90'
-          size={label === 'Your Predictions' ? 42 : 38}
+          size={label === 'Your Predictions' ? 38 : 35}
           variant='Bold'
         />
       ))}
