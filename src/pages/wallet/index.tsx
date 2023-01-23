@@ -22,8 +22,8 @@ const Wallet = () => {
   return (
     <Layout>
       <Seo title='Wallet' />
-      <div className='relative flex h-full w-full flex-col items-center justify-center p-3 lg:p-10 xl1400:p-14 xxl3100:p-[130px]'>
-        <div className='flex h-full w-full flex-col items-center justify-center rounded-[18px] bg-bgPredictions shadow-predictions lg:rounded-[40px]'>
+      <div className='relative flex h-full w-full flex-col items-center justify-center p-0 lg:p-10 xl1400:p-14 xxl3100:p-[130px]'>
+        <div className='flex h-full w-full flex-col items-center justify-center rounded-[18px] bg-pageBg shadow-predictions lg:rounded-[40px] lg:bg-bgPredictions'>
           <div className='flex h-[85%] max-h-[500px] w-[80%] flex-col items-center justify-evenly lg:w-[55%] lg:justify-between xxl3100:max-h-[2000px] xxl3100:justify-center '>
             <div className='mb-8 flex h-[40%] min-h-[150px] w-[100%] min-w-[150px] items-center justify-center bg-wallet bg-contain bg-center bg-no-repeat md:h-[50%] md:w-[65%] lg:mb-0 lg:h-[50%] lg:w-[65%] xl1900:h-[57%] xl1900:w-[50%] xxl3100:h-[50%] xxl3100:w-[60%] '>
               <div className='flex h-[50%] w-[70%] items-center justify-start'>
