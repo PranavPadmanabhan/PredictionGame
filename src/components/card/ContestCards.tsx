@@ -117,13 +117,13 @@ const ContestCards = ({ completed, onClick, predicted }: cards) => {
             </span>
           </div>
         </div>
-        <div className='my-2 flex h-[12px]  w-[85%] items-center justify-start self-center rounded-[30px] bg-white p-[1px] sm:my-3 sm:h-[15px] lg:my-1 lg:min-h-[15px] xl1400:min-h-[18px] xl1600:min-h-[18px] xl1900:my-3 xl1900:min-h-[17px] xl2300:my-6 xl2300:min-h-[24px] xxl3100:h-[50px] xxl3100:min-h-[30px] xxl3100:p-[5px] '>
+        <div className='my-2 flex h-[12px]  w-[85%] items-center justify-start self-center rounded-[30px] bg-white p-[1px] sm:my-3 sm:h-[15px] lg:my-1 lg:min-h-[15px] xl1400:min-h-[18px] xl1600:min-h-[18px] xl1900:my-3 xl1900:min-h-[17px] xl2300:my-6 xl2300:min-h-[24px] xxl3100:my-3 xxl3100:min-h-[30px] xxl3100:p-[5px] '>
           <div className='h-full w-[40%] rounded-[28px] bg-gradient-to-r from-sliderColor1 to-sliderColor2'></div>
         </div>
         {!predicted && (
           <button
             onClick={onClick}
-            className='my-2 h-[10%] min-h-[40px] w-[50%] min-w-[70px] max-w-[150px] rounded-[15px] bg-cardTitleBox1 font-poppins text-[0.85rem] font-[500] text-white shadow-predictButton sm:my-3 lg:my-2 lg1300:my-2 xl1400:my-3 xl1900:my-3 xl1900:min-h-[48px] xxl3100:mt-7 xxl3100:min-h-[80px] xxl3100:min-w-[100px] xxl3100:max-w-[400px] xxl3100:rounded-[30px] xxl3100:text-[2.2rem] '
+            className='my-2 h-[10%] min-h-[40px] w-[50%] min-w-[70px] max-w-[150px] rounded-[15px] bg-cardTitleBox1 font-poppins text-[0.85rem] font-[500] text-white shadow-predictButton sm:my-3 lg:my-2 lg1300:my-2 xl1400:my-3 xl1900:my-3 xl1900:min-h-[48px] xxl3100:mt-3 xxl3100:min-h-[80px] xxl3100:min-w-[100px] xxl3100:max-w-[400px] xxl3100:rounded-[30px] xxl3100:text-[2.2rem] '
           >
             Predict
           </button>
