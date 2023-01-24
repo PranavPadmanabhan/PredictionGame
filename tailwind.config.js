@@ -135,6 +135,7 @@ module.exports = {
       dropShadow: {
         card: '0px 0px 20px rgba(6, 1, 1, 0.5)',
         text: '5px 5px 0px rgba(45, 42, 106, 0.85)',
+        textmd: '5px 5px 0px rgba(45, 42, 106, 0.85)',
         textlg: '15px 15px 0px rgba(45, 42, 106, 0.85)',
         predictionBox: '0px 0px 20px rgba(6, 1, 1, 0.5)',
       },
