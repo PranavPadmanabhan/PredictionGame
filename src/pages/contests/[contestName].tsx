@@ -75,8 +75,8 @@ const Contest = () => {
         <div
           className={`${styles.scroll} h-full w-full snap-y snap-mandatory overflow-hidden overflow-y-scroll rounded-[18px] bg-pageBg shadow-predictions lg:rounded-[40px] lg:bg-bgPredictions`}
         >
-          <section className='box-border flex h-full w-full snap-none flex-col items-center justify-between rounded-[40px] bg-transparent p-5 lg:snap-center  lg:flex-row xxl3100:rounded-[70px]'>
-            <div className='flex h-[60%] w-full flex-col items-center justify-center lg:h-full lg:w-[40%] '>
+          <section className='box-border flex h-full w-full snap-none flex-col items-center justify-evenly rounded-[40px] bg-transparent p-5 lg:snap-center lg:flex-row xxl3100:h-1/2  xxl3100:justify-evenly xxl3100:rounded-[70px]'>
+            <div className='flex h-[60%] w-full flex-col items-center justify-center lg:h-full lg:w-[40%] xxl3100:w-[30%] '>
               <div className='mb-4 flex h-[20%] max-h-[80px] min-h-[60px] w-[80%] items-center justify-between overflow-hidden rounded-[50px] bg-cardTitleBox1 shadow-cardtTitleBox lg:max-h-[70px] lg:min-h-[65px] lg1300:h-[25%] xl1400:h-[25%] xl1500:h-[30%] xxl3100:max-h-[150px] xxl3100:w-[90%] xxl3100:rounded-[60px]'>
                 <div
                   className={`${styles.cardBox} -ml-[1px] box-border flex h-[45px] w-[52%] items-center  justify-start overflow-hidden bg-cardTitleBox2 pl-[7px] xl1500:pl-[12px] xxl3100:pl-[25px]`}
@@ -130,7 +130,7 @@ const Contest = () => {
               </button>
             </div>
             <div
-              className={` ${styles.predictionBox} mt-5 flex h-1/2 w-full flex-col items-center justify-start overflow-hidden rounded-[18px] p-3 shadow-predictionBox  drop-shadow-predictionBox scrollbar-hide lg:mt-0 lg:h-full lg:w-[50%] lg:rounded-[30px]`}
+              className={` ${styles.predictionBox} mt-5 flex h-1/2 w-full flex-col items-center justify-start overflow-hidden rounded-[18px] p-3 shadow-predictionBox  drop-shadow-predictionBox scrollbar-hide lg:mt-0 lg:h-full lg:w-[50%] lg:rounded-[30px] xxl3100:w-[30%]`}
             >
               <h1 className=' h-auto w-full text-center font-poppins text-[1.4rem] font-[900] text-white'>
                 Last Predictions
@@ -156,9 +156,9 @@ const Contest = () => {
               </div>
             </div>
           </section>
-          <section className='mt-0 flex h-full w-full snap-none flex-col items-center justify-between bg-transparent p-5 lg:snap-center  lg:flex-row'>
+          <section className='mt-0 flex h-full w-full snap-none flex-col items-center justify-evenly bg-transparent p-5 lg:snap-center lg:flex-row xxl3100:h-1/2  xxl3100:justify-evenly'>
             <div
-              className={` ${styles.predictionBox} mt-0 flex h-1/2 w-full flex-col items-center justify-start overflow-hidden rounded-[18px] p-3 shadow-predictionBox drop-shadow-predictionBox scrollbar-hide lg:mt-0  lg:h-full lg:w-[50%] lg:rounded-[30px]`}
+              className={` ${styles.predictionBox} mt-0 flex h-1/2 w-full flex-col items-center justify-start overflow-hidden rounded-[18px] p-3 shadow-predictionBox drop-shadow-predictionBox scrollbar-hide lg:mt-0  lg:h-full lg:w-[50%] lg:rounded-[30px] xxl3100:w-[30%]`}
             >
               <h1 className=' h-auto w-full text-center font-poppins text-[1.4rem] font-[900] text-white'>
                 Last Winners
@@ -184,7 +184,7 @@ const Contest = () => {
               </div>
             </div>
             <div
-              className={` ${styles.predictionBox} mt-5 flex h-1/2 w-full flex-col items-center justify-start overflow-hidden rounded-[18px] p-3 shadow-predictionBox drop-shadow-predictionBox  scrollbar-hide lg:mt-0 lg:h-full lg:w-[45%] lg:rounded-[30px]`}
+              className={` ${styles.predictionBox} mt-5 flex h-1/2 w-full flex-col items-center justify-start overflow-hidden rounded-[18px] p-3 shadow-predictionBox drop-shadow-predictionBox  scrollbar-hide lg:mt-0 lg:h-full lg:w-[45%] lg:rounded-[30px] xxl3100:w-[30%]`}
             >
               <h1 className=' h-auto w-full text-center font-poppins text-[1.4rem] font-[900] text-white'>
                 Prizes
