@@ -67,7 +67,7 @@ const ContestCards = ({ completed, onClick, predicted }: cards) => {
           ></div>
         </div>
       </div>
-      <div className=' my-4 flex h-[10%] w-full flex-col items-start justify-start pl-4 sm:my-5 lg:my-3 xl1400:my-4 xl1900:my-7 xl2300:my-10 xxl3100:pl-10'>
+      <div className=' my-4 flex h-[10%] w-full flex-col items-start justify-start pl-4 sm:my-5 lg:my-3 xl1400:my-4 xl1900:my-5 xl2300:my-7 xxl3100:pl-10'>
         <span
           className={`${
             predicted
@@ -78,7 +78,7 @@ const ContestCards = ({ completed, onClick, predicted }: cards) => {
           Prediction Fee : 0.02 ETH
         </span>
       </div>
-      <div className='flex h-auto min-h-[7vh] w-full flex-col items-center justify-start '>
+      <div className='flex h-auto min-h-[7vh] w-full flex-col items-center justify-start'>
         <div className='flex min-h-[25px] w-[90%] items-center justify-between xxl3100:min-h-[80px]  '>
           <div className='flex h-full w-auto items-center justify-start gap-x-1 pl-1 xxl3100:gap-x-[80px] '>
             <Timer1
