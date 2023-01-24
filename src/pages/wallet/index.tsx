@@ -44,7 +44,7 @@ const Wallet = () => {
                   onClick={topUpWallet}
                   className={`${styles.button} flex h-[70px] w-[70px] items-center justify-center rounded-[15px] sm:h-[100px] sm:w-[100px] sm:rounded-[25px] lg:h-[80px] lg:w-[80px] lg:rounded-[25px] xl1900:h-[100px] xl1900:w-[100px] xl2300:h-[120px] xl2300:w-[120px] xl2300:rounded-[40px] xxl3100:h-[10vh] xxl3100:w-[10vh] xxl3100:rounded-[50px]`}
                 >
-                  <ArrowUp className='scale-[0.65] xxl3100:scale-[1.6]' />
+                  <ArrowUp className='scale-[0.65] xl1900:scale-[1] xxl3100:scale-[1.6]' />
                 </button>
                 <span className='mt-1 cursor-pointer font-poppins text-[1rem] font-[400] text-white xl2300:text-[1.2rem] xxl3100:mt-4 xxl3100:text-[2rem]'>
                   TopUp
@@ -55,7 +55,7 @@ const Wallet = () => {
                   onClick={withdrawFromWallet}
                   className={`${styles.button} flex h-[70px] w-[70px] items-center justify-center rounded-[15px] sm:h-[100px] sm:w-[100px] sm:rounded-[25px] lg:h-[80px] lg:w-[80px]  lg:rounded-[25px] xl1900:h-[100px] xl1900:w-[100px] xl2300:h-[120px] xl2300:w-[120px] xl2300:rounded-[40px] xxl3100:h-[10vh] xxl3100:w-[10vh] xxl3100:rounded-[50px]`}
                 >
-                  <ArrowDown className='scale-[0.65] xxl3100:scale-[1.6]' />
+                  <ArrowDown className='scale-[0.65] xl1900:scale-[1] xxl3100:scale-[1.6]' />
                 </button>
                 <span className='mt-1 cursor-pointer font-poppins text-[1rem] font-[400] text-white xl2300:text-[1.2rem] xxl3100:mt-4 xxl3100:text-[2rem]'>
                   Withdraw
