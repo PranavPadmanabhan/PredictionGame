@@ -15,7 +15,7 @@ export default function HomePage() {
   return (
     <div className='relative flex h-screen w-screen flex-col items-center justify-start overflow-hidden bg-backgroundColor pt-[13vh] md:pt-[10vh] lg:justify-center lg:pt-0'>
       {/* <Seo templateTitle='Home' /> */}
-      <Seo />
+      <Seo title='Home' />
       <Header className='pr-[2%]' />
       <Lottie
         className='absolute bottom-0 -mt-3 -mb-[30%] h-[78%] w-[140%] md:-mb-[20%] lg:right-0 lg:mb-0 lg:mt-0 lg:h-[80%] lg:w-[60%]'
