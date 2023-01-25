@@ -21,8 +21,8 @@ const Header = ({ className }: header) => {
 
   const { data, isSuccess, isFetching, isLoading, isRefetching } =
     useContractRead({
-      addressOrName: contractAddress,
-      contractInterface: abi,
+      address: `0x${contractAddress}`,
+      abi: abi,
       functionName: 'balanceOf',
       args: [address],
     });
