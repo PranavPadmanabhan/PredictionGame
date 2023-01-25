@@ -20,7 +20,7 @@ import AppContextProvider from '@/contexts/AppContext';
 
 const { chains, provider } = configureChains(
   [goerli],
-  [publicProvider(), alchemyProvider({ apiKey: API_KEY })]
+  [publicProvider(), alchemyProvider({ apiKey: API_KEY! })]
 );
 
 const { connectors, wallets } = getDefaultWallets({
