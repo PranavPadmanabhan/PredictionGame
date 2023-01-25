@@ -65,10 +65,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             ],
             variant === 'outline' && [
               'text-primary-500',
-              'border border-primary-500',
-              'hover:bg-primary-50 active:bg-primary-100 disabled:bg-primary-100',
+              'border border-button',
+              'hover:bg-backgroundColor active:bg-backgroundColor disabled:bg-backgroundColor',
               isDarkBg &&
-                'hover:bg-gray-900 active:bg-gray-800 disabled:bg-gray-800',
+                'hover:bg-backgroundColor active:bg-backgroundColor disabled:bg-backgroundColor',
             ],
             variant === 'ghost' && [
               'text-primary-500',
@@ -129,7 +129,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             />
           </div>
         )}
-        {children}
+        {!isLoading && children}
         {RightIcon && (
           <div
             className={clsxm([

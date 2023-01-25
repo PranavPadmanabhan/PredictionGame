@@ -32,6 +32,7 @@
   /* inter var - latin */
   html {
     -webkit-tap-highlight-color: transparent;
+    font-family: 'Poppins', 'sans-serif';
   }
   @font-face {
     font-family: 'Inter';

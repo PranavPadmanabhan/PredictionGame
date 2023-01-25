@@ -1,3 +1,4 @@
+import { People, Timer1 } from 'iconsax-react';
 import React from 'react';
 
 import styles from '@/styles/Extras.module.css';
@@ -5,7 +6,10 @@ import styles from '@/styles/Extras.module.css';
 import Layout from '@/components/layout/Layout';
 import PredictedValue from '@/components/PredictedValue';
 
+import { useAppContext } from '@/contexts/AppContext';
+
 const Contest = () => {
+  const { width } = useAppContext();
   const predictions = [
     {
       value: 100000,
@@ -69,6 +73,8 @@ const Contest = () => {
     },
   ];
 
+  const disabled = width <= 900 ? true : false;
+
   return (
     <Layout>
       <div className='flex h-full w-full items-center justify-between p-0 lg:p-10 xl1400:p-14 xxl3100:p-[130px] '>
@@ -105,6 +111,7 @@ const Contest = () => {
               <input
                 placeholder='Add your prediction'
                 type='number'
+                disabled={disabled}
                 className={`${styles.input} my-3 box-border min-h-[50px] w-full rounded-[15px] pl-5 text-center lg:rounded-[20px]`}
               />
               <div className='box-border flex min-h-[40px] w-full flex-col items-center justify-start pt-1'>
@@ -115,12 +122,61 @@ const Contest = () => {
                   </span>{' '}
                   USD
                 </span>
-                <span className='font-poppins text-[1.1rem] font-[500] text-white lg:mt-3'>
-                  6 Hours Left
-                </span>
-                <span className='font-poppins text-[0.9rem] font-[300] text-white '>
+                <span className='my-2 font-poppins text-[0.9rem] font-[300] text-white '>
                   Prediction Fee : 0.02 ETH
                 </span>
+                <div className=' flex min-h-[25px] w-[80%] items-center justify-between  xxl3100:min-h-[80px]'>
+                  <div className='flex h-full w-auto items-center justify-start gap-x-1 pl-1 xxl3100:gap-x-[80px] '>
+                    <Timer1
+                      size='20'
+                      variant='Bold'
+                      color='white'
+                      className='flex xl1900:hidden'
+                    />
+                    <Timer1
+                      size='35'
+                      variant='Bold'
+                      color='white'
+                      className='hidden xl1900:flex xxl3100:hidden '
+                    />
+
+                    <Timer1
+                      size='45'
+                      variant='Bold'
+                      color='white'
+                      className='hidden xxl3100:flex '
+                    />
+
+                    <span className='font-poppins text-[0.8rem] font-[300] text-white sm:text-[0.85rem] xl1400:ml-2 xl1400:text-[0.93rem] xl1900:text-[0.96rem] xl2300:text-[1.4rem] xxl3100:ml-5 xxl3100:text-[0.8vw] '>
+                      6 Hours left
+                    </span>
+                  </div>
+                  <div className='flex h-full w-auto items-center justify-end gap-x-1 pr-1 '>
+                    <People
+                      size='20'
+                      variant='Bold'
+                      color='white'
+                      className='flex xl1900:hidden'
+                    />
+
+                    <People
+                      size='35'
+                      variant='Bold'
+                      color='white'
+                      className='hidden xl1900:flex xxl3100:mr-5 xxl3100:hidden '
+                    />
+                    <People
+                      size='35'
+                      variant='Bold'
+                      color='white'
+                      className='hidden xxl3100:mr-5 xxl3100:flex '
+                    />
+                    <span className='font-poppins text-[0.8rem] font-[300] text-white sm:text-[0.9rem] xl1400:ml-3 xl1400:text-[0.93rem] xl1900:text-[0.96rem] xl2300:text-[1.4rem] xxl3100:mr-5 xxl3100:text-[0.8vw]'>
+                      10/100
+                    </span>
+                  </div>
+                </div>
+
                 <div className='my-2 flex min-h-[20px] w-[75%] items-center justify-start self-center rounded-[30px] bg-white p-[1px] lg:max-h-[18px] lg:min-h-[12px] lg:p-[2px] xxl3100:max-h-[50px] xxl3100:min-h-[30px] xxl3100:p-[5px] '>
                   <div className='h-full w-[40%] rounded-[28px]  bg-gradient-to-r from-sliderColor1 to-sliderColor2  lg:h-[15px] lg:max-h-[18px] xxl3100:max-h-[50px] xxl3100:min-h-[30px]'></div>
                 </div>

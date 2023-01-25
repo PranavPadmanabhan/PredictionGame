@@ -9,7 +9,7 @@ import Seo from '@/components/Seo';
 import { useAppContext } from '@/contexts/AppContext';
 
 const Wallet = () => {
-  const { isTxModalOpen, setIsTxModalOpen } = useAppContext();
+  const { isTxModalOpen, setIsTxModalOpen, width } = useAppContext();
 
   const topUpWallet = async () => {
     setIsTxModalOpen(true);
@@ -18,6 +18,8 @@ const Wallet = () => {
   const withdrawFromWallet = async () => {
     setIsTxModalOpen(true);
   };
+
+  const disabled = width <= 900 ? true : false;
 
   return (
     <Layout>
@@ -35,6 +37,7 @@ const Wallet = () => {
             </div>
             <input
               type='number'
+              disabled={disabled}
               placeholder='Enter topup/withdraw amount'
               className={`${styles.input} box-border h-[55px] w-full min-w-[200px] max-w-[320px] rounded-[15px] pl-5 text-center text-black placeholder:text-[1rem] sm:my-8 sm:min-h-[55px] sm:min-w-[450px] sm:max-w-[350px] lg:my-3 lg:h-[60px] lg:w-[85%] lg:min-w-[300px]  lg:rounded-[15px] xl1900:my-7 xl1900:h-[95px] xl1900:min-w-[500px] xl2300:h-[100px] xxl3100:my-0 xxl3100:mt-[10px] xxl3100:h-[6vh] xxl3100:w-[80%] xxl3100:min-w-[800px] xxl3100:max-w-[600px] xxl3100:rounded-[50px] xxl3100:pl-[50px] xxl3100:placeholder:text-[2rem]`}
             />

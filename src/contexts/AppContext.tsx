@@ -6,6 +6,7 @@ type Context = {
   setIsTxModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   rank: number;
   setRank: React.Dispatch<React.SetStateAction<number>>;
+  width: number;
 };
 
 type ContextProvider = {
@@ -16,11 +17,15 @@ const AppContext = React.createContext<Context>({} as Context);
 
 const AppContextProvider = ({ children }: ContextProvider) => {
   const [isTxModalOpen, setIsTxModalOpen] = useState<boolean>(false);
+  const [width, setWidth] = React.useState<number>(0);
   const [rank, setRank] = useState<number>(0);
-  const value = { isTxModalOpen, setIsTxModalOpen, rank, setRank };
+  const value = { isTxModalOpen, setIsTxModalOpen, rank, setRank, width };
   const router = useRouter();
 
   useEffect(() => {
+    if (typeof window !== undefined) {
+      setWidth(window.innerWidth);
+    }
     setIsTxModalOpen(false);
   }, [router.pathname]);
 
