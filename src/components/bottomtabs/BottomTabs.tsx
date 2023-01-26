@@ -9,10 +9,10 @@ const BottomTabs = () => {
   const { isTxModalOpen } = useAppContext();
   return (
     <div className='fixed bottom-0 box-border flex h-[65px] w-full items-center justify-between overflow-hidden border-t-[1px] border-t-tabBorder bg-backgroundColor  px-5 pl-8 md:h-[110px] md:px-[22%]  lg:hidden'>
-      {bottomNavLinks.map(({ icon: Icon, label, id, url }) => (
+      {bottomNavLinks.map(({ icon: Icon, label, id, url }, i) => (
         <>
           <Icon
-            key={id}
+            key={i}
             onClick={() => router.push(`${url}`)}
             color={
               router.pathname.includes(url)

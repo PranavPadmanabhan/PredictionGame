@@ -19,6 +19,7 @@ type cards = {
   entranceFee?: number | string;
   numberOfPredictions: number;
   maxPlayers: number;
+  timeLeft:string;
 };
 
 const ContestCards = ({
@@ -30,6 +31,7 @@ const ContestCards = ({
   entranceFee,
   numberOfPredictions,
   maxPlayers,
+  timeLeft
 }: cards) => {
   // max-h-[345px] min-h-[250px] w-[50%] min-w-[240px] max-w-[320px] lg1300:min-h-[250px] lg1300:w-[100%] lg1300:max-w-[230px] xl1400:min-h-[300px] xl1400:w-[100%] xl1400:max-w-[260px] xl1500:min-h-[310px] xl1500:w-[100%] xl1500:max-w-[280px] xxl3100:min-h-[700px] xxl3100:w-[100%] xxl3100:max-w-[600px] xxl3100:rounded-[100px]
 
@@ -139,7 +141,7 @@ const ContestCards = ({
             />
 
             <span className='font-poppins text-[0.8rem] font-[300] text-white sm:text-[0.85rem] xl1400:ml-2 xl1400:text-[0.93rem] xl1900:text-[0.96rem] xl2300:text-[1.4rem] xxl3100:ml-5 xxl3100:text-[0.8vw] '>
-              6 Hours left
+              {timeLeft} left
             </span>
           </div>
           <div className='flex h-full w-auto items-center justify-end gap-x-1 pr-1 '>

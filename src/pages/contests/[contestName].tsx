@@ -1,4 +1,7 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
+import { BigNumber, ethers } from 'ethers';
 import { People, Timer1 } from 'iconsax-react';
+import { GetServerSideProps } from 'next';
 import React from 'react';
 
 import styles from '@/styles/Extras.module.css';
@@ -6,74 +9,97 @@ import styles from '@/styles/Extras.module.css';
 import Layout from '@/components/layout/Layout';
 import PredictedValue from '@/components/PredictedValue';
 
+import { titlesGoerli } from '@/constant/constants';
 import { useAppContext } from '@/contexts/AppContext';
+import { getContract } from '@/utils/helper-functions';
 
-const Contest = () => {
+type Prediction = {
+  contestId: number;
+  predictedValue: number;
+  predictedAt: number;
+  user: string;
+  difference: number;
+  amount: number;
+  resultTime: number;
+};
+
+type props = {
+  id: number | string;
+  entranceFee: number;
+  price: number;
+  lastTime: number;
+  predictions: Prediction[];
+  maxPlayers: number;
+};
+
+const Contest = ({
+  entranceFee,
+  id,
+  price,
+  lastTime,
+  predictions,
+  maxPlayers,
+}: props) => {
   const { width } = useAppContext();
-  const predictions = [
-    {
-      value: 100000,
-      time: '10:30PM',
-    },
-    {
-      value: 100000,
-      time: '10:30PM',
-    },
-    {
-      value: 121384.23473738,
-      time: '10:30PM',
-    },
-    {
-      value: 100000,
-      time: '10:30PM',
-    },
-    {
-      value: 1637.3727736,
-      time: '10:30PM',
-    },
-    {
-      value: 100000,
-      time: '10:30PM',
-    },
-    {
-      value: 100000,
-      time: '10:30PM',
-    },
-    {
-      value: 121384.23473738,
-      time: '10:30PM',
-    },
-    {
-      value: 100000,
-      time: '10:30PM',
-    },
-    {
-      value: 1637.3727736,
-      time: '10:30PM',
-    },
-    {
-      value: 100000,
-      time: '10:30PM',
-    },
-    {
-      value: 100000,
-      time: '10:30PM',
-    },
-    {
-      value: 121384.23473738,
-      time: '10:30PM',
-    },
-    {
-      value: 100000,
-      time: '10:30PM',
-    },
-    {
-      value: 1637.3727736,
-      time: '10:30PM',
-    },
-  ];
+  const [seconds, setSeconds] = React.useState<number>(0);
+  const [minutes, setMinutes] = React.useState<number>(0);
+  const [hours, setHours] = React.useState<number>(0);
+
+  let timer: NodeJS.Timer;
+
+  const setTimer = async () => {
+    let countDownDate: number;
+    countDownDate = new Date(lastTime * 1000).getTime();
+    timer = setInterval(async function () {
+      const now = new Date().getTime();
+      const distance = countDownDate - now;
+      const hour = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const second = Math.floor((distance % (1000 * 60)) / 1000);
+
+      setHours(hour);
+      setMinutes(mins);
+      setSeconds(second);
+      // console.log(`${hour} ${mins} ${second}`);
+      if (distance < 0) {
+        const { contract } = await getContract();
+        const lastTime = await contract?.getLatestTimeStamp();
+        const interval = await contract?.getInterval();
+        const lastTimeStamp = parseInt(lastTime.add(interval).toString());
+        countDownDate = new Date(lastTimeStamp * 1000).getTime();
+      }
+    }, 1000);
+  };
+
+  const getTimeLeft = () => {
+    if (hours > 1) {
+      return `${hours} hours`;
+    } else if (hours == 1) {
+      return `1 hour`;
+    } else if (hours < 1) {
+      return `${minutes} mins`;
+    } else if (minutes < 1) {
+      return `${seconds} s`;
+    } else {
+      return '0 hour left';
+    }
+  };
+
+  React.useEffect(() => {
+    setTimer();
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
 
   const disabled = width <= 900 ? true : false;
+  const data = titlesGoerli.filter((item) => item.id == id);
+  const {
+    from: { title: From, icon: IconFrom },
+    to: { title: To, icon: IconTo },
+  } = data[0];
 
   return (
     <Layout>
@@ -90,12 +116,19 @@ const Contest = () => {
                   <div
                     className={`mr-2
                  flex h-[40px] w-[40px] items-center justify-center rounded-full bg-cardTitleBox1 lg:h-[50px] lg:w-[50px] xl1400:mr-2 xl1400:h-[55px]  xl1400:w-[55px] xl1500:mr-2 xl1500:h-[55px] xl1500:w-[55px] xxl3100:mr-4 xxl3100:h-[100px] xxl3100:w-[100px] `}
-                  ></div>
+                  >
+                    <IconFrom
+                      size='26'
+                      color='white'
+                      variant='Bold'
+                      className='xl1600:scale-[1.2] xxl3100:scale-[2.5] '
+                    />
+                  </div>
                   <h1
                     className={`font-poppins
                  text-[1.1rem] font-[700] text-white xl1500:text-[1.3rem] xxl3100:text-[2.7rem] `}
                   >
-                    ETH
+                    {From}
                   </h1>
                 </div>
                 <div className='flex h-full w-[48%] items-center justify-end bg-transparent pr-[7px] xl1500:pr-[11px] xxl3100:pr-[24px]'>
@@ -103,9 +136,16 @@ const Contest = () => {
                     className={`font-poppins
                 text-[1.1rem] font-[700] text-white xl1500:text-[1.3rem] xxl3100:text-[2.7rem] `}
                   >
-                    USD
+                    {To}
                   </h1>
-                  <div className='ml-2 flex h-[40px] w-[40px] items-center justify-center rounded-full bg-cardTitleBox2 lg:h-[50px] lg:w-[50px]  xl1400:h-[55px] xl1400:w-[55px] xl1500:ml-2  xl1500:h-[55px] xl1500:w-[55px] xxl3100:ml-4  xxl3100:h-[100px] xxl3100:w-[100px]'></div>
+                  <div className='ml-2 flex h-[40px] w-[40px] items-center justify-center rounded-full bg-cardTitleBox2 lg:h-[50px] lg:w-[50px]  xl1400:h-[55px] xl1400:w-[55px] xl1500:ml-2  xl1500:h-[55px] xl1500:w-[55px] xxl3100:ml-4  xxl3100:h-[100px] xxl3100:w-[100px]'>
+                    <IconTo
+                      size='26'
+                      color='white'
+                      variant='Bold'
+                      className='xl1600:scale-[1.25] xxl3100:scale-[2.5] '
+                    />
+                  </div>
                 </div>
               </div>
               <input
@@ -115,15 +155,15 @@ const Contest = () => {
                 className={`${styles.input} my-3 box-border min-h-[50px] w-full rounded-[15px] pl-5 text-center lg:rounded-[20px]`}
               />
               <div className='box-border flex min-h-[40px] w-full flex-col items-center justify-start pt-1'>
-                <span className='font-poppins text-[1rem] font-[300] text-white '>
-                  Latest Price of ETH :{' '}
-                  <span className='font-mono text-[1.3rem] font-[900] text-blue-500 '>
-                    1514
+                <span className='font-poppins text-[0.9rem] font-[300] text-white '>
+                  Latest Price of {From} :{' '}
+                  <span className='font-mono text-[1rem] font-[900] text-blue-500 '>
+                    {price}
                   </span>{' '}
-                  USD
+                  {To}
                 </span>
                 <span className='my-2 font-poppins text-[0.9rem] font-[300] text-white '>
-                  Prediction Fee : 0.02 ETH
+                  Prediction Fee : {entranceFee} ETH
                 </span>
                 <div className=' flex min-h-[25px] w-[80%] items-center justify-between  xxl3100:min-h-[80px]'>
                   <div className='flex h-full w-auto items-center justify-start gap-x-1 pl-1 xxl3100:gap-x-[80px] '>
@@ -148,7 +188,7 @@ const Contest = () => {
                     />
 
                     <span className='font-poppins text-[0.8rem] font-[300] text-white sm:text-[0.85rem] xl1400:ml-2 xl1400:text-[0.93rem] xl1900:text-[0.96rem] xl2300:text-[1.4rem] xxl3100:ml-5 xxl3100:text-[0.8vw] '>
-                      6 Hours left
+                      {getTimeLeft()} left
                     </span>
                   </div>
                   <div className='flex h-full w-auto items-center justify-end gap-x-1 pr-1 '>
@@ -172,13 +212,16 @@ const Contest = () => {
                       className='hidden xxl3100:mr-5 xxl3100:flex '
                     />
                     <span className='font-poppins text-[0.8rem] font-[300] text-white sm:text-[0.9rem] xl1400:ml-3 xl1400:text-[0.93rem] xl1900:text-[0.96rem] xl2300:text-[1.4rem] xxl3100:mr-5 xxl3100:text-[0.8vw]'>
-                      10/100
+                      {predictions.length}/{maxPlayers}
                     </span>
                   </div>
                 </div>
 
-                <div className='my-2 flex min-h-[20px] w-[75%] items-center justify-start self-center rounded-[30px] bg-white p-[1px] lg:max-h-[18px] lg:min-h-[12px] lg:p-[2px] xxl3100:max-h-[50px] xxl3100:min-h-[30px] xxl3100:p-[5px] '>
-                  <div className='h-full w-[40%] rounded-[28px]  bg-gradient-to-r from-sliderColor1 to-sliderColor2  lg:h-[15px] lg:max-h-[18px] xxl3100:max-h-[50px] xxl3100:min-h-[30px]'></div>
+                <div className='my-2 box-border flex min-h-[20px] w-[75%] items-center justify-start self-center rounded-[30px] bg-white p-[1px] lg:max-h-[18px] lg:min-h-[12px] lg:p-[1px] xxl3100:max-h-[50px] xxl3100:min-h-[30px] xxl3100:p-[5px] '>
+                  <div
+                    style={{ width: predictions.length / maxPlayers }}
+                    className='h-full rounded-[28px]  bg-gradient-to-r from-sliderColor1 to-sliderColor2  lg:h-[15px] lg:max-h-[18px] xxl3100:max-h-[50px] xxl3100:min-h-[30px]'
+                  ></div>
                 </div>
               </div>
               <button className='mt-4 h-[10%] max-h-[50px] min-h-[40px] w-[50%] min-w-[70px] max-w-[150px] rounded-[15px] bg-cardTitleBox1 font-poppins text-[1rem] font-[500] text-white shadow-predictButton xxl3100:mt-7 xxl3100:min-h-[80px] xxl3100:min-w-[100px] xxl3100:max-w-[400px] xxl3100:rounded-[30px] xxl3100:text-[2.2rem] '>
@@ -205,8 +248,8 @@ const Contest = () => {
                     key={i}
                     needSeparator
                     index={i + 1}
-                    value={item.value.toString()}
-                    time={item.time.toString()}
+                    value={item.predictedValue.toString()}
+                    time={item.contestId.toString()}
                   />
                 ))}
               </div>
@@ -233,8 +276,8 @@ const Contest = () => {
                     key={i}
                     needSeparator
                     index={i + 1}
-                    value={item.value.toString()}
-                    time={item.time.toString()}
+                    value={item.predictedValue.toString()}
+                    time={item.contestId.toString()}
                   />
                 ))}
               </div>
@@ -250,8 +293,8 @@ const Contest = () => {
                   <PredictedValue
                     key={i}
                     index={i + 1}
-                    value={item.value.toString()}
-                    time={item.time.toString()}
+                    value={item.predictedValue.toString()}
+                    time={item.contestId.toString()}
                   />
                 ))}
               </div>
@@ -264,3 +307,39 @@ const Contest = () => {
 };
 
 export default Contest;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { contestName, entranceFee, id } = context.query;
+  const { contract } = await getContract();
+  const priceData = await contract?.getLatestPrice(id);
+  const decimals = parseInt(priceData[1].toString());
+  const price =
+    parseInt(priceData[0].toString()) / 10 ** parseInt(priceData[1].toString());
+  const lastTime: BigNumber = await contract?.getLatestTimeStamp();
+  const interval: BigNumber = await contract?.getInterval();
+  const lastTimeStamp: number = parseInt(lastTime.add(interval).toString());
+  const maxPlayersData: BigNumber = await contract?.getNumOfMaxPlayers();
+  const maxPlayers: number = parseInt(maxPlayersData.toString());
+  const predictionsData: any[] = await contract?.getPredictions(id);
+  const predictions: Prediction[] = predictionsData.map((item) => ({
+    contestId: parseFloat(item.contestId.toString()),
+    predictedValue: parseFloat(item.predictedValue.toString()),
+    predictedAt: parseInt(item.predictedAt.toString) * 1000,
+    difference: parseFloat(item.difference.toString()),
+    user: item.user.toString(),
+    amount: parseFloat(
+      ethers.utils.formatEther(item.amount.toString()).toString()
+    ),
+    resultTime: parseInt(item.resultTime.toString()) * 1000,
+  }));
+  return {
+    props: {
+      id,
+      entranceFee,
+      price,
+      lastTime: lastTimeStamp,
+      predictions,
+      maxPlayers,
+    },
+  };
+};

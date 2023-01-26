@@ -18,9 +18,9 @@ const SideBar = () => {
         </h1>
       </div>
       <div className='box-border flex h-[65%] w-full flex-col items-start justify-center pl-3 xl1700:pl-[20px] xl2100:pl-[30px] xxl3100:pl-[50px]'>
-        {sideBarLinks.map(({ icon: Icon, id, label, url }) => (
+        {sideBarLinks.map(({ icon: Icon, id, label, url }, i) => (
           <Icon
-            key={id}
+            key={i}
             onClick={() => router.push(`${url}`)}
             title={label}
             active={router.pathname === url}

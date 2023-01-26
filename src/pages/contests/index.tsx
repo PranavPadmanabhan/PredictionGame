@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ethers } from 'ethers';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
@@ -36,10 +37,51 @@ type props = {
       maxPlayers: number;
     }
   ];
+  lastTime: number;
 };
 
-const Contests = ({ contests }: props) => {
+const Contests = ({ contests, lastTime }: props) => {
   const router = useRouter();
+  // console.log(lastTime);
+  const [seconds, setSeconds] = React.useState<number>(0);
+  const [minutes, setMinutes] = React.useState<number>(0);
+  const [hours, setHours] = React.useState<number>(0);
+
+  let timer: NodeJS.Timer;
+
+  const setTimer = async () => {
+    let countDownDate: number;
+    countDownDate = new Date(lastTime * 1000).getTime();
+    timer = setInterval(async function () {
+      const now = new Date().getTime();
+      const distance = countDownDate - now;
+      const hour = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const second = Math.floor((distance % (1000 * 60)) / 1000);
+
+      setHours(hour);
+      setMinutes(mins);
+      setSeconds(second);
+      // console.log(`${hour} ${mins} ${second}`);
+      if (distance < 0) {
+        const { contract } = await getContract();
+        const lastTime = await contract?.getLatestTimeStamp();
+        const interval = await contract?.getInterval();
+        const lastTimeStamp = parseInt(lastTime.add(interval).toString());
+        countDownDate = new Date(lastTimeStamp * 1000).getTime();
+      }
+    }, 1000);
+  };
+
+  React.useEffect(() => {
+    setTimer();
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
   const contestsData: Contest[] = contests.map((item) => {
     const data = titlesGoerli.filter(
       (val) => val.id.toString() === item.id.toString()
@@ -53,6 +95,20 @@ const Contests = ({ contests }: props) => {
       numOfPlayers: item.numOfPlayers,
     };
   });
+
+  const getTimeLeft = () => {
+    if (hours > 1) {
+      return `${hours} hours`;
+    } else if (hours == 1) {
+      return `1 hour`;
+    } else if (hours < 1) {
+      return `${minutes} mins`;
+    } else if (minutes < 1) {
+      return `${seconds} s`;
+    } else {
+      return '0 hour left';
+    }
+  };
 
   return (
     <Layout>
@@ -69,8 +125,20 @@ const Contests = ({ contests }: props) => {
               entranceFee={entranceFee}
               numberOfPredictions={numOfPlayers}
               maxPlayers={maxPlayers}
+              timeLeft={getTimeLeft()}
               to={to}
-              onClick={() => router.push(`/contests/${from.title}-${to.title}`)}
+              onClick={() => {
+                router.push(
+                  {
+                    pathname: `/contests/${from.title}-${to.title}`,
+                    query: {
+                      entranceFee,
+                      id,
+                    },
+                  },
+                  `/contests/${from.title}-${to.title}`
+                );
+              }}
             />
           )
         )}
@@ -94,6 +162,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
   const maxPlayersData = await contract?.getNumOfMaxPlayers();
   const maxPlayers = parseInt(maxPlayersData.toString());
+  const lastTime = await contract?.getLatestTimeStamp();
+  const interval = await contract?.getInterval();
+  const lastTimeStamp = parseInt(lastTime.add(interval).toString());
 
   contestsData = contests.map((item: any, index: number) => {
     return {
@@ -109,6 +180,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
       contests: contestsData,
+      lastTime: lastTimeStamp,
     },
   };
 };
