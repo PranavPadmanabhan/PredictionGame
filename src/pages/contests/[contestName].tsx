@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { BigNumber, ethers } from 'ethers';
 import { People, Timer1 } from 'iconsax-react';
-import { GetServerSideProps } from 'next';
+import { GetStaticPaths, GetStaticProps } from 'next';
+import { ParsedUrlQuery } from 'querystring';
 import React from 'react';
+import { useAccount } from 'wagmi';
 
 import styles from '@/styles/Extras.module.css';
 
@@ -11,7 +13,16 @@ import PredictedValue from '@/components/PredictedValue';
 
 import { titlesGoerli } from '@/constant/constants';
 import { useAppContext } from '@/contexts/AppContext';
-import { getContract } from '@/utils/helper-functions';
+import {
+  getContests,
+  getContract,
+  getEntranceFee,
+  getLatestPrice,
+  getLatestTimeStamp,
+  getMaxPlayers,
+  getPredictions,
+  getWinners,
+} from '@/utils/helper-functions';
 
 type Prediction = {
   contestId: number;
@@ -26,24 +37,30 @@ type Prediction = {
 type props = {
   id: number | string;
   entranceFee: number;
-  price: number;
+  latestPrice: number;
   lastTime: number;
   predictions: Prediction[];
   maxPlayers: number;
+  winners: string[];
 };
 
 const Contest = ({
   entranceFee,
   id,
-  price,
+  latestPrice,
   lastTime,
   predictions,
   maxPlayers,
+  winners,
 }: props) => {
   const { width } = useAppContext();
   const [seconds, setSeconds] = React.useState<number>(0);
   const [minutes, setMinutes] = React.useState<number>(0);
   const [hours, setHours] = React.useState<number>(0);
+  const { address } = useAccount();
+  const [predictionList, setPredictionList] =
+    React.useState<Prediction[]>(predictions);
+  const [winnersList, setWinnersList] = React.useState<string[]>(winners);
 
   let timer: NodeJS.Timer;
 
@@ -95,7 +112,9 @@ const Contest = ({
   }, []);
 
   const disabled = width <= 900 ? true : false;
-  const data = titlesGoerli.filter((item) => item.id == id);
+  const data = titlesGoerli.filter(
+    (item) => item.id.toString() === id.toString()
+  );
   const {
     from: { title: From, icon: IconFrom },
     to: { title: To, icon: IconTo },
@@ -158,7 +177,7 @@ const Contest = ({
                 <span className='font-poppins text-[0.9rem] font-[300] text-white '>
                   Latest Price of {From} :{' '}
                   <span className='font-mono text-[1rem] font-[900] text-blue-500 '>
-                    {price}
+                    {latestPrice}
                   </span>{' '}
                   {To}
                 </span>
@@ -243,15 +262,23 @@ const Contest = ({
                 </span>
               </div>
               <div className='flex  max-h-full w-full flex-col items-center justify-start overflow-y-scroll scrollbar-hide '>
-                {predictions.map((item, i) => (
+                {predictionList.map((item, i) => (
                   <PredictedValue
                     key={i}
                     needSeparator
-                    index={i + 1}
+                    isActive={
+                      address?.toLowerCase() === item.user.toLowerCase()
+                    }
+                    indexShown={false}
                     value={item.predictedValue.toString()}
                     time={item.contestId.toString()}
                   />
                 ))}
+                {predictionList.length === 0 && (
+                  <span className='mt-[25%] font-poppins text-[1rem] text-white'>
+                    No data
+                  </span>
+                )}
               </div>
             </div>
           </section>
@@ -270,16 +297,27 @@ const Contest = ({
                   prize
                 </span>
               </div>
-              <div className='flex  max-h-full w-full flex-col items-center justify-start overflow-y-scroll scrollbar-hide '>
-                {predictions.map((item, i) => (
+              <div
+                className={`flex  max-h-full w-full flex-col items-center ${
+                  winnersList.length !== 0 ? 'justify-start' : 'justify-center'
+                } overflow-y-scroll scrollbar-hide `}
+              >
+                {winnersList.map((item, i) => (
                   <PredictedValue
+                    isActive={item.toLowerCase() === address?.toLowerCase()}
                     key={i}
+                    indexShown={true}
                     needSeparator
                     index={i + 1}
-                    value={item.predictedValue.toString()}
-                    time={item.contestId.toString()}
+                    value={item.toString()}
+                    time={`${i}`}
                   />
                 ))}
+                {winners.length === 0 && (
+                  <span className='mt-[25%] font-poppins text-[1rem] text-white'>
+                    No data
+                  </span>
+                )}
               </div>
             </div>
             <div
@@ -291,7 +329,9 @@ const Contest = ({
               <div className='flex  max-h-full w-full flex-col items-center justify-start overflow-y-scroll scrollbar-hide '>
                 {predictions.map((item, i) => (
                   <PredictedValue
+                    indexShown={true}
                     key={i}
+                    isActive={false}
                     index={i + 1}
                     value={item.predictedValue.toString()}
                     time={item.contestId.toString()}
@@ -308,38 +348,58 @@ const Contest = ({
 
 export default Contest;
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { contestName, entranceFee, id } = context.query;
-  const { contract } = await getContract();
-  const priceData = await contract?.getLatestPrice(id);
-  const decimals = parseInt(priceData[1].toString());
-  const price =
-    parseInt(priceData[0].toString()) / 10 ** parseInt(priceData[1].toString());
-  const lastTime: BigNumber = await contract?.getLatestTimeStamp();
-  const interval: BigNumber = await contract?.getInterval();
-  const lastTimeStamp: number = parseInt(lastTime.add(interval).toString());
-  const maxPlayersData: BigNumber = await contract?.getNumOfMaxPlayers();
-  const maxPlayers: number = parseInt(maxPlayersData.toString());
-  const predictionsData: any[] = await contract?.getPredictions(id);
-  const predictions: Prediction[] = predictionsData.map((item) => ({
-    contestId: parseFloat(item.contestId.toString()),
-    predictedValue: parseFloat(item.predictedValue.toString()),
-    predictedAt: parseInt(item.predictedAt.toString) * 1000,
-    difference: parseFloat(item.difference.toString()),
-    user: item.user.toString(),
-    amount: parseFloat(
-      ethers.utils.formatEther(item.amount.toString()).toString()
-    ),
-    resultTime: parseInt(item.resultTime.toString()) * 1000,
-  }));
+type Props = {
+  id: number;
+  entranceFee: number;
+  latestPrice: number;
+  lastTime: number;
+  predictions: Prediction[];
+  maxPlayers: number;
+  decimals: number;
+  winners: string[];
+};
+
+interface Params extends ParsedUrlQuery {
+  contestName: string;
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const contests = await getContests();
+  const paths = contests.map((item) => {
+    return {
+      params: {
+        contestName: `${item.from.title.toLowerCase()}-${item.to.title.toLowerCase()}&${item.id.toString()}`,
+      },
+    };
+  });
+  return {
+    fallback: true,
+    paths,
+  };
+};
+
+export const getStaticProps: GetStaticProps<Props, Params> = async (
+  context
+) => {
+  const { contestName } = context.params!;
+  const index = contestName.indexOf('&');
+  const id = parseInt(contestName.slice(index + 1, contestName.length));
+  const predictions = await getPredictions(id);
+  const { latestPrice, decimals } = await getLatestPrice(id);
+  const entranceFee = await getEntranceFee(id);
+  const lastTime = await getLatestTimeStamp();
+  const maxPlayers = await getMaxPlayers();
+  const winners = await getWinners(id);
   return {
     props: {
-      id,
-      entranceFee,
-      price,
-      lastTime: lastTimeStamp,
+      id: parseInt(id.toString()),
+      entranceFee: parseFloat(entranceFee!.toString()),
+      latestPrice,
+      lastTime,
       predictions,
       maxPlayers,
+      decimals,
+      winners,
     },
   };
 };

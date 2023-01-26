@@ -16,13 +16,13 @@ export default function HomePage() {
     <div className='relative flex h-screen w-screen flex-col items-center justify-start overflow-hidden bg-backgroundColor pt-[13vh] md:pt-[10vh] lg:justify-center lg:pt-0'>
       {/* <Seo templateTitle='Home' /> */}
       <Seo title='Home' />
-      <Header className='pr-[2%]' />
+      <Header className='pr-[2%]' showBalance={false} />
       <Lottie
         className='absolute bottom-0 -mt-3 -mb-[30%] h-[78%] w-[140%] md:-mb-[20%] lg:right-0 lg:mb-0 lg:mt-0 lg:h-[80%] lg:w-[60%]'
         animationData={cryptoAnimation}
         loop={true}
       />
-      <div className='z-[100] flex h-[40%] w-full flex-col items-center justify-center px-10 lg:h-[50%] lg:items-start xxl3100:px-[200px]'>
+      <div className='z-[100] flex h-[40%] w-full flex-col items-center justify-center px-[5%] lg:h-[50%] lg:items-start xxl3100:px-[200px]'>
         <h1
           className={`${styles.text1} flex text-center font-poppins text-[3rem] font-extrabold leading-[45px] text-button drop-shadow-text md:text-[5.5rem] md:drop-shadow-textmd lg:text-[3.5rem] lg1300:text-[4.2rem] xl1400:text-[4.5rem] xl1500:text-[6rem] xl1900:text-[7rem] xxl3100:text-[12rem] xxl3100:drop-shadow-textlg`}
         >

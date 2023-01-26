@@ -12,9 +12,10 @@ import { abi, contractAddress } from '@/constant/constants';
 
 type header = {
   className?: string;
+  showBalance: boolean;
 };
 
-const Header = ({ className }: header) => {
+const Header = ({ className, showBalance }: header) => {
   const { openConnectModal } = useConnectModal();
   const { openAccountModal } = useAccountModal();
   const { isConnected, address } = useAccount();
@@ -33,13 +34,18 @@ const Header = ({ className }: header) => {
     >
       {isConnected ? (
         <div className='flex h-full w-[40%] items-center justify-end gap-x-4 pr-4'>
-          <Button
-            variant='outline'
-            isLoading={isFetching || isLoading || isRefetching}
-            className='flex h-[35px] w-[25%] min-w-[130px] items-center justify-center rounded-[10px] p-[2px] font-poppins text-[0.9rem] font-[300] text-white md:h-[50px] md:min-w-[220px] md:text-[1.1rem] lg:h-[40px] lg:w-[25%] lg:min-w-[200px] lg:text-[1rem] xl1400:h-[45px] xl1400:min-w-[180px] xl1400:text-[1.1rem] xxl3100:h-[100px] xxl3100:min-w-[400px] xxl3100:text-[2rem]'
-          >
-            {isSuccess && `balance : ${data?.toString()} ETH`}
-          </Button>
+          {showBalance && (
+            <Button
+              variant='outline'
+              isLoading={isFetching || isLoading || isRefetching}
+              className='flex h-[35px] w-[25%] min-w-[130px] items-center justify-center rounded-[10px] p-[2px] font-poppins text-[0.9rem] font-[300] text-white md:h-[50px] md:min-w-[220px] md:text-[1.1rem] lg:h-[40px] lg:w-[25%] lg:min-w-[180px] lg:text-[1rem] xl1400:h-[45px] xl1400:min-w-[180px] xl1400:text-[1.1rem] xxl3100:h-[100px] xxl3100:min-w-[400px] xxl3100:text-[2rem]'
+            >
+              {isSuccess &&
+                `Funds : ${
+                  data?.toString() == '0' ? '0.00' : data?.toString()
+                } ETH`}
+            </Button>
+          )}
           <button
             onClick={openAccountModal}
             className={`${styles.connect} h-[35px] w-[40%] max-w-[130px] rounded-[10px] bg-button font-poppins text-[0.9rem] text-white md:h-[50px] md:max-w-[220px] md:text-[1.1rem] lg:h-[40px] lg:w-[40%] lg:max-w-[160px] lg:text-[0.85rem] xl1400:h-[45px] xl1400:max-w-[180px] xl1400:text-[1.1rem] xxl3100:h-[100px] xxl3100:max-w-[400px] xxl3100:text-[2rem]`}

@@ -129,14 +129,7 @@ const Contests = ({ contests, lastTime }: props) => {
               to={to}
               onClick={() => {
                 router.push(
-                  {
-                    pathname: `/contests/${from.title}-${to.title}`,
-                    query: {
-                      entranceFee,
-                      id,
-                    },
-                  },
-                  `/contests/${from.title}-${to.title}`
+                  `/contests/${from.title.toLowerCase()}-${to.title.toLowerCase()}&${id}`
                 );
               }}
             />
