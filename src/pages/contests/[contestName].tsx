@@ -112,13 +112,11 @@ const Contest = ({
   }, []);
 
   const disabled = width <= 900 ? true : false;
-  const data = titlesGoerli.filter(
-    (item) => item.id.toString() === id.toString()
-  );
+  const data = titlesGoerli.filter((item) => item.id!.toString() === `${id!}`);
   const {
     from: { title: From, icon: IconFrom },
     to: { title: To, icon: IconTo },
-  } = data[0];
+  } = data[0]!;
 
   return (
     <Layout>
@@ -147,7 +145,7 @@ const Contest = ({
                     className={`font-poppins
                  text-[1.1rem] font-[700] text-white xl1500:text-[1.3rem] xxl3100:text-[2.7rem] `}
                   >
-                    {From}
+                    {From!}
                   </h1>
                 </div>
                 <div className='flex h-full w-[48%] items-center justify-end bg-transparent pr-[7px] xl1500:pr-[11px] xxl3100:pr-[24px]'>
@@ -155,7 +153,7 @@ const Contest = ({
                     className={`font-poppins
                 text-[1.1rem] font-[700] text-white xl1500:text-[1.3rem] xxl3100:text-[2.7rem] `}
                   >
-                    {To}
+                    {To!}
                   </h1>
                   <div className='ml-2 flex h-[40px] w-[40px] items-center justify-center rounded-full bg-cardTitleBox2 lg:h-[50px] lg:w-[50px]  xl1400:h-[55px] xl1400:w-[55px] xl1500:ml-2  xl1500:h-[55px] xl1500:w-[55px] xxl3100:ml-4  xxl3100:h-[100px] xxl3100:w-[100px]'>
                     <IconTo
@@ -177,7 +175,7 @@ const Contest = ({
                 <span className='font-poppins text-[0.9rem] font-[300] text-white '>
                   Latest Price of {From} :{' '}
                   <span className='font-mono text-[1rem] font-[900] text-blue-500 '>
-                    {latestPrice}
+                    {latestPrice!}
                   </span>{' '}
                   {To}
                 </span>
@@ -207,7 +205,7 @@ const Contest = ({
                     />
 
                     <span className='font-poppins text-[0.8rem] font-[300] text-white sm:text-[0.85rem] xl1400:ml-2 xl1400:text-[0.93rem] xl1900:text-[0.96rem] xl2300:text-[1.4rem] xxl3100:ml-5 xxl3100:text-[0.8vw] '>
-                      {getTimeLeft()} left
+                      {getTimeLeft!()} left
                     </span>
                   </div>
                   <div className='flex h-full w-auto items-center justify-end gap-x-1 pr-1 '>
@@ -270,8 +268,8 @@ const Contest = ({
                       address?.toLowerCase() === item.user.toLowerCase()
                     }
                     indexShown={false}
-                    value={item.predictedValue.toString()}
-                    time={item.contestId.toString()}
+                    value={item.predictedValue!.toString()}
+                    time={item.contestId!.toString()}
                   />
                 ))}
                 {predictionList.length === 0 && (
@@ -309,7 +307,7 @@ const Contest = ({
                     indexShown={true}
                     needSeparator
                     index={i + 1}
-                    value={item.toString()}
+                    value={item!}
                     time={`${i}`}
                   />
                 ))}
@@ -333,8 +331,8 @@ const Contest = ({
                     key={i}
                     isActive={false}
                     index={i + 1}
-                    value={item.predictedValue.toString()}
-                    time={item.contestId.toString()}
+                    value={item.predictedValue!.toString()}
+                    time={item.contestId!.toString()}
                   />
                 ))}
               </div>
@@ -368,12 +366,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = contests.map((item) => {
     return {
       params: {
-        contestName: `${item.from.title.toLowerCase()}-${item.to.title.toLowerCase()}&${item.id.toString()}`,
+        contestName: `${item.from.title.toLowerCase()}-${item.to.title.toLowerCase()}&${
+          item.id
+        }`,
       },
     };
   });
   return {
-    fallback: true,
+    fallback: false,
     paths,
   };
 };
@@ -392,7 +392,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
   const winners = await getWinners(id);
   return {
     props: {
-      id: parseInt(id.toString()),
+      id,
       entranceFee: parseFloat(entranceFee!.toString()),
       latestPrice,
       lastTime,

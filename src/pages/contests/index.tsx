@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ethers } from 'ethers';
 import { GetServerSideProps } from 'next';
@@ -88,8 +89,8 @@ const Contests = ({ contests, lastTime }: props) => {
     );
     return {
       id: item.id,
-      from: data[0].from,
-      to: data[0].to,
+      from: data[0]!.from,
+      to: data[0]!.to,
       entranceFee: item.fee,
       maxPlayers: item.maxPlayers,
       numOfPlayers: item.numOfPlayers,
