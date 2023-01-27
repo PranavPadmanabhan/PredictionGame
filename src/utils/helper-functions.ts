@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable unused-imports/no-unused-vars */
 import { BigNumber, Contract, ethers } from 'ethers';
 
@@ -33,7 +31,7 @@ type Prediction = {
 
 export const getContract = async () => {
   // console.log(process.env.NEXT_PUBLIC_CONTRACT_ADDRESS);
-  const provider = new ethers.providers.WebSocketProvider(RPC_URL!);
+  const provider = new ethers.providers.JsonRpcProvider(RPC_URL!);
   const contract: Contract = new ethers.Contract(
     `0x${contractAddress}`,
     abi,
@@ -43,9 +41,7 @@ export const getContract = async () => {
 };
 
 export const getSignedContract = async () => {
-  const signer = new ethers.providers.Web3Provider(
-    window.ethereum! as any
-  ).getSigner();
+  const signer = new ethers.providers.Web3Provider(window.ethereum).getSigner();
   const contract: Contract = new ethers.Contract(
     `0x${contractAddress}`,
     abi,
@@ -54,7 +50,10 @@ export const getSignedContract = async () => {
   return { contract, signer };
 };
 
-export const getContests = async () => {
+export const getContests = async (
+  setLoading?: React.Dispatch<React.SetStateAction<boolean>>
+) => {
+  setLoading?.(true);
   const { contract } = await getContract();
   const contests = await contract?.getContests();
 
@@ -82,7 +81,7 @@ export const getContests = async () => {
       maxPlayers: maxPlayers,
     };
   });
-
+  setLoading?.(false);
   // console.log(contestData);
 
   return contestData;

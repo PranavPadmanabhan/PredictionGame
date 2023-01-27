@@ -56,8 +56,8 @@ const Header = ({ className, showBalance }: header) => {
             onClick={openAccountModal}
             className={`${styles.connect} h-[35px] w-[40%] max-w-[130px] rounded-[10px] bg-button font-poppins text-[0.9rem] text-white md:h-[50px] md:max-w-[220px] md:text-[1.1rem] lg:h-[40px] lg:w-[40%] lg:max-w-[160px] lg:text-[0.85rem] xl1400:h-[45px] xl1400:max-w-[180px] xl1400:text-[1.1rem] xxl3100:h-[100px] xxl3100:max-w-[400px] xxl3100:text-[2rem]`}
           >
-            {address?.slice(0, 2)}..
-            {address?.slice(address.length - 10, address.length)}
+            {address?.toLowerCase().slice(0, 2)}..
+            {address?.toLowerCase().slice(address.length - 10, address.length)}
           </button>
         </div>
       ) : (

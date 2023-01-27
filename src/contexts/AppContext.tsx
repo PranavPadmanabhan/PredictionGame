@@ -1,6 +1,9 @@
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react';
 
+import { Contest } from '@/constant/Types';
+import { getContests, getLatestTimeStamp } from '@/utils/helper-functions';
+
 type Context = {
   isTxModalOpen: boolean;
   setIsTxModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -11,6 +14,12 @@ type Context = {
   setTxStatus: React.Dispatch<React.SetStateAction<TxStatus>>;
   txHash: any;
   setTxHash: React.Dispatch<React.SetStateAction<any>>;
+  contests: Contest[];
+  setContests: React.Dispatch<React.SetStateAction<Contest[]>>;
+  lastTime: number;
+  setLastTime: React.Dispatch<React.SetStateAction<number>>;
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 type TxStatus =
@@ -33,6 +42,10 @@ const AppContextProvider = ({ children }: ContextProvider) => {
   const [rank, setRank] = useState<number>(0);
   const [txStatus, setTxStatus] = React.useState<TxStatus>('Initiated');
   const [txHash, setTxHash] = useState<any>('');
+  const [contests, setContests] = useState<Contest[]>([]);
+  const [lastTime, setLastTime] = React.useState<number>(0);
+  const [loading, setLoading] = React.useState<boolean>(false);
+
   const value = {
     isTxModalOpen,
     setIsTxModalOpen,
@@ -43,12 +56,24 @@ const AppContextProvider = ({ children }: ContextProvider) => {
     setTxStatus,
     txHash,
     setTxHash,
+    contests,
+    setContests,
+    lastTime,
+    setLastTime,
+    loading,
+    setLoading,
   };
   const router = useRouter();
 
   useEffect(() => {
     if (typeof window !== undefined) {
       setWidth(window.innerWidth);
+    }
+    try {
+      getContests(setLoading).then((contests) => setContests(contests));
+      getLatestTimeStamp().then((time) => setLastTime(time));
+    } catch (error) {
+      console.clear();
     }
     setIsTxModalOpen(false);
     return () => {
