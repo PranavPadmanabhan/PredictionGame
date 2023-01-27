@@ -16,7 +16,7 @@ import { useAppContext } from '@/contexts/AppContext';
 import { getSignedContract } from '@/utils/helper-functions';
 
 const Wallet = () => {
-  const { isTxModalOpen, setIsTxModalOpen, width, setTxStatus } =
+  const { isTxModalOpen, setIsTxModalOpen, width, setTxStatus, setTxHash } =
     useAppContext();
   const { address } = useAccount();
   const { openConnectModal } = useConnectModal();
@@ -49,7 +49,7 @@ const Wallet = () => {
               ? ethers.utils.parseEther(amount)
               : ethers.utils.parseEther('0'),
         });
-        console.log(tx.confirmations);
+        setTxHash(tx.hash.toString());
         if (tx.confirmations == 0) {
           setTxStatus('Processing');
         }
@@ -79,7 +79,7 @@ const Wallet = () => {
             ? ethers.utils.parseEther(amount)
             : ethers.utils.parseEther('0')
         );
-        console.log(tx.confirmations);
+        setTxHash(tx.hash.toString());
         if (tx.confirmations == 0) {
           setTxStatus('Processing');
         }

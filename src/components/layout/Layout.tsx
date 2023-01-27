@@ -9,7 +9,7 @@ import SideBar from '@/components/sidebar/SideBar';
 import { useAppContext } from '@/contexts/AppContext';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const { isTxModalOpen, rank, txStatus } = useAppContext();
+  const { isTxModalOpen, rank, txStatus, txHash } = useAppContext();
   // Put Header or Footer Here
   return (
     <div className='flex h-[100vh] w-[100vw] items-center justify-start bg-backgroundColor '>
@@ -19,7 +19,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <Header showBalance />
         <div className='relative flex h-[92%] w-[90%] flex-col items-center justify-center overflow-hidden rounded-[20px] bg-pageBg lg:rounded-[50px] xxl3800:rounded-[100px]'>
           {children}
-          {isTxModalOpen && <Modal status={txStatus} />}
+          {isTxModalOpen && <Modal status={txStatus} hash={txHash} />}
         </div>
       </div>
       <BottomTabs />

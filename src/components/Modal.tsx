@@ -17,9 +17,10 @@ type modal = {
     | 'Initiated'
     | 'Started'
     | 'Cancelled';
+  hash: string;
 };
 
-const Modal = ({ status }: modal) => {
+const Modal = ({ status, hash }: modal) => {
   const showStatus = () => {
     switch (status) {
       case 'Failed':
@@ -119,8 +120,10 @@ const Modal = ({ status }: modal) => {
           status === 'Started' ||
           status === 'Success') && (
           <a
-            href=''
+            target='_blank'
+            href={`https://goerli.etherscan.io/tx/${hash}`}
             className='mb-2 font-poppins text-[0.8rem] font-normal text-white underline lg:mb-5 lg:text-[0.85rem] xxl3100:text-[2rem] '
+            rel='noreferrer'
           >
             View Transaction
           </a>

@@ -24,7 +24,7 @@ const BottomTabs = () => {
             variant='Bold'
           />
           <Icon
-            key={id}
+            key={i}
             onClick={() => router.push(`${url}`)}
             color={
               router.pathname.includes(url)
