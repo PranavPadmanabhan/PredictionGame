@@ -41,7 +41,9 @@ export const getContract = async () => {
 };
 
 export const getSignedContract = async () => {
-  const signer = new ethers.providers.Web3Provider(window.ethereum).getSigner();
+  const signer = new ethers.providers.Web3Provider(
+    window.ethereum as any
+  ).getSigner();
   const contract: Contract = new ethers.Contract(
     `0x${contractAddress}`,
     abi,
