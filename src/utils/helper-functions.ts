@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable unused-imports/no-unused-vars */
 import { BigNumber, Contract, ethers } from 'ethers';
@@ -43,7 +44,7 @@ export const getContract = async () => {
 
 export const getSignedContract = async () => {
   const signer = new ethers.providers.Web3Provider(
-    window.ethereum!
+    window.ethereum! as any
   ).getSigner();
   const contract: Contract = new ethers.Contract(
     `0x${contractAddress}`,
