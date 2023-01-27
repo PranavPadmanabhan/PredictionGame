@@ -33,11 +33,21 @@ export const getContract = async () => {
   // console.log(process.env.NEXT_PUBLIC_CONTRACT_ADDRESS);
   const provider = new ethers.providers.WebSocketProvider(RPC_URL!);
   const contract: Contract = new ethers.Contract(
-    contractAddress,
+    `0x${contractAddress}`,
     abi,
     provider
   );
   return { contract, provider };
+};
+
+export const getSignedContract = async () => {
+  const signer = new ethers.providers.Web3Provider(window.ethereum).getSigner();
+  const contract: Contract = new ethers.Contract(
+    `0x${contractAddress}`,
+    abi,
+    signer
+  );
+  return { contract, signer };
 };
 
 export const getContests = async () => {

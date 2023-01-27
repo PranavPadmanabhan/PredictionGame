@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useAccountModal } from '@rainbow-me/rainbowkit';
 import { useConnectModal } from '@rainbow-me/rainbowkit';
+import { BigNumber, ethers } from 'ethers';
 import React from 'react';
 import { useAccount, useContractRead } from 'wagmi';
 
@@ -26,6 +27,7 @@ const Header = ({ className, showBalance }: header) => {
       abi: abi,
       functionName: 'balanceOf',
       args: [address],
+      watch: true,
     });
 
   return (
@@ -42,7 +44,11 @@ const Header = ({ className, showBalance }: header) => {
             >
               {isSuccess &&
                 `Funds : ${
-                  data?.toString() == '0' ? '0.00' : data?.toString()
+                  parseFloat(
+                    ethers.utils.formatEther(data as BigNumber).toString()
+                  ) == 0
+                    ? '0.00'
+                    : ethers.utils.formatEther(data as BigNumber)
                 } ETH`}
             </Button>
           )}

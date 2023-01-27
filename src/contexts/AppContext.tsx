@@ -7,7 +7,17 @@ type Context = {
   rank: number;
   setRank: React.Dispatch<React.SetStateAction<number>>;
   width: number;
+  txStatus: TxStatus;
+  setTxStatus: React.Dispatch<React.SetStateAction<TxStatus>>;
 };
+
+type TxStatus =
+  | 'Processing'
+  | 'Success'
+  | 'Failed'
+  | 'Initiated'
+  | 'Started'
+  | 'Cancelled';
 
 type ContextProvider = {
   children: React.ReactNode;
@@ -19,7 +29,16 @@ const AppContextProvider = ({ children }: ContextProvider) => {
   const [isTxModalOpen, setIsTxModalOpen] = useState<boolean>(false);
   const [width, setWidth] = React.useState<number>(0);
   const [rank, setRank] = useState<number>(0);
-  const value = { isTxModalOpen, setIsTxModalOpen, rank, setRank, width };
+  const [txStatus, setTxStatus] = React.useState<TxStatus>('Initiated');
+  const value = {
+    isTxModalOpen,
+    setIsTxModalOpen,
+    rank,
+    setRank,
+    width,
+    txStatus,
+    setTxStatus,
+  };
   const router = useRouter();
 
   useEffect(() => {
@@ -27,6 +46,9 @@ const AppContextProvider = ({ children }: ContextProvider) => {
       setWidth(window.innerWidth);
     }
     setIsTxModalOpen(false);
+    return () => {
+      setTxStatus('Initiated');
+    };
   }, [router.pathname]);
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

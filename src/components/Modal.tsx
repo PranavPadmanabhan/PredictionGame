@@ -39,7 +39,7 @@ const Modal = ({ status }: modal) => {
     }
   };
 
-  const { setIsTxModalOpen } = useAppContext();
+  const { setIsTxModalOpen, setTxStatus } = useAppContext();
 
   return (
     <div className='absolute flex h-full w-full items-center justify-center bg-transparent'>
@@ -48,7 +48,10 @@ const Modal = ({ status }: modal) => {
           status === 'Failed' ||
           status === 'Cancelled') && (
           <CloseIcon
-            onClick={() => setIsTxModalOpen(false)}
+            onClick={() => {
+              setIsTxModalOpen(false);
+              setTxStatus('Initiated');
+            }}
             className='absolute top-2 right-2 scale-95 cursor-pointer duration-700 lg:h-[30px] lg:w-[30px] xxl3100:top-[30px] xxl3100:right-[30px] xxl3100:h-[70px] xxl3100:w-[70px] '
           />
         )}
@@ -93,7 +96,11 @@ const Modal = ({ status }: modal) => {
                 status === 'Cancelled' ? 'text-red-600' : 'text-white'
               } lg:max-w-full`}
             >
-              Transaction {status === 'Cancelled' ? status : 'Initiated'}
+              {status === 'Cancelled'
+                ? `Transaction ${status}`
+                : status === 'Initiated'
+                ? 'Waiting For Response'
+                : 'Transaction Initiated'}
             </span>
             <span
               className={`max-w-[25%] text-center text-[0.6rem] font-[500] leading-3 xxl3100:text-[2rem] ${
