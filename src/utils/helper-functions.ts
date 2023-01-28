@@ -59,15 +59,15 @@ export const getContests = async (
   const { contract } = await getContract();
   const contests = await contract?.getContests();
 
-  let predictionDetails: number[] = [];
-  for (let i = 0; i < contests.length; i++) {
-    const predictionData = await contract?.getPredictions(
-      contests[i].id.toString()
-    );
-    predictionDetails = [...predictionDetails, predictionData.length];
-  }
-  const maxPlayersData = await contract?.getNumOfMaxPlayers();
-  const maxPlayers = parseInt(maxPlayersData.toString());
+  // let predictionDetails: number[] = [];
+  // for (let i = 0; i < contests.length; i++) {
+  //   const predictionData = await contract?.getPredictions(
+  //     contests[i].id.toString()
+  //   );
+  //   predictionDetails = [...predictionDetails, predictionData.length];
+  // }
+  // const maxPlayersData = await contract?.getNumOfMaxPlayers();
+  // const maxPlayers = parseInt(maxPlayersData.toString());
   const contestData: Contest[] = contests.map((item: any, index: number) => {
     const data = titlesGoerli.filter(
       (val) => val.id.toString() === item.id.toString()
@@ -79,8 +79,8 @@ export const getContests = async (
       ),
       from: data[0].from,
       to: data[0].to,
-      numOfPlayers: predictionDetails[index],
-      maxPlayers: maxPlayers,
+      numOfPlayers: parseInt(item.numOfPredictions.toString()),
+      maxPlayers: parseInt(item.maxPlayers.toString()),
     };
   });
   setLoading?.(false);

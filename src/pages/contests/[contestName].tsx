@@ -10,6 +10,7 @@ import styles from '@/styles/Extras.module.css';
 
 import Layout from '@/components/layout/Layout';
 import PredictedValue from '@/components/PredictedValue';
+import Seo from '@/components/Seo';
 
 import { titlesGoerli } from '@/constant/constants';
 import { useAppContext } from '@/contexts/AppContext';
@@ -120,6 +121,7 @@ const Contest = ({
 
   return (
     <Layout>
+      <Seo title={`${From.toLowerCase()}-${To.toLowerCase()} `} />
       <div className='flex h-full w-full items-center justify-between p-0 lg:p-10 xl1400:p-14 xxl3100:p-[130px] '>
         <div
           className={`${styles.scroll} h-full w-full snap-y snap-mandatory overflow-hidden overflow-y-scroll rounded-[18px] bg-pageBg shadow-predictions lg:rounded-[40px] lg:bg-bgPredictions`}
@@ -172,7 +174,7 @@ const Contest = ({
                 className={`${styles.input} my-3 box-border min-h-[50px] w-full rounded-[15px] pl-5 text-center lg:rounded-[20px]`}
               />
               <div className='box-border flex min-h-[40px] w-full flex-col items-center justify-start pt-1'>
-                <span className='font-poppins text-[0.9rem] font-[300] text-white '>
+                <span className='text-center font-poppins text-[0.9rem] font-[300] text-white'>
                   Latest Price of {From} :{' '}
                   <span className='font-mono text-[1rem] font-[900] text-blue-500 '>
                     {latestPrice!}

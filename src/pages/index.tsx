@@ -1,4 +1,5 @@
 import Lottie from 'lottie-react';
+import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import * as React from 'react';
 
@@ -7,13 +8,10 @@ import styles from '@/styles/Extras.module.css';
 import Header from '@/components/Header';
 import Seo from '@/components/Seo';
 
-import { useAppContext } from '@/contexts/AppContext';
-
 import cryptoAnimation from '../../public/lottie/crypto.json';
 
-export default function HomePage() {
+const HomePage: NextPage = () => {
   const router = useRouter();
-  useAppContext();
 
   return (
     <div className='relative flex h-screen w-screen flex-col items-center justify-start overflow-hidden bg-backgroundColor pt-[13vh] md:pt-[10vh] lg:justify-center lg:pt-0'>
@@ -50,8 +48,8 @@ export default function HomePage() {
       </div>
     </div>
   );
-}
-
+};
+export default HomePage;
 // 980 - 1500 -portrait
 
 //  500 - 980

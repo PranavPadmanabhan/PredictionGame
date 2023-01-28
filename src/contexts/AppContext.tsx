@@ -78,6 +78,8 @@ const AppContextProvider = ({ children }: ContextProvider) => {
     setIsTxModalOpen(false);
     return () => {
       setTxStatus('Initiated');
+      setLastTime(0)
+      setContests([]);
     };
   }, [router.pathname]);
 
