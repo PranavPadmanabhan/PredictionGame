@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import React from 'react';
 
@@ -46,13 +47,17 @@ const Contests = () => {
   const [seconds, setSeconds] = React.useState<number>(0);
   const [minutes, setMinutes] = React.useState<number>(0);
   const [hours, setHours] = React.useState<number>(0);
-  const { contests, lastTime, loading } = useAppContext();
+  const { contests, loading } = useAppContext();
 
   let timer: NodeJS.Timer;
 
   const setTimer = async () => {
+    const { contract } = await getContract();
+    const lastTime = await contract?.getLatestTimeStamp();
+    const interval = await contract?.getInterval();
+    const lastTimeStamp = parseInt(lastTime.add(interval).toString());
     let countDownDate: number;
-    countDownDate = new Date(lastTime * 1000).getTime();
+    countDownDate = new Date(lastTimeStamp * 1000).getTime();
     timer = setInterval(async function () {
       const now = new Date().getTime();
       const distance = countDownDate - now;
@@ -146,7 +151,8 @@ const Contests = () => {
   );
 };
 
-export default Contests;
+// export default Contests;
+export default dynamic(() => Promise.resolve(Contests), { ssr: false });
 
 // export const getServerSideProps: GetServerSideProps = async (context) => {
 //   const { contract } = await getContract();

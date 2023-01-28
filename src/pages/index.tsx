@@ -1,5 +1,6 @@
 import Lottie from 'lottie-react';
 import { NextPage } from 'next';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import * as React from 'react';
 
@@ -49,7 +50,9 @@ const HomePage: NextPage = () => {
     </div>
   );
 };
-export default HomePage;
+// export default HomePage;
+export default dynamic(() => Promise.resolve(HomePage), { ssr: false });
+
 // 980 - 1500 -portrait
 
 //  500 - 980

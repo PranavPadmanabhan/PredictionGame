@@ -1,5 +1,6 @@
 /* eslint-disable unused-imports/no-unused-vars */
 import { BigNumber, Contract, ethers } from 'ethers';
+import React from 'react';
 
 import { abi, contractAddress, titlesGoerli } from '@/constant/constants';
 import { RPC_URL } from '@/constant/env';
@@ -124,11 +125,15 @@ export const getLatestPrice = async (contestId: number) => {
   return { latestPrice, decimals };
 };
 
-export const getLatestTimeStamp = async () => {
+export const getLatestTimeStamp = async (
+  setLoading?: React.Dispatch<React.SetStateAction<boolean>>
+) => {
+  setLoading?.(true);
   const { contract } = await getContract();
   const lastTime: BigNumber = await contract?.getLatestTimeStamp();
   const interval: BigNumber = await contract?.getInterval();
   const lastTimeStamp: number = parseInt(lastTime.add(interval).toString());
+  setLoading?.(false);
   return lastTimeStamp;
 };
 
@@ -146,9 +151,14 @@ export const getWinners = async (contestId: number) => {
   return winnersList;
 };
 
-export const getBalance = async (address: string) => {
+export const getBalance = async (
+  address: string,
+  setLoading?: React.Dispatch<React.SetStateAction<boolean>>
+) => {
+  setLoading?.(true);
   const { contract } = await getContract();
   const balance: BigNumber = await contract?.balanceOf(address);
   const bal = parseFloat(ethers.utils.formatEther(balance).toString());
+  setLoading?.(false);
   return bal;
 };

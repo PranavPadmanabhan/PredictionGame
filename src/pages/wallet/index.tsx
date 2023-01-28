@@ -1,9 +1,10 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useConnectModal } from '@rainbow-me/rainbowkit';
-import { BigNumber, ethers } from 'ethers';
+import { ethers } from 'ethers';
+import dynamic from 'next/dynamic';
 import React from 'react';
-import { useAccount, useContractRead } from 'wagmi';
+import { useAccount, useContractEvent } from 'wagmi';
 
 import styles from '@/styles/Extras.module.css';
 
@@ -13,7 +14,7 @@ import Seo from '@/components/Seo';
 
 import { abi, contractAddress } from '@/constant/constants';
 import { useAppContext } from '@/contexts/AppContext';
-import { getSignedContract } from '@/utils/helper-functions';
+import { getBalance, getSignedContract } from '@/utils/helper-functions';
 
 const Wallet = () => {
   const { isTxModalOpen, setIsTxModalOpen, width, setTxStatus, setTxHash } =
@@ -21,26 +22,58 @@ const Wallet = () => {
   const { address } = useAccount();
   const { openConnectModal } = useConnectModal();
   const [amount, setAmount] = React.useState<string>('');
+  const [balance, setBalance] = React.useState<number>(0);
+  const [loading, setLoading] = React.useState<boolean>(false);
+  const [error, setError] = React.useState<string>('');
 
-  const {
-    data: balance,
-    isSuccess: balanceFetched,
-    isFetching: balanceFetching,
-    isLoading: balanceIsLoading,
-    isRefetching: balanceRefetching,
-  } = useContractRead({
+  // const {
+  //   data: balance,
+  //   isSuccess: balanceFetched,
+  //   isFetching: balanceFetching,
+  //   isLoading: balanceIsLoading,
+  //   isRefetching: balanceRefetching,
+  // } = useContractRead({
+  //   address: `0x${contractAddress}`,
+  //   abi: abi,
+  //   functionName: 'balanceOf',
+  //   args: [address!],
+  //   watch: true,
+  // });
+
+  useContractEvent({
     address: `0x${contractAddress}`,
     abi: abi,
-    functionName: 'balanceOf',
-    args: [address!],
-    watch: true,
+    eventName: 'TopUpSuccessfull',
+    listener: async (amount, user) => {
+      getBalance(address!, setLoading).then((balance) => setBalance(balance));
+    },
   });
+
+  useContractEvent({
+    address: `0x${contractAddress}`,
+    abi: abi,
+    eventName: 'WithdrawSuccessfull',
+    listener: async (amount, user) => {
+      getBalance(address!, setLoading).then((balance) => setBalance(balance));
+    },
+  });
+
+  React.useEffect(() => {
+    if (address!) {
+      getBalance(address!, setLoading).then((balance) => setBalance(balance));
+    }
+    return () => {
+      setError('');
+    };
+  }, [address!]);
 
   const disabled = width <= 900 ? true : false;
 
   const topUpWallet = async () => {
+    const regex = /^\d{0,4}(\.\d{0,4})?$/;
     const { contract } = await getSignedContract();
-    if (parseFloat(amount) >= 0.0005) {
+    if (parseFloat(amount) >= 0.0005 && regex.test(amount)) {
+      setError('');
       try {
         setIsTxModalOpen(true);
         const tx = await contract?.addFunds({
@@ -66,12 +99,17 @@ const Wallet = () => {
           setTxStatus('Failed');
         }
       }
+    } else if (parseFloat(amount) < 0.0005) {
+      setError('minimum amount for top up is 0.0005 ETH');
+    } else if (!regex.test(amount)) {
+      setError('Invalid amount');
     }
   };
 
   const withdrawFunds = async () => {
     const { contract } = await getSignedContract();
-    if (parseFloat(amount) >= 0.0005) {
+    if (parseFloat(amount) >= 0.0005 && parseFloat(amount) <= balance) {
+      setError('');
       try {
         setIsTxModalOpen(true);
         const tx = await contract?.withdrawFunds(
@@ -96,6 +134,10 @@ const Wallet = () => {
           setTxStatus('Failed');
         }
       }
+    } else if (parseFloat(amount) < 0.0005) {
+      setError('minimum amount for withdraw is 0.0005 ETH');
+    } else if (parseFloat(amount) > balance) {
+      setError('Insufficient Balance');
     }
   };
 
@@ -110,39 +152,42 @@ const Wallet = () => {
                 <div className='flex h-[40%] w-[50%] items-center justify-start lg:min-w-[180px]'>
                   <EtherIcon
                     className={`${
-                      (balanceFetching ||
-                        balanceIsLoading ||
-                        balanceRefetching) &&
-                      'animate-shimmer'
+                      loading && 'animate-shimmer'
                     } mr-1 min-h-[40px] min-w-[40px] scale-[0.5] sm:ml-2 sm:mr-5 sm:scale-90 lg:mr-0 lg:h-[20%] lg:max-h-[70px] lg:min-h-[40px] lg:w-[20%] lg:min-w-[40px] lg:max-w-[70px] lg:scale-95 xl1900:ml-[10px] xl1900:mr-2 xl1900:scale-125 xl2300:scale-[1.7] xxl3100:ml-[80px] xxl3100:mr-4 xxl3100:scale-[2] `}
                   />
                   <h1
                     className={`whitespace-nowrap font-poppins text-[1.2rem] font-bold ${
-                      balanceFetching || balanceIsLoading || balanceRefetching
+                      loading
                         ? 'animate-shimmer  text-gray-200'
                         : 'animate-none text-white'
                     } sm:text-[2.2rem] lg:text-[1.5rem] xl1900:text-[2rem] xl2300:text-[2.6rem] xxl3100:text-[4rem]`}
                   >
-                    {balanceFetching || balanceIsLoading || balanceRefetching
+                    {loading
                       ? '0.00 ETH'
-                      : `${
-                          parseFloat(
-                            ethers.utils.formatEther(balance as BigNumber)
-                          ) == 0
-                            ? '0.00'
-                            : ethers.utils.formatEther(balance as BigNumber)
-                        } ETH`}
+                      : `${balance == 0 ? '0.00' : balance} ETH`}
                   </h1>
                 </div>
               </div>
               <input
-                type='number'
+                type='text'
+                data-error={error !== '' ? true : false}
                 disabled={disabled}
-                onChange={(e) => setAmount(e.target.value)}
+                onChange={(e) => {
+                  setAmount(e.target.value);
+                  const regex = /^\d{0,4}(\.\d{0,4})?$/;
+                  if (regex.test(e.target.value)) {
+                    setError('');
+                  } else {
+                    setError('invalid amount');
+                  }
+                }}
                 value={amount}
                 placeholder='Enter topup/withdraw amount'
                 className={`${styles.input} box-border h-[55px] w-full min-w-[200px] max-w-[320px] rounded-[15px] pl-5 text-center text-black placeholder:text-[1rem] sm:my-8 sm:min-h-[55px] sm:min-w-[450px] sm:max-w-[350px] lg:my-3 lg:h-[60px] lg:w-[85%] lg:min-w-[300px]  lg:rounded-[15px] xl1900:my-7 xl1900:h-[95px] xl1900:min-w-[500px] xl2300:h-[100px] xxl3100:my-0 xxl3100:mt-[10px] xxl3100:h-[6vh] xxl3100:w-[80%] xxl3100:min-w-[800px] xxl3100:max-w-[600px] xxl3100:rounded-[50px] xxl3100:pl-[50px] xxl3100:placeholder:text-[2rem]`}
               />
+              <span className='font-poppins text-[1rem] font-[300] text-red-600'>
+                {error}
+              </span>
               <div className='mt-2 flex h-[20%] w-[80%] items-center justify-evenly sm:h-[40%] sm:w-[55%] lg:w-1/2 xl1900:h-[50%] xl2300:w-[40%] xxl3100:mt-0 xxl3100:h-[20%] xxl3100:w-[50%] '>
                 <div className='flex h-auto w-auto flex-col items-center justify-start'>
                   <button
@@ -187,4 +232,5 @@ const Wallet = () => {
   );
 };
 
-export default Wallet;
+// export default Wallet;
+export default dynamic(() => Promise.resolve(Wallet), { ssr: false });

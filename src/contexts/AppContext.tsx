@@ -43,7 +43,9 @@ const AppContextProvider = ({ children }: ContextProvider) => {
   const [txStatus, setTxStatus] = React.useState<TxStatus>('Initiated');
   const [txHash, setTxHash] = useState<any>('');
   const [contests, setContests] = useState<Contest[]>([]);
-  const [lastTime, setLastTime] = React.useState<number>(0);
+  const [lastTime, setLastTime] = React.useState<number>(
+    new Date().getTime() + 3600
+  );
   const [loading, setLoading] = React.useState<boolean>(false);
 
   const value = {
@@ -71,14 +73,14 @@ const AppContextProvider = ({ children }: ContextProvider) => {
     }
     try {
       getContests(setLoading).then((contests) => setContests(contests));
-      getLatestTimeStamp().then((time) => setLastTime(time));
+      getLatestTimeStamp(setLoading).then((time) => setLastTime(time));
     } catch (error) {
       console.clear();
     }
     setIsTxModalOpen(false);
     return () => {
       setTxStatus('Initiated');
-      setLastTime(0)
+      setLastTime(0);
       setContests([]);
     };
   }, [router.pathname]);

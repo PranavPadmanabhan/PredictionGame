@@ -17,6 +17,14 @@
     inset 4px 5px 8px rgba(255, 255, 255, 0.25);
 }
 
+.input[data-error='true'] {
+  border: 2px solid red;
+}
+
+.input[data-error='false'] {
+  border: none;
+}
+
 .input::-webkit-outer-spin-button,
 .input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -30,7 +38,6 @@
   border-radius: 20px;
   -moz-appearance: textfield;
   outline: none;
-  border: none;
 }
 
 .cardBox {

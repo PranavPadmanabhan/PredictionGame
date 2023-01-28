@@ -84,7 +84,7 @@ const Modal = ({ status, hash }: modal) => {
         <div className='flex w-full flex-col  items-center justify-start pt-6 lg:my-2 lg:h-[20%] lg:w-full lg:pt-2'>
           <div className=' mb-2 box-border flex min-h-[12px] w-[80%] items-center justify-start rounded-[30px] bg-white p-[1px] lg:mb-0 lg:h-[12px] lg:max-h-[30px] lg:w-[60%] lg:rounded-[50px] lg:p-[1px] xxl3100:h-[30px] '>
             <div
-              className={` min-h-[12px] rounded-[49px] border-2  ${
+              className={` min-h-[12px] rounded-[49px]  ${
                 status === 'Failed' || status === 'Cancelled'
                   ? 'bg-red-600'
                   : 'bg-gradient-to-r from-sliderColor1 to-sliderColor2'

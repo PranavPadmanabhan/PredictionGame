@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import React from 'react';
 
 import styles from '@/styles/Extras.module.css';
@@ -50,4 +51,5 @@ const Predictions = () => {
   );
 };
 
-export default Predictions;
+// export default Predictions;
+export default dynamic(() => Promise.resolve(Predictions), { ssr: false });

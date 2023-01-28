@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useAccountModal } from '@rainbow-me/rainbowkit';
 import { useConnectModal } from '@rainbow-me/rainbowkit';
-import { BigNumber, ethers } from 'ethers';
 import React from 'react';
-import { useAccount, useContractRead } from 'wagmi';
+import { useAccount, useContractEvent } from 'wagmi';
 
 import styles from '@/styles/Extras.module.css';
 
 import Button from '@/components/buttons/Button';
 
 import { abi, contractAddress } from '@/constant/constants';
+import { getBalance } from '@/utils/helper-functions';
 
 type header = {
   className?: string;
@@ -20,15 +20,40 @@ const Header = ({ className, showBalance }: header) => {
   const { openConnectModal } = useConnectModal();
   const { openAccountModal } = useAccountModal();
   const { isConnected, address } = useAccount();
+  const [balance, setBalance] = React.useState<number>(0);
+  const [loading, setLoading] = React.useState<boolean>(false);
+  // const { data, isSuccess, isFetching, isLoading, isRefetching } =
+  //   useContractRead({
+  //     address: `0x${contractAddress}`,
+  //     abi: abi,
+  //     functionName: 'balanceOf',
+  //     args: [address],
+  //     watch: true,
+  //   });
 
-  const { data, isSuccess, isFetching, isLoading, isRefetching } =
-    useContractRead({
-      address: `0x${contractAddress}`,
-      abi: abi,
-      functionName: 'balanceOf',
-      args: [address],
-      watch: true,
-    });
+  useContractEvent({
+    address: `0x${contractAddress}`,
+    abi: abi,
+    eventName: 'TopUpSuccessfull',
+    listener: async (amount, user) => {
+      getBalance(address!, setLoading).then((balance) => setBalance(balance));
+    },
+  });
+
+  useContractEvent({
+    address: `0x${contractAddress}`,
+    abi: abi,
+    eventName: 'WithdrawSuccessfull',
+    listener: async (amount, user) => {
+      getBalance(address!, setLoading).then((balance) => setBalance(balance));
+    },
+  });
+
+  React.useEffect(() => {
+    if (address!) {
+      getBalance(address!, setLoading).then((balance) => setBalance(balance));
+    }
+  }, [address!]);
 
   return (
     <div
@@ -39,17 +64,10 @@ const Header = ({ className, showBalance }: header) => {
           {showBalance && (
             <Button
               variant='outline'
-              isLoading={isFetching || isLoading || isRefetching}
+              isLoading={loading}
               className='flex h-[35px] w-[25%] min-w-[130px] items-center justify-center rounded-[10px] p-[2px] font-poppins text-[0.9rem] font-[300] text-white md:h-[50px] md:min-w-[220px] md:text-[1.1rem] lg:h-[40px] lg:w-[25%] lg:min-w-[180px] lg:text-[1rem] xl1400:h-[45px] xl1400:min-w-[180px] xl1400:text-[1.1rem] xxl3100:h-[100px] xxl3100:min-w-[400px] xxl3100:text-[2rem]'
             >
-              {isSuccess &&
-                `Funds : ${
-                  parseFloat(
-                    ethers.utils.formatEther(data as BigNumber).toString()
-                  ) == 0
-                    ? '0.00'
-                    : ethers.utils.formatEther(data as BigNumber)
-                } ETH`}
+              Funds : {balance == 0 ? '0.00' : balance} ETH
             </Button>
           )}
           <button

@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import React from 'react';
 
@@ -42,4 +43,5 @@ const BottomTabs = () => {
   );
 };
 
-export default BottomTabs;
+// export default BottomTabs;
+export default dynamic(() => Promise.resolve(BottomTabs), { ssr: false });
