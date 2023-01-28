@@ -119,6 +119,16 @@
   background: #555;
 } */
 
+.progressContainer {
+  height: 15px;
+  padding: 1px;
+  border-radius: 30px;
+}
+.progress {
+  height: 100%;
+  border-radius: 29px;
+}
+
 @media (max-width: 1000px) {
   @media (min-height: 1500px) {
     .text1 {

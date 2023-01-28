@@ -1,6 +1,8 @@
 import Lottie from 'lottie-react';
 import React from 'react';
 
+import styles from '@/styles/Extras.module.css';
+
 import { CloseIcon } from '@/components/icons/Icons';
 
 import { useAppContext } from '@/contexts/AppContext';
@@ -82,13 +84,15 @@ const Modal = ({ status, hash }: modal) => {
           Transaction {status}
         </h1>
         <div className='flex w-full flex-col  items-center justify-start pt-6 lg:my-2 lg:h-[20%] lg:w-full lg:pt-2'>
-          <div className=' mb-2 box-border flex min-h-[12px] w-[80%] items-center justify-start rounded-[30px] bg-white p-[1px] lg:mb-0 lg:h-[12px] lg:max-h-[30px] lg:w-[60%] lg:rounded-[50px] lg:p-[1.2px] xxl3100:h-[30px] '>
+          <div
+            className={`${styles.progressContainer} mb-2 box-border flex w-[80%] items-center justify-start  bg-white lg:mb-0 lg:w-[60%]  xxl3100:h-[30px] `}
+          >
             <div
-              className={` h-full rounded-[29px] lg:rounded-[46px]  ${
+              className={`${styles.progress} min-h-full  ${
                 status === 'Failed' || status === 'Cancelled'
                   ? 'bg-red-600'
                   : 'bg-gradient-to-r from-sliderColor1 to-sliderColor2'
-              }  lg:h-full xxl3100:h-full ${showStatus()} duration-700`}
+              }  lg:min-h-full xxl3100:h-full ${showStatus()} duration-700`}
             ></div>
           </div>
           <div className='mb-4 flex h-[20px] w-full items-center justify-between md:w-[90%] lg:mb-0 lg:w-[73%] xxl3100:my-5 xxl3100:h-auto xxl3100:w-[79%] xxl3100:whitespace-nowrap '>
