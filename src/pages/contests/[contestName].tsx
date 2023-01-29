@@ -106,7 +106,7 @@ props) => {
   const predict = async () => {
     const regex = /^\d{0,4}(\.\d{0,4})?$/;
     const { contract } = await getSignedContract();
-    if (value !== '') {
+    if (address && value !== '') {
       const prediction = parseFloat(value) * 10 ** decimals;
       setError('');
       try {
