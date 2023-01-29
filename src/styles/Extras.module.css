@@ -35,9 +35,23 @@
   background: linear-gradient(91.22deg, #bebebe 5.8%, #acacac 98.83%);
   box-shadow: 0px 0px 37px #000000, inset 6px 6px 7px rgba(255, 255, 255, 0.74),
     inset -6px -6px 7px rgba(0, 0, 0, 0.39);
-  border-radius: 20px;
   -moz-appearance: textfield;
   outline: none;
+}
+
+.inputModal {
+  background-color: white;
+  border: none;
+  outline: none;
+}
+
+.inputModal[data-error='true'] {
+  border: 2px solid red;
+  outline: none;
+}
+
+.inputModal:focus {
+  outline: 0;
 }
 
 .cardBox {

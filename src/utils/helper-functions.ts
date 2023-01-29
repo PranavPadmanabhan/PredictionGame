@@ -90,6 +90,13 @@ export const getContests = async (
   return contestData;
 };
 
+export const getNumberOfContests = async () => {
+  const { contract } = await getContract();
+  const contests = await contract?.getNumOfContests();
+  const number: number = parseInt(contests.toString());
+  return number;
+};
+
 export const getPredictions = async (contestId: number) => {
   const { contract } = await getContract();
   let predictions: Prediction[] = [];

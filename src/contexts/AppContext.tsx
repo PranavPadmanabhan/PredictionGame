@@ -1,8 +1,13 @@
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react';
+import { useAccount } from 'wagmi';
 
 import { Contest } from '@/constant/Types';
-import { getContests, getLatestTimeStamp } from '@/utils/helper-functions';
+import {
+  getBalance,
+  getContests,
+  getLatestTimeStamp,
+} from '@/utils/helper-functions';
 
 type Context = {
   isTxModalOpen: boolean;
@@ -20,6 +25,7 @@ type Context = {
   setLastTime: React.Dispatch<React.SetStateAction<number>>;
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  balance: number;
 };
 
 type TxStatus =
@@ -47,6 +53,8 @@ const AppContextProvider = ({ children }: ContextProvider) => {
     new Date().getTime() + 3600
   );
   const [loading, setLoading] = React.useState<boolean>(false);
+  const [balance, setBalance] = React.useState<number>(0);
+  const { address } = useAccount();
 
   const value = {
     isTxModalOpen,
@@ -64,6 +72,7 @@ const AppContextProvider = ({ children }: ContextProvider) => {
     setLastTime,
     loading,
     setLoading,
+    balance,
   };
   const router = useRouter();
 
@@ -74,6 +83,9 @@ const AppContextProvider = ({ children }: ContextProvider) => {
     try {
       getContests(setLoading).then((contests) => setContests(contests));
       getLatestTimeStamp(setLoading).then((time) => setLastTime(time));
+      if (address) {
+        getBalance(address!).then((bal) => setBalance(bal));
+      }
     } catch (error) {
       console.clear();
     }

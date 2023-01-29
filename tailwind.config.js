@@ -138,6 +138,7 @@ module.exports = {
         textmd: '5px 5px 0px rgba(45, 42, 106, 0.85)',
         textlg: '15px 15px 0px rgba(45, 42, 106, 0.85)',
         predictionBox: '0px 0px 20px rgba(6, 1, 1, 0.5)',
+        textModal: '1px 1px 0px gray',
       },
       keyframes: {
         flicker: {
