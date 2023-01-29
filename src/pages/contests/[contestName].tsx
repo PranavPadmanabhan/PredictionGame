@@ -58,7 +58,7 @@ const Contest = ({
 // maxPlayers,
 // winners,
 props) => {
-  const { width } = useAppContext();
+  const { width, txStatus } = useAppContext();
   const [seconds, setSeconds] = React.useState<number>(0);
   const [minutes, setMinutes] = React.useState<number>(0);
   const [hours, setHours] = React.useState<number>(0);
@@ -74,12 +74,13 @@ props) => {
   const [loading, setLoading] = React.useState<boolean>(false);
   const { setIsTxModalOpen, setTxHash, setTxStatus } = useAppContext();
   const [decimals, setDecimals] = React.useState<number>(0);
+  const { lastTime: lastTimeStamp } = useAppContext();
 
   let timer: NodeJS.Timer;
 
   const setTimer = async () => {
     let countDownDate: number;
-    countDownDate = new Date(lastTime * 1000).getTime();
+    countDownDate = new Date(lastTimeStamp * 1000).getTime();
     timer = setInterval(async function () {
       const now = new Date().getTime();
       const distance = countDownDate - now;
@@ -104,7 +105,6 @@ props) => {
   };
 
   const predict = async () => {
-    const regex = /^\d{0,4}(\.\d{0,4})?$/;
     const { contract } = await getSignedContract();
     if (address && value !== '') {
       const prediction = parseFloat(value) * 10 ** decimals;
@@ -116,10 +116,10 @@ props) => {
         if (tx.confirmations == 0) {
           setTxStatus('Processing');
         }
+        setValue('');
         const rec = await tx.wait(1);
         if (rec) {
           setTxStatus('Success');
-          setValue('');
         }
       } catch (error: any) {
         if (error.message.toLowerCase().includes('user rejected transaction')) {
@@ -181,7 +181,6 @@ props) => {
     };
   }, []);
 
-  const disabled = width <= 900 ? true : false;
   const data = titlesGoerli.filter((item) => item.id!.toString() === `${id!}`);
   const {
     from: { title: From, icon: IconFrom },
@@ -239,21 +238,19 @@ props) => {
                     </div>
                   </div>
                 </div>
-                {!disabled ? (
-                  <input
-                    placeholder='Add your prediction'
-                    type='number'
-                    disabled={disabled}
-                    className={`${styles.input} my-3 box-border min-h-[50px] w-full rounded-[15px] pl-5 text-center lg:rounded-[20px]`}
-                  />
-                ) : (
-                  <div
-                    onClick={() => setModalOpen(true)}
-                    className={`${styles.input} my-3 box-border flex min-h-[50px] w-full items-center justify-center rounded-[15px] pl-5 text-center text-[1rem] text-gray-500 lg:rounded-[20px] `}
-                  >
-                    Add your prediction
-                  </div>
-                )}
+                <input
+                  placeholder='Add your prediction'
+                  type='text'
+                  value={value}
+                  onChange={(e) => setValue(e.target.value)}
+                  className={`${styles.input} my-3 box-border hidden min-h-[50px] w-full rounded-[15px] pl-5 text-center lg:flex lg:rounded-[20px]`}
+                />
+                <div
+                  onClick={() => setModalOpen(true)}
+                  className={`${styles.input}  my-3 box-border flex min-h-[50px] w-full items-center justify-center rounded-[15px] pl-5 text-center text-[1rem] text-gray-500 lg:hidden lg:rounded-[20px] `}
+                >
+                  Add your prediction
+                </div>
                 <div className='box-border flex min-h-[40px] w-full flex-col items-center justify-start pt-1'>
                   <span className='text-center font-poppins text-[0.9rem] font-[300] text-white'>
                     Latest Price of {From} :{' '}
@@ -326,6 +323,7 @@ props) => {
                 </div>
                 <button
                   onClick={predict}
+                  disabled={txStatus === 'Processing' ? true : false}
                   className='mt-4 hidden h-[10%] max-h-[50px] min-h-[40px] w-[50%] min-w-[70px] max-w-[150px] items-center justify-center rounded-[15px] bg-cardTitleBox1 font-poppins text-[1rem] font-[500] text-white shadow-predictButton lg:flex xxl3100:mt-7 xxl3100:min-h-[80px] xxl3100:min-w-[100px] xxl3100:max-w-[400px] xxl3100:rounded-[30px] xxl3100:text-[2.2rem] '
                 >
                   Predict
@@ -346,18 +344,34 @@ props) => {
                   </span>
                 </div>
                 <div className='flex  max-h-full w-full flex-col items-center justify-start overflow-y-scroll scrollbar-hide '>
-                  {predictionList.map((item, i) => (
-                    <PredictedValue
-                      key={i}
-                      needSeparator
-                      isActive={
-                        address?.toLowerCase() === item.user.toLowerCase()
-                      }
-                      indexShown={false}
-                      value={item.predictedValue!.toString()}
-                      time={item.contestId!.toString()}
-                    />
-                  ))}
+                  {predictionList.map((item, i) => {
+                    return (
+                      <PredictedValue
+                        key={i}
+                        needSeparator
+                        isActive={
+                          address?.toLowerCase() === item.user.toLowerCase()
+                        }
+                        indexShown={false}
+                        value={(
+                          item.predictedValue! /
+                          10 ** decimals
+                        ).toString()}
+                        time={`${
+                          new Date(item.predictedAt).getHours() > 12
+                            ? new Date(item.predictedAt).getHours() - 12 < 10
+                              ? '0' +
+                                (new Date(item.predictedAt).getHours() - 12)
+                              : new Date(item.predictedAt).getHours() - 12
+                            : new Date(item.predictedAt).getHours()
+                        } : ${new Date(item.predictedAt).getMinutes()} ${
+                          new Date(item.predictedAt).getHours() > 12
+                            ? 'PM'
+                            : 'AM'
+                        }`}
+                      />
+                    );
+                  })}
                   {predictionList.length === 0 && (
                     <span className='mt-[25%] font-poppins text-[1rem] text-white'>
                       No data
