@@ -110,7 +110,7 @@ const ContestCards = ({
         <span
           className={`${
             predicted
-              ? 'text-[0.8rem] sm:text-[0.93rem] lg:text-[0.9rem] xl1400:text-[1.1rem] xl1900:text-[1.2rem] xl2300:text-[1.5rem] xxl3100:text-[2.4rem]'
+              ? 'text-[0.8rem] sm:text-[0.93rem] lg:text-[0.8rem] xl1400:text-[1.1rem] xl1900:text-[1.2rem] xl2300:text-[1.5rem] xxl3100:text-[2.4rem]'
               : 'text-[0.85rem] lg:text-[0.9rem] xl1400:text-[1.04rem] xl1900:text-[1.2rem] xl2300:text-[1.5rem] xxl3100:text-[2.4rem]'
           } font-poppins  font-[500] text-white xxl3100:mt-10`}
         >
@@ -141,7 +141,7 @@ const ContestCards = ({
             />
 
             <span className='font-poppins text-[0.8rem] font-[300] text-white sm:text-[0.85rem] xl1400:ml-2 xl1400:text-[0.93rem] xl1900:text-[0.96rem] xl2300:text-[1.4rem] xxl3100:ml-5 xxl3100:text-[0.8vw] '>
-              {timeLeft} left
+              {completed ? 'completed' : `${timeLeft} left`}
             </span>
           </div>
           <div className='flex h-full w-auto items-center justify-end gap-x-1 pr-1 '>

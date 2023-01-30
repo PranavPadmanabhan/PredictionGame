@@ -28,7 +28,7 @@ type Contest = {
   maxPlayers: number;
 };
 
-type Prediction = {
+export type Prediction = {
   contestId: number;
   predictedValue: number;
   predictedAt: number;
@@ -36,6 +36,26 @@ type Prediction = {
   difference: number;
   amount: number;
   resultTime: number;
+};
+
+export type UserPredictions = {
+  contestId: number;
+  predictedValue: number;
+  predictedAt: number;
+  user: string;
+  difference: number;
+  amount: number;
+  resultTime: number;
+  numOfPlayers: number;
+  maxPlayers: number;
+  from: {
+    title: string;
+    icon: any;
+  };
+  to: {
+    title: string;
+    icon: any;
+  };
 };
 
 export const getContract = async () => {
@@ -105,7 +125,10 @@ export const getNumberOfContests = async () => {
   return number;
 };
 
-export const getPredictions = async (contestId: number) => {
+export const getPredictions = async (
+  contestId: number,
+  needAllData = false
+) => {
   const { contract } = await getContract();
   const lastPlayers = await contract?.getContestPlayers(contestId);
   const startingNumber: number = parseInt(lastPlayers.toString());
@@ -114,20 +137,23 @@ export const getPredictions = async (contestId: number) => {
     contestId
   );
 
-  const predictionsData = AllPredictionsData.filter((item: any, i: number) => {
-    if (i >= startingNumber) {
-      return item;
-    }
-  });
-  predictions = predictionsData.map((item) => ({
-    amount: parseFloat(item.amount.toString()),
-    contestId: parseInt(item.contestId.toString()),
-    difference: parseFloat(item.difference.toString()),
-    predictedAt: parseInt(item.predictedAt.toString()),
-    predictedValue: parseFloat(item.predictedValue.toString()),
-    resultTime: parseInt(item.resultTime.toString()),
-    user: item.user.toString(),
-  }));
+  if (needAllData === false) {
+    predictions = AllPredictionsData.filter((item: any, i: number) => {
+      if (i >= startingNumber) {
+        return item;
+      }
+    });
+  } else {
+    predictions = AllPredictionsData.map((item) => ({
+      amount: parseFloat(item.amount.toString()),
+      contestId: parseInt(item.contestId.toString()),
+      difference: parseFloat(item.difference.toString()),
+      predictedAt: parseInt(item.predictedAt.toString()),
+      predictedValue: parseFloat(item.predictedValue.toString()),
+      resultTime: parseInt(item.resultTime.toString()),
+      user: item.user.toString(),
+    }));
+  }
 
   return predictions;
 };
@@ -204,4 +230,42 @@ export const getRewardArray = (entranceFee: number) => {
     default:
       return { rewards: rewardsForFirst, distribution };
   }
+};
+
+export const getPredictionsOfUser = async (
+  address: string,
+  setLoading?: React.Dispatch<React.SetStateAction<boolean>>
+) => {
+  setLoading?.(true);
+  let Allpredictions: Prediction[] = [];
+  const contests = await getContests();
+  for (let i = 0; i < contests.length; i++) {
+    const contests = await getPredictions(i + 1, true);
+    Allpredictions = [...Allpredictions, ...contests];
+  }
+  const userPredictions: Prediction[] = Allpredictions.filter(
+    (item) =>
+      item.user.toString().toLowerCase() === address.toString().toLowerCase()
+  );
+
+  const predictions: UserPredictions[] = userPredictions.map((item) => {
+    const contestData = contests.filter(
+      (contest) => contest.id.toString() === item.contestId.toString()
+    );
+    return {
+      amount: item.amount,
+      contestId: item.contestId,
+      difference: item.difference,
+      predictedAt: item.predictedAt,
+      predictedValue: item.predictedValue,
+      resultTime: item.resultTime,
+      user: item.user,
+      numOfPlayers: contestData[0]!.numOfPlayers,
+      maxPlayers: contestData[0]!.maxPlayers,
+      from: contestData[0]!.from,
+      to: contestData[0]!.to,
+    };
+  });
+  setLoading?.(false);
+  return predictions;
 };
