@@ -171,7 +171,12 @@ const ContestCards = ({
         </div>
         <div className='my-2 flex h-[12px]  w-[85%] items-center justify-start self-center rounded-[30px] bg-white p-[1px] sm:my-3 sm:h-[15px] lg:my-1 lg:min-h-[15px] xl1400:min-h-[18px] xl1600:min-h-[18px] xl1900:my-3 xl1900:min-h-[17px] xl2300:my-6 xl2300:min-h-[24px] xxl3100:my-3 xxl3100:min-h-[30px] xxl3100:p-[5px] '>
           <div
-            style={{ width: `${(numberOfPredictions / maxPlayers) * 100}%` }}
+            style={{
+              width:
+                numberOfPredictions >= 4
+                  ? `${(numberOfPredictions / maxPlayers) * 100}%`
+                  : '',
+            }}
             className='h-full  rounded-[28px] bg-gradient-to-r from-sliderColor1 to-sliderColor2'
           ></div>
         </div>

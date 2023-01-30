@@ -332,7 +332,10 @@ props) => {
                   <div className='my-2 box-border flex min-h-[20px] w-[75%] items-center justify-start self-center rounded-[30px] bg-white p-[1px] lg:max-h-[18px] lg:min-h-[12px] lg:p-[1px] xxl3100:max-h-[50px] xxl3100:min-h-[30px] xxl3100:p-[5px] '>
                     <div
                       style={{
-                        width: `${(predictionList.length / maxPlayers) * 100}%`,
+                        width:
+                          predictionList.length >= 4
+                            ? `${(predictionList.length / maxPlayers) * 100}%`
+                            : '',
                       }}
                       className='h-full rounded-[28px]  bg-gradient-to-r from-sliderColor1 to-sliderColor2  lg:h-[15px] lg:max-h-[18px] xxl3100:max-h-[50px] xxl3100:min-h-[30px]'
                     ></div>
