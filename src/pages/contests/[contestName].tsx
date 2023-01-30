@@ -95,7 +95,7 @@ props) => {
       setMinutes(mins);
       setSeconds(second);
       // console.log(`${hour} ${mins} ${second}`);
-      if (distance < 0) {
+      if (distance <= 1) {
         const { contract } = await getContract();
         const lastTime = await contract?.getLatestTimeStamp();
         const interval = await contract?.getInterval();
@@ -150,9 +150,11 @@ props) => {
     address: `0x${contractAddress}`,
     abi: abi,
     eventName: 'ContestCompleted',
-    listener: async () => {
-      const predictions = await getPredictions(parseInt(id.toString()));
-      setPredictionList(predictions);
+    listener: async (contestId) => {
+      if (parseInt(contestId!.toString()) === parseInt(id.toString())) {
+        const predictions = await getPredictions(parseInt(id.toString()));
+        setPredictionList(predictions);
+      }
     },
   });
 
@@ -333,9 +335,17 @@ props) => {
                     <div
                       style={{
                         width:
-                          predictionList.length >= 4
+                          predictionList.length >= 0
                             ? `${(predictionList.length / maxPlayers) * 100}%`
                             : '',
+                        height:
+                          predictionList.length <= 5
+                            ? predictionList.length * 3
+                            : '100%',
+                        marginLeft:
+                          predictionList.length < 4
+                            ? 4 - predictionList.length
+                            : 0,
                       }}
                       className='h-full rounded-[28px]  bg-gradient-to-r from-sliderColor1 to-sliderColor2  lg:h-[15px] lg:max-h-[18px] xxl3100:max-h-[50px] xxl3100:min-h-[30px]'
                     ></div>
@@ -384,9 +394,11 @@ props) => {
                               ? '0' + (date.getHours() - 12)
                               : date.getHours() - 12
                             : date.getHours()
-                        } : ${date.getMinutes()} ${
-                          date.getHours() > 12 ? 'PM' : 'AM'
-                        }`}
+                        } : ${
+                          date.getMinutes() < 10
+                            ? '0' + date.getMinutes()
+                            : date.getMinutes()
+                        } ${date.getHours() > 12 ? 'PM' : 'AM'}`}
                       />
                     );
                   })}
