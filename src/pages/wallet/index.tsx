@@ -64,6 +64,15 @@ const Wallet = () => {
   useContractEvent({
     address: `0x${contractAddress}`,
     abi: abi,
+    eventName: 'ContestCompleted',
+    listener: async () => {
+      getBalance(address!, setLoading).then((balance) => setBalance(balance));
+    },
+  });
+
+  useContractEvent({
+    address: `0x${contractAddress}`,
+    abi: abi,
     eventName: 'NewPrediction',
     listener: async () => {
       getBalance(address!, setLoading).then((balance) => setBalance(balance));

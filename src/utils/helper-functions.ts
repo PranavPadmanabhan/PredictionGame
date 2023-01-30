@@ -2,7 +2,15 @@
 import { BigNumber, Contract, ethers } from 'ethers';
 import React from 'react';
 
-import { abi, contractAddress, titlesGoerli } from '@/constant/constants';
+import {
+  abi,
+  contractAddress,
+  distribution,
+  rewardsForFirst,
+  rewardsForSecond,
+  rewardsForThird,
+  titlesGoerli,
+} from '@/constant/constants';
 import { RPC_URL } from '@/constant/env';
 
 type Contest = {
@@ -99,10 +107,18 @@ export const getNumberOfContests = async () => {
 
 export const getPredictions = async (contestId: number) => {
   const { contract } = await getContract();
+  const lastPlayers = await contract?.getContestPlayers(contestId);
+  const startingNumber: number = parseInt(lastPlayers.toString());
   let predictions: Prediction[] = [];
-  const predictionsData: Prediction[] = await contract?.getPredictions(
+  const AllPredictionsData: Prediction[] = await contract?.getPredictions(
     contestId
   );
+
+  const predictionsData = AllPredictionsData.filter((item: any, i: number) => {
+    if (i >= startingNumber) {
+      return item;
+    }
+  });
   predictions = predictionsData.map((item) => ({
     amount: parseFloat(item.amount.toString()),
     contestId: parseInt(item.contestId.toString()),
@@ -168,4 +184,17 @@ export const getBalance = async (
   const bal = parseFloat(ethers.utils.formatEther(balance).toString());
   setLoading?.(false);
   return bal;
+};
+
+export const getRewardArray = (entranceFee: number) => {
+  switch (entranceFee) {
+    case 0.0005:
+      return { rewards: rewardsForFirst, distribution };
+    case 0.00075:
+      return { rewards: rewardsForSecond, distribution };
+    case 0.001:
+      return { rewards: rewardsForThird, distribution };
+    default:
+      return { rewards: rewardsForFirst, distribution };
+  }
 };

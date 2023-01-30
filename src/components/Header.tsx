@@ -54,6 +54,15 @@ const Header = ({ className, showBalance }: header) => {
   useContractEvent({
     address: `0x${contractAddress}`,
     abi: abi,
+    eventName: 'ContestCompleted',
+    listener: async () => {
+      getBalance(address!, setLoading).then((balance) => setBalance(balance));
+    },
+  });
+
+  useContractEvent({
+    address: `0x${contractAddress}`,
+    abi: abi,
     eventName: 'WithdrawSuccessfull',
     listener: async (amount, user) => {
       getBalance(address!, setLoading).then((balance) => setBalance(balance));

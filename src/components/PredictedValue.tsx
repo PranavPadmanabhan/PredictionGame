@@ -3,7 +3,7 @@ import React from 'react';
 type props = {
   value: string;
   time: string;
-  index?: number;
+  index?: number | string;
   needSeparator?: boolean;
   isActive: boolean;
   indexShown: boolean;
@@ -21,7 +21,7 @@ const PredictedValue = ({
     <div className='relative my-1 flex h-[20px] w-[90%] items-center justify-between pl-0 lg:pl-3'>
       {indexShown && (
         <span
-          className={`font font-poppins text-[0.7rem] font-[400] ${
+          className={`font text-left font-poppins text-[0.7rem] font-[400] ${
             isActive ? 'text-green-500' : 'text-white'
           } lg:text-[0.9rem]`}
         >
@@ -29,7 +29,7 @@ const PredictedValue = ({
         </span>
       )}
       <span
-        className={`font font-poppins text-[0.7rem] font-[400] ${
+        className={`font text-left font-poppins text-[0.7rem] font-[400] ${
           isActive ? 'text-green-500' : 'text-white'
         } lg:text-[0.9rem]`}
       >
@@ -45,7 +45,7 @@ const PredictedValue = ({
         </span>
       )}
       <span
-        className={`font font-poppins text-[0.7rem] font-[400] ${
+        className={`font text-left font-poppins text-[0.7rem] font-[400] ${
           isActive ? 'text-green-500' : 'text-white'
         } lg:text-[1rem]`}
       >

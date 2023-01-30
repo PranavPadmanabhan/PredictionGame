@@ -25,6 +25,7 @@ import {
   getLatestTimeStamp,
   getMaxPlayers,
   getPredictions,
+  getRewardArray,
   getSignedContract,
   getWinners,
 } from '@/utils/helper-functions';
@@ -135,6 +136,16 @@ props) => {
     address: `0x${contractAddress}`,
     abi: abi,
     eventName: 'NewPrediction',
+    listener: async () => {
+      const predictions = await getPredictions(parseInt(id.toString()));
+      setPredictionList(predictions);
+    },
+  });
+
+  useContractEvent({
+    address: `0x${contractAddress}`,
+    abi: abi,
+    eventName: 'ContestCompleted',
     listener: async () => {
       const predictions = await getPredictions(parseInt(id.toString()));
       setPredictionList(predictions);
@@ -316,7 +327,9 @@ props) => {
 
                   <div className='my-2 box-border flex min-h-[20px] w-[75%] items-center justify-start self-center rounded-[30px] bg-white p-[1px] lg:max-h-[18px] lg:min-h-[12px] lg:p-[1px] xxl3100:max-h-[50px] xxl3100:min-h-[30px] xxl3100:p-[5px] '>
                     <div
-                      style={{ width: predictionList.length / maxPlayers }}
+                      style={{
+                        width: `${predictionList.length / maxPlayers}%`,
+                      }}
                       className='h-full rounded-[28px]  bg-gradient-to-r from-sliderColor1 to-sliderColor2  lg:h-[15px] lg:max-h-[18px] xxl3100:max-h-[50px] xxl3100:min-h-[30px]'
                     ></div>
                   </div>
@@ -427,14 +440,14 @@ props) => {
                   Prizes
                 </h1>
                 <div className='flex  max-h-full w-full flex-col items-center justify-start overflow-y-scroll scrollbar-hide '>
-                  {predictionList.map((item, i) => (
+                  {getRewardArray(entranceFee).rewards.map((item, i) => (
                     <PredictedValue
                       indexShown={true}
                       key={i}
                       isActive={false}
-                      index={i + 1}
-                      value={item.predictedValue!.toString()}
-                      time={item.contestId!.toString()}
+                      index={getRewardArray(entranceFee).distribution[i]}
+                      value={item!.toString()}
+                      time=''
                     />
                   ))}
                 </div>
