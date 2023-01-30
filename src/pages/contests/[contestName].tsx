@@ -115,7 +115,7 @@ props) => {
         const tx = await contract?.predict(
           parseInt(id.toString()),
           prediction,
-          { gasLimit: 22000 }
+          { gasLimit: 250000 }
         );
         setTxHash(tx.hash.toString());
         if (tx.confirmations == 0) {
@@ -127,7 +127,6 @@ props) => {
           setTxStatus('Success');
         }
       } catch (error: any) {
-        console.log(error);
         if (error.message.toLowerCase().includes('user rejected transaction')) {
           setTxStatus('Cancelled');
         } else {
@@ -363,6 +362,7 @@ props) => {
                 </div>
                 <div className='flex  max-h-full w-full flex-col items-center justify-start overflow-y-scroll scrollbar-hide '>
                   {predictionList.map((item, i) => {
+                    const date = new Date(item.predictedAt * 1000);
                     return (
                       <PredictedValue
                         key={i}
@@ -376,16 +376,13 @@ props) => {
                           10 ** decimals
                         ).toString()}
                         time={`${
-                          new Date(item.predictedAt).getHours() > 12
-                            ? new Date(item.predictedAt).getHours() - 12 < 10
-                              ? '0' +
-                                (new Date(item.predictedAt).getHours() - 12)
-                              : new Date(item.predictedAt).getHours() - 12
-                            : new Date(item.predictedAt).getHours()
-                        } : ${new Date(item.predictedAt).getMinutes()} ${
-                          new Date(item.predictedAt).getHours() > 12
-                            ? 'PM'
-                            : 'AM'
+                          date.getHours() > 12
+                            ? date.getHours() - 12 < 10
+                              ? '0' + (date.getHours() - 12)
+                              : date.getHours() - 12
+                            : date.getHours()
+                        } : ${date.getMinutes()} ${
+                          date.getHours() > 12 ? 'PM' : 'AM'
                         }`}
                       />
                     );
