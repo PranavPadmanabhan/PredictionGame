@@ -112,7 +112,11 @@ props) => {
       setError('');
       try {
         setIsTxModalOpen(true);
-        const tx = await contract?.predict(parseInt(id.toString()), prediction);
+        const tx = await contract?.predict(
+          parseInt(id.toString()),
+          prediction,
+          { gasLimit: 22000 }
+        );
         setTxHash(tx.hash.toString());
         if (tx.confirmations == 0) {
           setTxStatus('Processing');
@@ -123,6 +127,7 @@ props) => {
           setTxStatus('Success');
         }
       } catch (error: any) {
+        console.log(error);
         if (error.message.toLowerCase().includes('user rejected transaction')) {
           setTxStatus('Cancelled');
         } else {
