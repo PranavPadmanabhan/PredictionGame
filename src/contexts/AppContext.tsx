@@ -81,7 +81,7 @@ const AppContextProvider = ({ children }: ContextProvider) => {
     address: `0x${contractAddress}`,
     abi: abi,
     eventName: 'ContestCompleted',
-    listener: async (contestId) => {
+    listener: async () => {
       getContests(setLoading).then((contests) => setContests(contests));
     },
   });

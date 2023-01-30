@@ -57,7 +57,7 @@ const Contests = () => {
     const interval = await contract?.getInterval();
     const lastTimeStamp = parseInt(lastTime.add(interval).toString());
     let countDownDate: number;
-    countDownDate = new Date(lastTimeStamp * 1000).getTime();
+    countDownDate = new Date((lastTimeStamp + 180) * 1000).getTime();
     timer = setInterval(async function () {
       const now = new Date().getTime();
       const distance = countDownDate - now;
