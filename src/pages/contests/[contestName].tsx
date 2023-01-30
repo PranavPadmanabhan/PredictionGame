@@ -161,18 +161,13 @@ props) => {
   const getData = async () => {
     setLoading(true);
     const predictions = await getPredictions(parseInt(id.toString()));
-    const { latestPrice, decimals } = await getLatestPrice(
-      parseInt(id.toString())
-    );
     const entranceFee = await getEntranceFee(parseInt(id.toString()));
     const maxPlayers = await getMaxPlayers();
     const winners = await getWinners(parseInt(id.toString()));
     setPredictionList(predictions);
-    setLatestPrice(latestPrice);
     setEntranceFee(entranceFee);
     setMaxPlayers(maxPlayers);
     setWinnersList(winners);
-    setDecimals(decimals);
     setLoading(false);
   };
 
@@ -192,9 +187,17 @@ props) => {
 
   React.useEffect(() => {
     getData();
+    const priceCheck = setInterval(async () => {
+      const { latestPrice, decimals } = await getLatestPrice(
+        parseInt(id.toString())
+      );
+      setDecimals(decimals);
+      setLatestPrice(latestPrice);
+    }, 2000);
     setTimer();
     return () => {
       clearInterval(timer);
+      clearInterval(priceCheck);
     };
   }, []);
 
