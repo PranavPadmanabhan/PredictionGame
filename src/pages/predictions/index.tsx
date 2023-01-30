@@ -103,9 +103,9 @@ const Predictions = () => {
         >
           {predictions
             .sort((a, b) => {
-              if (a.predictedAt > b.predictedAt) {
+              if (a.predictedAt < b.predictedAt) {
                 return 1;
-              } else if (a.predictedAt < b.predictedAt) {
+              } else if (a.predictedAt > b.predictedAt) {
                 return -1;
               } else {
                 return 0;
