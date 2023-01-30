@@ -19,7 +19,7 @@ type cards = {
   entranceFee?: number | string;
   numberOfPredictions: number;
   maxPlayers: number;
-  timeLeft:string;
+  timeLeft: string;
 };
 
 const ContestCards = ({
@@ -31,7 +31,7 @@ const ContestCards = ({
   entranceFee,
   numberOfPredictions,
   maxPlayers,
-  timeLeft
+  timeLeft,
 }: cards) => {
   // max-h-[345px] min-h-[250px] w-[50%] min-w-[240px] max-w-[320px] lg1300:min-h-[250px] lg1300:w-[100%] lg1300:max-w-[230px] xl1400:min-h-[300px] xl1400:w-[100%] xl1400:max-w-[260px] xl1500:min-h-[310px] xl1500:w-[100%] xl1500:max-w-[280px] xxl3100:min-h-[700px] xxl3100:w-[100%] xxl3100:max-w-[600px] xxl3100:rounded-[100px]
 
@@ -171,7 +171,7 @@ const ContestCards = ({
         </div>
         <div className='my-2 flex h-[12px]  w-[85%] items-center justify-start self-center rounded-[30px] bg-white p-[1px] sm:my-3 sm:h-[15px] lg:my-1 lg:min-h-[15px] xl1400:min-h-[18px] xl1600:min-h-[18px] xl1900:my-3 xl1900:min-h-[17px] xl2300:my-6 xl2300:min-h-[24px] xxl3100:my-3 xxl3100:min-h-[30px] xxl3100:p-[5px] '>
           <div
-            style={{ width: numberOfPredictions / maxPlayers }}
+            style={{ width: `${(numberOfPredictions / maxPlayers) * 100}%` }}
             className='h-full  rounded-[28px] bg-gradient-to-r from-sliderColor1 to-sliderColor2'
           ></div>
         </div>

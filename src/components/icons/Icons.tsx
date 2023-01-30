@@ -612,7 +612,7 @@ export const ArrowDown = ({ className }: { className?: string }) => {
         d='M30.8325 23.4046L16.4163 35.2917L2 23.4046M16.4163 2V34.9588'
         stroke='white'
         stroke-width='3.5'
-        stroke-miterlimit='10'
+        strokeMiterlimit='10'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -634,7 +634,7 @@ export const ArrowUp = ({ className }: { className?: string }) => {
         d='M30.8325 13.8871L16.4163 2L2 13.8871M16.4163 35.2917V2.33292'
         stroke='white'
         stroke-width='3.5'
-        stroke-miterlimit='10'
+        strokeMiterlimit='10'
         stroke-linecap='round'
         stroke-linejoin='round'
       />
@@ -708,8 +708,8 @@ export const Light = ({ className }: { className?: string }) => {
           y2='44.3774'
           gradientUnits='userSpaceOnUse'
         >
-          <stop stop-color='#FEB700' />
-          <stop offset='1' stop-color='#FEB700' stop-opacity='0' />
+          <stop stopColor='#FEB700' />
+          <stop offset='1' stopColor='#FEB700' stop-opacity='0' />
         </linearGradient>
       </defs>
     </svg>
@@ -742,7 +742,7 @@ export const LoadingIndicator = () => {
         d='M99 43.419V43.9579C99 44.0323 99 44.1058 99 44.1727C99 44.2396 99 44.2979 99 44.3428C99 44.0506 99 43.7364 99 43.419Z'
         fill='#0067B4'
         stroke='#231F20'
-        stroke-miterlimit='10'
+        strokeMiterlimit='10'
       />
       <path
         d='M49.9714 26.7905L16.4693 44.1714L0 52.7164L0.0170803 70.2095L16.5888 61.5648V61.3529L48.541 44.62L49.6683 44.0301L49.9714 26.7905Z'
@@ -760,7 +760,7 @@ export const LoadingIndicator = () => {
         d='M99 69.2857V69.8246C99 69.8989 99 69.9725 99 70.0394C99 70.1063 99 70.1646 99 70.2095C99 69.9173 99 69.6031 99 69.2857Z'
         fill='#0067B4'
         stroke='#231F20'
-        stroke-miterlimit='10'
+        strokeMiterlimit='10'
       />
       <path
         d='M98.9992 26.9113V43.6208C98.9994 43.741 98.9749 43.86 98.9271 43.9707C98.8388 44.1533 98.6891 44.3004 98.5032 44.3872L49.3251 70.2095L49.0283 52.9252L81.8971 35.5076L98.9738 26.7905C98.9933 26.8277 99.0021 26.8695 98.9992 26.9113Z'
@@ -779,8 +779,8 @@ export const LoadingIndicator = () => {
           y2='28.7825'
           gradientUnits='userSpaceOnUse'
         >
-          <stop offset='0.17' stop-color='#0067B4' />
-          <stop offset='1' stop-color='#1E4281' />
+          <stop offset='0.17' stopColor='#0067B4' />
+          <stop offset='1' stopColor='#1E4281' />
         </linearGradient>
         <linearGradient
           id='paint1_linear_604_31'
@@ -790,8 +790,8 @@ export const LoadingIndicator = () => {
           y2='41.7953'
           gradientUnits='userSpaceOnUse'
         >
-          <stop offset='0.17' stop-color='#0067B4' />
-          <stop offset='1' stop-color='#1E4281' />
+          <stop offset='0.17' stopColor='#0067B4' />
+          <stop offset='1' stopColor='#1E4281' />
         </linearGradient>
         <linearGradient
           id='paint2_linear_604_31'
@@ -801,8 +801,8 @@ export const LoadingIndicator = () => {
           y2='55.5845'
           gradientUnits='userSpaceOnUse'
         >
-          <stop stop-color='#0067B4' />
-          <stop offset='1' stop-color='#1E4281' />
+          <stop stopColor='#0067B4' />
+          <stop offset='1' stopColor='#1E4281' />
         </linearGradient>
         <linearGradient
           id='paint3_linear_604_31'
@@ -812,8 +812,8 @@ export const LoadingIndicator = () => {
           y2='68.6018'
           gradientUnits='userSpaceOnUse'
         >
-          <stop offset='0.17' stop-color='#0067B4' />
-          <stop offset='1' stop-color='#1E4281' />
+          <stop offset='0.17' stopColor='#0067B4' />
+          <stop offset='1' stopColor='#1E4281' />
         </linearGradient>
       </defs>
     </svg>
