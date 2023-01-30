@@ -170,7 +170,14 @@ export const getMaxPlayers = async () => {
 export const getWinners = async (contestId: number) => {
   const { contract } = await getContract();
   const winners: any[] = await contract?.getWinners(contestId);
-  const winnersList: string[] = winners.map((item) => item.toString());
+  const lastPlayers = await contract?.getContestPlayers(contestId);
+  const startingNumber: number = parseInt(lastPlayers.toString());
+  const winnersData = winners.filter((item: any, i: number) => {
+    if (i >= startingNumber) {
+      return item;
+    }
+  });
+  const winnersList: string[] = winnersData.map((item) => item.toString());
   return winnersList;
 };
 

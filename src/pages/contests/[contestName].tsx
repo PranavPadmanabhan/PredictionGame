@@ -260,7 +260,7 @@ props) => {
                   type='text'
                   value={value}
                   onChange={(e) => setValue(e.target.value)}
-                  className={`${styles.input} my-3 box-border hidden min-h-[50px] w-full rounded-[15px] pl-5 text-center lg:flex lg:rounded-[20px]`}
+                  className={`${styles.input} my-3 box-border hidden min-h-[50px] w-full rounded-[15px] pl-5 text-center lg:flex lg:rounded-[10px]`}
                 />
                 <div
                   onClick={() => setModalOpen(true)}
