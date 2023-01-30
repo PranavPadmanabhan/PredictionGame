@@ -1,5 +1,5 @@
 {
-  "contractAddress":"0E5D01d5864eAE4936BDEacdcEE07f679EaA33cB",
+  "contractAddress":"539f4a8c05F5D14448149F6E207132A2cAA7B373",
   "abi":[
     {
       "inputs": [
@@ -637,19 +637,6 @@
         }
       ],
       "name": "updateWinnerList",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "amount",
-          "type": "uint256"
-        }
-      ],
-      "name": "withDrawContractFunds",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"

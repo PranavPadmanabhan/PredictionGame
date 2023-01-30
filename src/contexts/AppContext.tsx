@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react';
-import { useAccount } from 'wagmi';
+import { useAccount, useContractEvent } from 'wagmi';
 
+import { abi, contractAddress } from '@/constant/constants';
 import { Contest } from '@/constant/Types';
 import {
   getBalance,
@@ -75,6 +76,15 @@ const AppContextProvider = ({ children }: ContextProvider) => {
     balance,
   };
   const router = useRouter();
+
+  useContractEvent({
+    address: `0x${contractAddress}`,
+    abi: abi,
+    eventName: 'ContestCompleted',
+    listener: async (contestId) => {
+      getContests(setLoading).then((contests) => setContests(contests));
+    },
+  });
 
   useEffect(() => {
     if (typeof window !== undefined) {
