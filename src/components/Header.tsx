@@ -56,11 +56,17 @@ const Header = ({ className, showBalance }: header) => {
     abi: abi,
     eventName: 'ResultAnnounced',
     listener: async () => {
-      const response = await fetch(
-        'https://prediction-backend-vf2r.vercel.app/result',
-        { mode: 'no-cors' }
-      );
-      const data = await response.json();
+      try {
+        const response = await fetch(
+          'https://prediction-irrr.onrender.com/result',
+          {
+            mode: 'no-cors',
+          }
+        );
+        const data = await response.json();
+      } catch (error) {
+        console.log(error);
+      }
     },
   });
 

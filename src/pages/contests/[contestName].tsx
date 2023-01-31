@@ -114,7 +114,7 @@ props) => {
         setIsTxModalOpen(true);
         const tx = await contract?.predict(
           parseInt(id.toString()),
-          prediction,
+          `${prediction}`,
           { gasLimit: 250000 }
         );
         setTxHash(tx.hash.toString());
@@ -127,6 +127,7 @@ props) => {
           setTxStatus('Success');
         }
       } catch (error: any) {
+        console.log(error);
         if (error.message.toLowerCase().includes('user rejected transaction')) {
           setTxStatus('Cancelled');
         } else {
@@ -377,34 +378,44 @@ props) => {
                   </span>
                 </div>
                 <div className='flex  max-h-full w-full flex-col items-center justify-start overflow-y-scroll scrollbar-hide '>
-                  {predictionList.map((item, i) => {
-                    const date = new Date(item.predictedAt * 1000);
-                    return (
-                      <PredictedValue
-                        key={i}
-                        needSeparator
-                        isActive={
-                          address?.toLowerCase() === item.user.toLowerCase()
-                        }
-                        indexShown={false}
-                        value={(
-                          item.predictedValue! /
-                          10 ** decimals
-                        ).toString()}
-                        time={`${
-                          date.getHours() > 12
-                            ? date.getHours() - 12 < 10
-                              ? '0' + (date.getHours() - 12)
-                              : date.getHours() - 12
-                            : date.getHours()
-                        } : ${
-                          date.getMinutes() < 10
-                            ? '0' + date.getMinutes()
-                            : date.getMinutes()
-                        } ${date.getHours() > 12 ? 'PM' : 'AM'}`}
-                      />
-                    );
-                  })}
+                  {predictionList
+                    .sort((a, b) => {
+                      if (a.predictedAt < b.predictedAt) {
+                        return 1;
+                      } else if (a.predictedAt > b.predictedAt) {
+                        return -1;
+                      } else {
+                        return 0;
+                      }
+                    })
+                    .map((item, i) => {
+                      const date = new Date(item.predictedAt * 1000);
+                      return (
+                        <PredictedValue
+                          key={i}
+                          needSeparator
+                          isActive={
+                            address?.toLowerCase() === item.user.toLowerCase()
+                          }
+                          indexShown={false}
+                          value={(
+                            item.predictedValue! /
+                            10 ** decimals
+                          ).toString()}
+                          time={`${
+                            date.getHours() > 12
+                              ? date.getHours() - 12 < 10
+                                ? '0' + (date.getHours() - 12)
+                                : date.getHours() - 12
+                              : date.getHours()
+                          } : ${
+                            date.getMinutes() < 10
+                              ? '0' + date.getMinutes()
+                              : date.getMinutes()
+                          } ${date.getHours() > 12 ? 'PM' : 'AM'}`}
+                        />
+                      );
+                    })}
                   {predictionList.length === 0 && (
                     <span className='mt-[25%] font-poppins text-[1rem] text-white'>
                       No data
