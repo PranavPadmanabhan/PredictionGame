@@ -42,7 +42,7 @@ const HomePage: NextPage = () => {
         </p>
         <button
           onClick={() => router.push('/contests')}
-          className={`${styles.start} h-[55px] w-[60%] max-w-[280px] rounded-[55px] bg-button font-poppins text-[0.9rem] text-white md:h-[50px] md:max-w-[250px] md:text-[1.2rem] lg:h-[40px] lg:w-[30%] lg:max-w-[150px] lg:text-[1rem] xl1400:h-[50px] xl1400:max-w-[180px] xl1400:text-[1.1rem] xxl3100:h-[100px] xxl3100:max-w-[400px] xxl3100:text-[2.5rem]`}
+          className={`${styles.start} h-[45px] w-[60%] max-w-[200px] rounded-[55px] bg-button font-poppins text-[0.9rem] text-white md:h-[50px] md:max-w-[250px] md:text-[1.2rem] lg:h-[45px] lg:w-[30%] lg:max-w-[220px] lg:text-[1rem] xl1400:h-[50px] xl1400:max-w-[180px] xl1400:text-[1.1rem] xxl3100:h-[100px] xxl3100:max-w-[400px] xxl3100:text-[2.5rem]`}
         >
           Start predicting
         </button>
